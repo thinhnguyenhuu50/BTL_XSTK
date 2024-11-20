@@ -32,6 +32,10 @@
 \RequirePackage{lastpage}
 \RequirePackage{tabularx}
 \RequirePackage{makecell}
+\RequirePackage{longtable}
+\RequirePackage{adjustbox}
+\RequirePackage{array}
+\RequirePackage{tcolorbox}
 
 % Some packages that seem pretty redundant
 \RequirePackage{geometry,graphicx,indentfirst,setspace}
@@ -145,6 +149,29 @@
 \fancyfoot[RO]{\scriptsize \ttfamily Báo cáo Bài tập lớn Xác suất và thống kê - HK241}
 \fancyfoot[LE]{\scriptsize \ttfamily Báo cáo Bài tập lớn Xác suất và thống kê - HK241}
 \fancyfoot[RE]{\scriptsize \ttfamily Trang \thepage/\pageref{LastPage}}
+%------------------------------------------------------------------------------------------------------------------------%
+\tcbset {
+  base/.style={
+    arc=0mm, 
+    bottomtitle=0.5mm,
+    boxrule=0mm,
+    colbacktitle=black!10!white, 
+    coltitle=black, 
+    fonttitle=\bfseries, 
+    left=2.5mm,
+    leftrule=1mm,
+    right=3.5mm,
+    title={#1},
+    toptitle=0.75mm, 
+  }
+}
+
+\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
+\newtcolorbox{mainbox}[2]{
+  colframe=brandblue, 
+  base={#1},
+  equal height group=#2
+}
 %------------------------------------------------------------------------------------------------------------------------%
 \newcommand{\coverpage}{
     

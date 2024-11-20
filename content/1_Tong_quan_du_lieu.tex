@@ -1,4 +1,183 @@
 \section{Tổng quan dữ liệu}
-\subsection{Tóm tắt}
-$$H_1: \mu_i \neq \mu_j \; \text{với } i \neq j$$
-\subsubsection{thêm}
+\subsection{Mô tả dữ liệu}
+Tập dữ liệu được cung cấp trong BTL chứa thông tin về một cửa hàng điện tử trực tuyến. Cửa hàng có ba nhà kho để giao hàng cho khách hàng. Dựa vào dữ liệu đã cho để tìm mối quan hệ giữa các biến, từ đó đưa ra phỏng đoán và xây dựng mô hình dự báo mức độ hài lòng của khách hàng.
+
+\begin{itemize}
+    \item Tiêu đề : Transactional Retail Dataset of Electronics Store
+    \item Thông tin nguồn :
+        \begin{itemize}
+            \item Tác giả : SHAHRAYAR
+            \item Thời điểm công bố dữ liệu : 3 năm trước
+        \end{itemize}
+    \item Giá trị quan trắc : 500
+    \item Số lượng biến : 16
+\end{itemize}
+
+\subsection{Mô tả biến}
+Dữ liệu dưới đây được thu thập và tổ chức nhằm mục đích hỗ trợ quá trình phân tích và quản lý đơn hàng trong hệ thống thương mại điện tử. Đây là tập hợp các thông tin chi tiết liên quan đến đơn đặt hàng, khách hàng, sản phẩm, và các yếu tố khác có liên quan.
+
+Mỗi biến trong bảng dữ liệu đều được mô tả một cách cụ thể, bao gồm: 
+\begin{itemize}
+    \item Tên biến, loại dữ liệu, đơn vị đo lường (nếu có), và ý nghĩa của biến.
+    \item Các thông tin này giúp làm rõ bản chất và vai trò của từng trường dữ liệu trong hệ thống.
+\end{itemize}
+
+\vspace{0.5cm}
+
+% Row 1
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 1: Mã đơn đặt hàng}{1}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một ID duy nhất cho mỗi đơn hàng.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 2: Mã khách hàng}{1}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một ID duy nhất cho mỗi khách hàng.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 2
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 3: Ngày}{2}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Ngày đặt hàng, được đưa ra ở định dạng YYYY-MM-DD.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 4: Tên kho gần nhất}{2}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một chuỗi biểu thị tên của kho gần nhất với khách hàng.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 3
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 5: Giỏ hàng}{3}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một danh sách các bộ đại diện cho các hạng mục trong đơn hàng: phần tử đầu tiên của bộ dữ liệu là mục được sắp xếp và phần tử thứ hai là số lượng đặt hàng cho mặt hàng đó.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 6: Giá đặt hàng}{3}
+    \textbf{Loại dữ liệu:} \(x \in (0; +\infty)\) \\
+    \textbf{Đơn vị:} USD \\
+    \textbf{Mô tả:} Một số biểu thị giá đặt hàng bằng USD. Giá đặt hàng là giá của các mặt hàng trước khi có bất kỳ khoản giảm giá và/hoặc phí giao hàng nào được áp dụng.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 4
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 7: Phí vận chuyển}{4}
+    \textbf{Loại dữ liệu:} \(y \in (0; +\infty)\) \\
+    \textbf{Đơn vị:} USD \\
+    \textbf{Mô tả:} Một số thể hiện phí giao hàng của đơn hàng.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 8: Vĩ độ (customer\_lat)}{4}
+    \textbf{Loại dữ liệu:} \(z \in (-90; 90)\) \\
+    \textbf{Đơn vị:} Độ \\
+    \textbf{Mô tả:} Vĩ độ vị trí của khách hàng.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 5
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 9: Kinh độ (customer\_long)}{5}
+    \textbf{Loại dữ liệu:} \(t \in (-180; 180)\) \\
+    \textbf{Đơn vị:} Độ \\
+    \textbf{Mô tả:} Kinh độ vị trí của khách hàng.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 10: Mức khuyến mãi}{5}
+    \textbf{Loại dữ liệu:} \(m \in \mathbb{N}, 0 \leq m \leq 100\) \\
+    \textbf{Đơn vị:} \% \\
+    \textbf{Mô tả:} Một số nguyên biểu thị phần trăm giảm giá được áp dụng cho đơn giá.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 6
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 11: Đơn giá}{6}
+    \textbf{Loại dữ liệu:} \(n \in (0; +\infty), n \leq x\) \\
+    \textbf{Đơn vị:} USD \\
+    \textbf{Mô tả:} Một số biểu thị tổng giá tiền đơn đặt hàng bằng USD, giảm giá và/hoặc phí giao hàng đã được áp dụng.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 12: Mùa}{6}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một chuỗi biểu thị mùa mà đơn hàng được đặt.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 7
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 13: Giao hàng hỏa tốc}{7}
+    \textbf{Loại dữ liệu:} \(t = \text{TRUE}\) (có), \(t = \text{FALSE}\) (không) \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một hàm nhị phân biểu thị liệu khách hàng có yêu cầu giao hàng nhanh hay không.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 14: Khoảng cách tới kho hàng gần nhất}{7}
+    \textbf{Loại dữ liệu:} \(r \in (0; +\infty)\) \\
+    \textbf{Đơn vị:} km \\
+    \textbf{Mô tả:} Một số biểu thị khoảng cách vòng cung, tính bằng km, giữa khách hàng và kho hàng gần nhất với họ.
+\end{mainbox}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Row 8
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 15: Đánh giá mới nhất từ khách hàng}{8}
+    \textbf{Loại dữ liệu:} Chuỗi kí tự \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một chuỗi đại diện cho đánh giá mới nhất của khách hàng về đơn hàng gần đây nhất của họ.
+\end{mainbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{mainbox}{Biến 16: Độ hài lòng khách hàng}{8}
+    \textbf{Loại dữ liệu:} \(q = \text{TRUE}\) (có), \(q = \text{FALSE}\) (không) \\
+    \textbf{Đơn vị:} (Trống) \\
+    \textbf{Mô tả:} Một hàm nhị phân biểu thị liệu khách hàng có hài lòng hay không? Hoặc gặp vấn đề với đơn hàng gần đây nhất của họ.
+\end{mainbox}
+\end{minipage}
