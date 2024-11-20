@@ -30,6 +30,8 @@
 \setlength{\TPVertModule}{1cm}  % Set vertical measurement units to cm
 \setlength{\TPHorizModule}{1cm}  % Set horizontal measurement units to cm
 \RequirePackage{lastpage}
+\RequirePackage{tabularx}
+\RequirePackage{makecell}
 
 % Some packages that seem pretty redundant
 \RequirePackage{geometry,graphicx,indentfirst,setspace}
