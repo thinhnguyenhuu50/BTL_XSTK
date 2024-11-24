@@ -8,8 +8,8 @@ data_1<-dirty_data[,c("nearest_warehouse","order_price","delivery_charges",
               ,"season","is_expedited_delivery","distance_to_nearest_warehouse",
               "is_happy_customer")]
 head(data_1,10)
-
-#kiem tra du lieu khuyet
+summary(dirty_data,10)
+    #kiem tra du lieu khuyet
 library(questionr)
 freq.na(data_1)
 unique(data_1$nearest_warehouse)
@@ -40,7 +40,7 @@ data_2<-data_1[,c("order_price","delivery_charges",
                       ,"distance_to_nearest_warehouse")]
 
 library(psych)
-describe(data_2, fast=TRUE)# ham describle chi cho cac bien lien tuc khong danh cho bien phan loai
+describe(data_2, fast=TRUE)# ham describle chi cho cac bien lien tuc, khong danh cho bien phan loai
 
 #tach ra cac bien dinh luong
 data_3<-data_1[,c("nearest_warehouse"
@@ -113,35 +113,36 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
     ## Scatter graph( Do thi phan tan)
 # giua order price va order total
 ## khong xoa ngoai lai
-  ggplot(data_1, aes(x=order_price, y=order_total)) + geom_point(shape=23, color="lightblue")
+  ggplot(data_1, aes(x=order_price, y=order_total)) + geom_point(shape=23, color="lightblue")+
   labs(title="Order Total $ Order Price scatter plot")
 ## xoa ngoai lai  
-  ggplot(data_4, aes(x=order_price, y=order_total)) + geom_point(shape=23, color="darkred")
+  ggplot(data_4, aes(x=order_price, y=order_total)) + geom_point(shape=23, color="darkred")+
   labs(title="Order Total $ Order Price scatter plot")
   
 # giua delivery charges va order total
   ## khong xoa ngoai lai
-  ggplot(data_1, aes(x=delivery_charges, y=order_total)) + geom_point(shape=23, color="lightblue")
+  ggplot(data_1, aes(x=delivery_charges, y=order_total)) + geom_point(shape=23, color="lightblue")+
   labs(title="Order Total $ Delivery Charges scatter plot")
   ## Xoa ngoai lai
-  
+  ggplot(data_4, aes(x=delivery_charges, y=order_total)) + geom_point(shape=23, color="darkred")+
+    labs(title="Order Total $ Delivery Charges scatter plot")
+
   ### ket luan duoc delivery charges khong anh huong toi order total (Khong co quan he tuyen tinh )
   
 # giua coupon discount va order total
   ## khong xoa ngoai lai
-  ggplot(data_1, aes(x=coupon_discount, y=order_total)) + geom_point(shape=23, color="lightblue")
+  ggplot(data_1, aes(x=coupon_discount, y=order_total)) + geom_point(shape=23, color="lightblue")+
   labs(title="Order Total $ Coupon Discount scatter plot")
   ## xoa ngoai lai
-  ggplot(data_4, aes(x=coupon_discount, y=order_total)) + geom_point(shape=23, color="darkred")
+  ggplot(data_4, aes(x=coupon_discount, y=order_total)) + geom_point(shape=23, color="darkred")+
   labs(title="Order Total $ Coupon Discount scatter plot")
   
 #giua distance_to_nearest_warehouse va order total
   ##khong xoa ngoai lai
-  ggplot(data_1, aes(x=distance_to_nearest_warehouse, y=order_total)) + geom_point(shape=23, color="lightblue")
+  ggplot(data_1, aes(x=distance_to_nearest_warehouse, y=order_total)) + geom_point(shape=23, color="lightblue")+
   labs(title="Order Total $ Distance to nearest warehouse scatter plot")
   ## xoa ngoai lai
-  ggplot(data_4, aes(x=distance_to_nearest_warehouse, y=order_total)) + geom_point(shape=23, color="darkred")
-  labs(title="Order Total $ Distance to nearest warehouse scatter plot")
+  
   ### khong anh huong toi order total
   
   
