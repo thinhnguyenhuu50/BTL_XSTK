@@ -13,6 +13,7 @@
 % \RequirePackage[T5]{fontenc}
 % \RequirePackage{mathptmx} % Apply Times New Roman font
 \usepackage{fontspec}
+\usepackage{float}
 \setmainfont{Times New Roman}
 \RequirePackage{anyfontsize,amsmath,amssymb} % Fonts for math environment
 \RequirePackage[vietnamese=nohyphenation]{hyphsubst} % Ignore a warning
