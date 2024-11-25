@@ -1,5 +1,26 @@
 \subsection{Hồi quy tuyến tính đa biến}
+\subsubsection{Mục đích}
 
+Mục đích của mô hình hồi quy tuyến tính này là dự đoán giá trị tổng đơn hàng dựa trên các yêu tố giải thích khác nhau như giá trị đơn hàng, phí vận chuyển,..
+
+\subsubsection{Kiểm tra dữ liệu có tuân theo phân phối chuẩn hay không} 
+
+Ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật phận phối chuẩn hay không bằng cách cho mức ý nghĩa là 5\%, ta dùng lệnh \textbf{shapiro.test()} để kiểm tra p-value. Nếu giá trị p-value > 0.05, thì cột dữ liệu đó tuân theo phân phối chuẩn và ngược lại.Thực hiện trên Rstudio ta thu được kết quả:
+\newpage
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\linewidth]{graphics/5.5.0.png}
+  \caption{Hồi quy tuyến tính model\_0 }
+  \label{fig:your_label}
+\end{figure}
+
+5 cột dữ liệu đều có p-value < 0.05, điều đó cho ta thấy cả 5 cột không tuân theo quy luật phân phối chuẩn.
+
+Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu đủ lớn, ta vẫn có thể sử dụng hồi quy tuyến tính mà không cần lo ngại quá nhiều về vấn đề phân phối chuẩn của dữ liệu. Điều này dựa trên lý thuyết \textbf{Lý thuyết Giới hạn Trung tâm (Central Limit Theorem - CLT)}. 
+
+Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong thống kê vì nó cho phép chúng ta làm việc với các mẫu ngẫu nhiên mà không cần phải lo lắng về phân phối gốc của dữ liệu. Nó đảm bảo rằng, khi kích thước mẫu đủ lớn, các phân tích thống kê có thể sử dụng phân phối chuẩn để thực hiện các ước lượng và kiểm định giả thuyết, ngay cả khi dữ liệu gốc không tuân theo phân phối chuẩn.
+\subsubsection{Xây dựng mô hình hồi quy tuyến tính}
 Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào biến độc lập is\_expedited\_delivery. Ta sử dụng lệnh lm().
 
 Kết quả phân tích trên Rstudio:
@@ -10,6 +31,7 @@ Kết quả phân tích trên Rstudio:
   \label{fig:your_label}
 \end{figure}
 \newpage
+
 Với mức ý nghĩa 5\%, ta phân tích phần Coefficients (hệ số) như sau:
 
 Định nghĩa biến x: is\_expedited\_delivery
@@ -35,7 +57,7 @@ Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên
   \caption{Hồi quy tuyến tính model\_1 }
   \label{fig:your_label_1}
 \end{figure}
-
+\newpage
 Dựa trên kết qủa từ hàm \textbf{summary(model\_1)} ta rút ra nhận xét sau:
 \begin{itemize}
 \item \textbf{(Intercept)}: Khi tất cả các biến độc lập bằng 0, giá trị trung bình của order\_total là 90590. Tuy nhiên, giá trị p-value là 0.186, không có ý nghĩa thống kê.
@@ -61,8 +83,8 @@ Hồi quy trên Rstudio ta có được:
   \includegraphics[width=0.7\linewidth]{graphics/5.5.3.png}
   \caption{Hồi quy tuyến tính model\_2 }
   \label{fig:your_label_2}
-\end{figure}
-
+\end{figure} 
+\newpage
 Dựa trên kết quả từ hàm \textbf{summary(model\_2)}, ta có thể rút ra các nhận xét:
 
 Với mức ý nghĩa 5\%, ta phân tích phần Coeficients(hệ số) như sau:
@@ -123,6 +145,7 @@ Chỉ số đo lường mô hình:
 
 Mô hình 3 có hiệu quả rất cao trong việc giải thích sự biến thiên của \textbf{order\_total}, với \textbf{R-squared} lên đến \textbf{97.65\%}. Các biến \textbf{order\_price} và \textbf{coupon\_discount} là những yếu tố quan trọng và có ảnh hưởng rõ rệt đến tổng giá trị đơn hàng. Việc loại bỏ các biến không quan trọng như \textbf{delivery\_charges} và \textbf{distance\_to\_nearest\_warehouse} giúp đơn giản hóa mô hình mà vẫn giữ được khả năng dự đoán chính xác.
 
+\subsubsection{Kiểm định lại mô hình hồi quy tuyến tính}
 Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\%\ bằng lệnh \textbf{confint(model\_3)}:
 \begin{figure}[ht]
   \centering
@@ -137,11 +160,11 @@ Kiểm tra giả định mô hình hồi quy tuyến tính bằng đồ thị:
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\linewidth]{graphics/5.5.6.png}
+  \includegraphics[width=0.7\linewidth]{graphics/5.5.6.png}
   \caption{Đồ thị kiểm định mô hình hồi quy  tuyến tính }
   \label{fig:your_label_1}
 \end{figure}
-\newpage
+
 Nhận xét dựa trên đồ thị chuẩn đoán:\\
 \textbf{Residual vs Fitted:}
 \begin{itemize}
@@ -159,7 +182,25 @@ Nhận xét dựa trên đồ thị chuẩn đoán:\\
 \begin{itemize}
 \item Một số điểm có leverage cao và phần dư lớn, cho thấy một số điểm dữ liệu  có thể có ảnh hưởng mạnh đến mô hình. Những điểm này cần được kiểm tra kỹ lưỡng.
 \end{itemize}
-\textbf{Kết luận:}
+
+Kiểm định bằng phương pháp so sánh với giá trị thực tế:
+
+Ta tiến hành thay các giá trị $x_1$, $x_2$ vào phương trình(ở mô hình 3): $y= 1640 + 0.8886x_1 - 133.7 x_2$ sau đó so sánh với giá trị order\_total trong bảng. Ta sử dụng Rstudio để thực hiện thao tác trên:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.7.png}
+  \caption{So sánh với giá trị thực tế }
+  \label{fig:your_label_1}
+\end{figure}
+
+Ta sử dụng lệnh predict để tiến hành thay các giá trị vào phương trình. Sau khi tiến hành so sánh ta thu được hai thống số là:
+\begin{itemize}
+  \item Sai số trung bình : 7.509367e-13. Kết quả rất gần 0 (7.509367e-13 \approx 0), cho thấy mô hình không bị lệch. Sai số trung bình nhỏ này phản ánh rằng giá trị dự đoán trung bình khá khớp với giá trị thực tế.
+  \item Độ lệch chuẩn của sai số: 1114.074. Độ lệch chuẩn là 1114.074, khá nhỏ so với một số giá trị order\_total thực tế (ví dụ: hàng chục ngàn). Điều này chỉ ra rằng các dự đoán của mô hình có mức độ ổn định tương đối.
+\end{itemize}
+
+\subsubsection{Kết luận}
 
 Mô hình 3 có độ phù hợp tương đối tốt với dữ liệu, với \textbf{R-squared} cao và các biến độc lập có ý nghĩa thống kê.
 
