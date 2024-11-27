@@ -12,7 +12,6 @@ Ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật ph�
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.0.png}
   \caption{Hồi quy tuyến tính model\_0 }
-  \label{fig:your_label}
 \end{figure}
 
 5 cột dữ liệu đều có p-value < 0.05, điều đó cho ta thấy cả 5 cột không tuân theo quy luật phân phối chuẩn.
@@ -28,7 +27,6 @@ Kết quả phân tích trên Rstudio:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.1.png}
   \caption{Hồi quy tuyến tính model\_0 }
-  \label{fig:your_label}
 \end{figure}
 \newpage
 
@@ -55,7 +53,6 @@ Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.2.png}
   \caption{Hồi quy tuyến tính model\_1 }
-  \label{fig:your_label_1}
 \end{figure}
 \newpage
 Dựa trên kết qủa từ hàm \textbf{summary(model\_1)} ta rút ra nhận xét sau:
@@ -82,7 +79,6 @@ Hồi quy trên Rstudio ta có được:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.3.png}
   \caption{Hồi quy tuyến tính model\_2 }
-  \label{fig:your_label_2}
 \end{figure} 
 \newpage
 Dựa trên kết quả từ hàm \textbf{summary(model\_2)}, ta có thể rút ra các nhận xét:
@@ -124,7 +120,6 @@ Ta tiếp sử dụng Rstudio để phân tích mô hình 3
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.4.png}
   \caption{Hồi quy tuyến tính model\_3 }
-  \label{fig:your_label_1}
 \end{figure}
 
 Với mức ý nghĩa 5\% ta có phương trình: $y= 1640 + 0.8886x_1 - 133.7 x_2$
@@ -151,7 +146,6 @@ Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số v�
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.5.png}
   \caption{Kiểm định khoảng tin cậy hệ số model\_3 }
-  \label{fig:your_label_1}
 \end{figure}
 
 Ta thấy các hệ số $\beta_0= 1640\in(1395.91904; 1884.5482), \beta_1= 0.8886\in(.8755;0.9017),\\ \beta_2= -133.7\in(-145.9358 -121.4825)$
@@ -162,7 +156,6 @@ Kiểm tra giả định mô hình hồi quy tuyến tính bằng đồ thị:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.6.png}
   \caption{Đồ thị kiểm định mô hình hồi quy  tuyến tính }
-  \label{fig:your_label_1}
 \end{figure}
 
 Nhận xét dựa trên đồ thị chuẩn đoán:\\
@@ -191,7 +184,6 @@ Ta tiến hành thay các giá trị $x_1$, $x_2$ vào phương trình(ở mô h
   \centering
   \includegraphics[width=0.5\linewidth]{graphics/5.5.7.png}
   \caption{So sánh với giá trị thực tế }
-  \label{fig:your_label_1}
 \end{figure}
 
 Ta sử dụng lệnh predict để tiến hành thay các giá trị vào phương trình. Sau khi tiến hành so sánh ta thu được hai thống số là:

@@ -1,3 +1,7 @@
+library(naniar)
+library(mice)
+library(lubridate)
+
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data,10) # In 10 giá trị quan trắc cho mỗi biến
 
@@ -5,6 +9,10 @@ head(dirty_data,10) # In 10 giá trị quan trắc cho mỗi biến
 dim(dirty_data)
 names(dirty_data)
 
+# + Kiem tra gia tri N/A
+sum(is.na(dirty_data))
+
+# +
 
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
