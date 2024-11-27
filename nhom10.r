@@ -1,5 +1,10 @@
-dirty_data <- read.csv("~/Desktop/dirty_data.csv") #code doc du lieu
-head(dirty_data,10) #in ket qua ra 10 dong
+dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
+head(dirty_data,10) # In 10 giá trị quan trắc cho mỗi biến
+
+# Tiền xử lý dữ liệu
+dim(dirty_data)
+names(dirty_data)
+
 
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1

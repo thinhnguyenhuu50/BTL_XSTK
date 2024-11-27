@@ -12,18 +12,14 @@ Tập dữ liệu được cung cấp trong BTL chứa thông tin về một c�
     \item Giá trị quan trắc: 500
     \item Số lượng biến: 16
 \end{itemize}
-
+Trong bài tập lớn này, nhóm đã quyết định sử dụng file \textbf{dirty\_data.csv} để làm dữ liệu cho việc xây dựng các mô hình thống kê.
 \subsection{Mô tả biến}
 Dữ liệu dưới đây được thu thập và tổ chức nhằm mục đích hỗ trợ quá trình phân tích và quản lý đơn hàng trong hệ thống thương mại điện tử. Đây là tập hợp các thông tin chi tiết liên quan đến đơn đặt hàng, khách hàng, sản phẩm, và các yếu tố khác có liên quan.
 
-Các biến được phân loại như sau:
+Các biến được chia thành hai dạng tương ứng:
 \begin{itemize}
-    \item \textbf{Biến định tính:} order\_id, customer\_id, nearest\_warehouse.
-    \item \textbf{Biến thời gian:} date, season.
-    \item \textbf{Biến danh sách:} shopping\_cart.
-    \item \textbf{Biến định lượng:} order\_price, delivery\_charges, customer\_lat, customer\_long,\\coupon\_discount, order\_total, distance\_to\_nearest\_warehouse.
-    \item \textbf{Biến nhị phân:} is\_expedited\_delivery, is\_happy\_customer.
-    \item \textbf{Các biến khác:} latest\_customer\_review.
+    \item \textbf{7 biến phân loại:} order\_id, customer\_id, nearest\_warehouse, season, is\_expedited\_delivery, latest\_customer\_review, is\_happy\_customer.
+    \item \textbf{6 biến liên tục:} order\_price, delivery\_charges, customer\_lat, customer\_long, coupon\_discount, order\_total, distance\_to\_nearest\_warehouse. 
 \end{itemize}
 
 Mỗi biến trong bảng dữ liệu đều được mô tả một cách cụ thể, bao gồm: Tên biến, loại dữ liệu, đơn vị đo lường (nếu có), và ý nghĩa của biến.
