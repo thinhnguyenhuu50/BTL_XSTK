@@ -5,14 +5,14 @@ Sau khi thực hiện bước tiền xử lí số liệu, ta đã làm sạch v
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/bang1.jpg}
     \caption{Số liệu tổng quát}
-    \label{fig:enter-label}
+    
 \end{figure}
 Sau đó ta chọn lọc những biến có thể phân tích như nearest\_warehouse, order\_price, delivery\_charges, customer\_lat, customer\_long, coupon\_discount, order\_total, season, is\_expedited\_delivery, distance\_to\_nearest\_warehouse, is\_happy\_customer. Và ta có bảng dữ liệu từ lệnh \texttt{head()}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/bang2.jpg}
     \caption{Số liệu chọn lọc}
-    \label{fig:enter-label}
+   
 \end{figure}
             
 Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
@@ -21,14 +21,14 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/bang3.jpg}
     \caption{Các biến liên tục}
-    \label{fig:enter-label}
+   
 \end{figure}
 •  Biến định lượng gồm: nearest\_warehouse, season, is\_expedited\_delivery, is\_happy\_customer. Và biến định lượng được biểu diễn dưới dạng factor như sau.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/bang6.jpg}
     \caption{Các biến định lượng và giá trị được biểu diễn dưới dạng factor}
-    \label{fig:enter-label}
+   
 \end{figure}
 \subsection*{4.2 Phân tích biến liên tục bằng biểu đồ.}
 \subsection*{\subsection*{4.2.1 Đồ thị Histogram}}
@@ -38,7 +38,7 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \centering
     \includegraphics[width=0.7\linewidth]{graphics/bang7.jpg}
     \caption{Đồ thị Histogram của các biến liên tục}
-    \label{fig:enter-label}
+  
 \end{figure}
 * Nhận xét: Ta nhận thấy rằng, từ kết quả đồ thị histogram cho thấy biến order\_total, order\_price, distance\_to\_nearest\_warehouse có phân phối lệch phải, với một cột cao ở phía bên trái. Điều này cho thấy hầu hết khách hàng chỉ chi tiêu ở mức thấp hơn, trong khi một số ít có tổng giá trị đơn hang cao, tạo ra các điểm ngoại lệ. Phân phối lệch phải thường cho thấy  rằng có một số khách hang chi tiêu rất cao, điều này có thể ảnh hưởng đến quy mô hình hồi quy. Sau khi kiểm tra tỉ lệ khuyết nhỏ của các ngoại lai .Để xử lí tình trạng phân phối lệch phải này.\\
  -->Ta áp dụng xóa bỏ các ngoại lai  của order\_total, order\_price, distance\_to\_nearest\_warehouse.\\
@@ -47,7 +47,7 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \centering
     \includegraphics[width=0.7\linewidth]{graphics/bang8.jpg}
     \caption{Đồ thị Histogram của các biến liên tục đã xóa ngoại lai}
-    \label{fig:enter-label}
+    
 \end{figure}
 \subsection*{\subsection*{4.2.2 Đồ thị phân tần}}
 Ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_discount, distance\_to\_nearest\_warehouse với order\_total.
@@ -55,25 +55,25 @@ Ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_disco
     \centering
     \includegraphics[width=0.8\linewidth]{graphics/bang9.jpg}
     \caption{Hình chưa xóa ngoại lai và đã xóa của order\_price}
-    \label{fig:enter-label}
+ 
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{graphics/bang10.jpg}
     \caption{Hình chưa xóa ngoại lai và đã xóa của delivery\_charges}
-    \label{fig:enter-label}
+    
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{graphics/bang11.jpg}
     \caption{Hình chưa xóa ngoại lai và đã xóa của coupon\_discount}
-    \label{fig:enter-label}
+    
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{graphics/bang12.jpg}
     \caption{Hình chưa xóa ngoại lai và đã xóa của distance\_to\_nearest\_warehouse}
-    \label{fig:enter-label}
+ 
 \end{figure}
 Với những hình ảnh có những chấm màu xanh là chưa xóa ngoại lai, còn những hình có chấm màu đỏ là đã xóa ngoại lai. \\
 *Nhận xét: \\
@@ -85,13 +85,13 @@ Ta phân tích biến order\_total theo các biến nearest\_warehouse, season, 
     \centering
     \includegraphics[width=1\linewidth]{graphics/bang13.jpg}
     \caption{Biểu đồ boxplot chưa xóa ngoại lai của các biến định lượng}
-    \label{fig:enter-label}
+    
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{graphics/bang14.jpg}
     \caption{Biểu đồ boxplot đã xóa ngoại lai của các biến định lượng}
-    \label{fig:enter-label}
+    
 \end{figure}
 *Nhận xét: lần lượt cho  nearest\_warehouse, season, is\_expedited\_delivery, is\_happy\_customer.\\
 •	Cả ba kho hàng (Bakers, Nickolson, Thompson) đều có phân bố tổng đơn hàng tương tự nhau, với các giá trị trung vị (median) gần như ngang bằng.\\
