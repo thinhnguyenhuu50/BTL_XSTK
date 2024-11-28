@@ -1,18 +1,117 @@
 library(naniar)
-library(mice)
 library(lubridate)
+library(dplyr)
+library(questionr)
+library(stringr)
+library(xtable)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
-head(dirty_data,10) # In 10 giá trị quan trắc cho mỗi biến
+head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
 
 # Tiền xử lý dữ liệu
 dim(dirty_data)
 names(dirty_data)
 
-# + Kiem tra gia tri N/A
-sum(is.na(dirty_data))
+# + Sua dinh dang ngay/thang/nam
+df <- data.frame(date_parsed = parse_date_time(dirty_data$date, orders = c("ymd", "dmy", "mdy")))
+df$date_parsed <- as.Date(df$date_parsed)
 
-# +
+dirty_data$date <- df$date_parsed
+
+# + Sua bien season 
+df <- data.frame(season_orginal = c(dirty_data$season))
+df$sum <- mday(dirty_data$date) + month(dirty_data$date)*100
+df <- df %>%
+  mutate(season_fixed = case_when(
+    sum %in% 301:530 ~ 'Autumn',
+    sum %in% 601:831 ~ 'Winter',
+    sum %in% 901:1130 ~ 'Spring',
+    TRUE ~ 'Summer'))
+dirty_data$season <- df$season_fixed
+
+# + Sua ten warehouse
+dirty_data$nearest_warehouse <- str_to_title(dirty_data$nearest_warehouse)
+
+# + Tinh lai tong chi phi
+df <- dirty_data %>%
+  select(order_price, delivery_charges, coupon_discount, order_total)
+
+df <- df %>%
+  mutate(calculated_order_total = order_price*(100 - df$coupon_discount)/100 + delivery_charges)
+
+print(subset(df, calculated_order_total != order_total))
+
+dirty_data$order_total <- df$calculated_order_total
+
+# + Tinh lai khoang cach toi warehouse
+haversine_distance <- function(lat1, lon1, lat2, lon2) {
+  # Convert degrees to radians
+  lat1 <- lat1 * pi / 180
+  lon1 <- lon1 * pi / 180
+  lat2 <- lat2 * pi / 180
+  lon2 <- lon2 * pi / 180
+  
+  # Differences in coordinates
+  delta_lat <- lat2 - lat1
+  delta_lon <- lon2 - lon1
+  
+  # Haversine formula
+  a <- sin(delta_lat / 2)^2 + cos(lat1) * cos(lat2) * sin(delta_lon / 2)^2
+  c <- 2 * atan2(sqrt(a), sqrt(1 - a))
+  
+  # Radius of the Earth in kilometers
+  R <- 6371
+  
+  # Distance in kilometers
+  distance <- R * c
+  return(distance)
+}
+
+# Toa do cua cac warehouse
+warehouses <- data.frame(
+  name = c("Nickolson", "Thompson", "Bakers"),
+  lat = c(-37.818595, -37.8126732, -37.8099961),
+  lon = c(144.969551, 144.9470689, 144.99523200000002)
+)
+
+df <- dirty_data %>%
+  select(customer_lat, 
+         customer_long, 
+         nearest_warehouse)
+
+df <- df %>%
+  mutate(
+    distance_to_Nickolson = haversine_distance(customer_lat, customer_long, warehouses$lat[1], warehouses$lon[1]),
+    distance_to_Thompson = haversine_distance(customer_lat, customer_long, warehouses$lat[2], warehouses$lon[2]),
+    distance_to_Bakers = haversine_distance(customer_lat, customer_long, warehouses$lat[3], warehouses$lon[3]),
+    distance_to_nearest_warehouse_fixed = pmin(distance_to_Nickolson, distance_to_Thompson, distance_to_Bakers),
+    
+    # Assign the name of the nearest warehouse
+    nearest_warehouse_fixed = case_when(
+      distance_to_nearest_warehouse_fixed == distance_to_Nickolson ~ "Nickolson",
+      distance_to_nearest_warehouse_fixed == distance_to_Thompson ~ "Thompson",
+      distance_to_nearest_warehouse_fixed == distance_to_Bakers ~ "Bakers"
+    )
+  )
+
+# Sua lai vi do
+df$customer_lat <- df$customer_lat * ifelse(df$customer_lat > 0, -1, 1)
+
+# Gan ket qua vao dirty_data
+dirty_data$nearest_warehouse <- df$nearest_warehouse_fixed
+dirty_data$distance_to_nearest_warehouse <- df$distance_to_nearest_warehouse_fixed
+
+# Kiem chung ket qua
+test <- data.frame(
+  nearest_warehouse = dirty_data$nearest_warehouse, 
+  nearest_warehouse_fixed = df$nearest_warehouse_fixed, 
+  distance_to_nearest_warehouse = dirty_data$distance_to_nearest_warehouse, 
+  distance_to_nearest_warehouse_fixed = df$distance_to_nearest_warehouse_fixed, 
+  customer_lat = df$customer_lat, 
+  customer_long = df$customer_long)
+
+print(subset(test, nearest_warehouse != nearest_warehouse_fixed)[30:40, ])
+
 
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
@@ -192,9 +291,6 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
 
 
 # mo hinh hoi qui da bien tuyen tinh 
-  library(dplyr)
-library(questionr)
-
 dirty_data <- read.csv("E:/dirty_data.csv")
 head (dirty_data,10)
 
