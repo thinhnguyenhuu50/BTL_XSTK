@@ -79,6 +79,10 @@ df <- dirty_data %>%
          customer_long, 
          nearest_warehouse)
 
+# Sua lai vi do
+df$customer_lat <- df$customer_lat * ifelse(df$customer_lat > 0, -1, 1)
+dirty_data$customer_lat <- dirty_data$customer_lat * ifelse(dirty_data$customer_lat > 0, -1, 1)
+
 df <- df %>%
   mutate(
     distance_to_Nickolson = haversine_distance(customer_lat, customer_long, warehouses$lat[1], warehouses$lon[1]),
@@ -94,24 +98,11 @@ df <- df %>%
     )
   )
 
-# Sua lai vi do
-df$customer_lat <- df$customer_lat * ifelse(df$customer_lat > 0, -1, 1)
-
 # Gan ket qua vao dirty_data
 dirty_data$nearest_warehouse <- df$nearest_warehouse_fixed
 dirty_data$distance_to_nearest_warehouse <- df$distance_to_nearest_warehouse_fixed
 
-# Kiem chung ket qua
-test <- data.frame(
-  nearest_warehouse = dirty_data$nearest_warehouse, 
-  nearest_warehouse_fixed = df$nearest_warehouse_fixed, 
-  distance_to_nearest_warehouse = dirty_data$distance_to_nearest_warehouse, 
-  distance_to_nearest_warehouse_fixed = df$distance_to_nearest_warehouse_fixed, 
-  customer_lat = df$customer_lat, 
-  customer_long = df$customer_long)
-
-print(subset(test, nearest_warehouse != nearest_warehouse_fixed)[30:40, ])
-
+# *Ket thuc* TIEN XU LY SO LIEU  ###############################################
 
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
