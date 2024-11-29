@@ -1,5 +1,5 @@
 \section{Thống kê mô tả}
-\subsection*{4.1 Phân tích và phân chia số liệu}
+\subsection{Phân tích và phân chia số liệu}
 Sau khi thực hiện bước tiền xử lí số liệu, ta đã làm sạch và điền khuyết dữ liệu, ta thực hiện thống kê mô tả bằng lệnh \texttt{summary()} ta sẽ có cái nhìn tổng quát hơn về bảng dữ liệu. Lệnh \texttt{summary()} sẽ xuất ra màn hình những giá trị như \textit{min} (giá trị nhỏ nhất), \textit{mean} (trung bình), \textit{median} (trung vị), \textit{Q1} (khoảng tứ phân vị thứ 1), \textit{Q3} (khoảng tứ phân vị thứ 3), \textit{max} (giá trị lớn nhất).
 \begin{figure}[H]
     \centering
@@ -30,8 +30,8 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \caption{Các biến định lượng và giá trị được biểu diễn dưới dạng factor}
    
 \end{figure}
-\subsection*{4.2 Phân tích biến liên tục bằng biểu đồ.}
-\subsection*{\subsection*{4.2.1 Đồ thị Histogram}}
+\subsection{Phân tích biến liên tục bằng biểu đồ.}
+\subsection{\subsection{Đồ thị Histogram}}
 •	Vì nhóm làm phân tích các ảnh hướng đến chi phí đơn hàng nên sẽ không có customer\_lat và customer\_long. Dưới đây là một số hình ảnh của các biến order\_price, delivery\_charges, coupon\_discount, order\_total, distance\_to\_nearest\_warehouse. Khi biểu diễn bằng đồ thị Histogram
 
 \begin{figure}[H]
@@ -49,7 +49,7 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \caption{Đồ thị Histogram của các biến liên tục đã xóa ngoại lai}
     
 \end{figure}
-\subsection*{\subsection*{4.2.2 Đồ thị phân tần}}
+\subsection{\subsection{Đồ thị phân tần}}
 Ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_discount, distance\_to\_nearest\_warehouse với order\_total.
 \begin{figure}[H]
     \centering
@@ -79,7 +79,7 @@ Với những hình ảnh có những chấm màu xanh là chưa xóa ngoại la
 *Nhận xét: \\
 •	Hai biến order\_price và coupon\_discount là 2 biến có ảnh hưởng tới order\_total hay còn gọi là có quan hệ tuyến tính.\\
 •	Hai biến delivery\_charges và distance\_to\_nearest\_warehouse không có ảnh hưởng tới order\_total hay không có quan hệ tuyến tính.
-\subsection*{\subsection*{4.3 Phân tích biến định lượng bằng biểu đồ boxplot }}
+\subsection{\subsection{Phân tích biến định lượng bằng biểu đồ boxplot }}
 Ta phân tích biến order\_total theo các biến nearest\_warehouse, season, is\_expedited\_delivery, is\_happy\_customer.
 \begin{figure}[H]
     \centering
