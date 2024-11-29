@@ -31,7 +31,7 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
    
 \end{figure}
 \subsection{Phân tích biến liên tục bằng biểu đồ.}
-\subsection{\subsection{Đồ thị Histogram}}
+\subsubsection{Đồ thị Histogram}
 •	Vì nhóm làm phân tích các ảnh hướng đến chi phí đơn hàng nên sẽ không có customer\_lat và customer\_long. Dưới đây là một số hình ảnh của các biến order\_price, delivery\_charges, coupon\_discount, order\_total, distance\_to\_nearest\_warehouse. Khi biểu diễn bằng đồ thị Histogram
 
 \begin{figure}[H]
@@ -49,7 +49,7 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \caption{Đồ thị Histogram của các biến liên tục đã xóa ngoại lai}
     
 \end{figure}
-\subsection{\subsection{Đồ thị phân tần}}
+\subsubsection{Đồ thị phân tần}
 Ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_discount, distance\_to\_nearest\_warehouse với order\_total.
 \begin{figure}[H]
     \centering
@@ -79,7 +79,7 @@ Với những hình ảnh có những chấm màu xanh là chưa xóa ngoại la
 *Nhận xét: \\
 •	Hai biến order\_price và coupon\_discount là 2 biến có ảnh hưởng tới order\_total hay còn gọi là có quan hệ tuyến tính.\\
 •	Hai biến delivery\_charges và distance\_to\_nearest\_warehouse không có ảnh hưởng tới order\_total hay không có quan hệ tuyến tính.
-\subsection{\subsection{Phân tích biến định lượng bằng biểu đồ boxplot }}
+\subsubsection{Phân tích biến định lượng bằng biểu đồ boxplot}
 Ta phân tích biến order\_total theo các biến nearest\_warehouse, season, is\_expedited\_delivery, is\_happy\_customer.
 \begin{figure}[H]
     \centering
