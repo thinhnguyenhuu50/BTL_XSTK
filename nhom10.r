@@ -379,3 +379,17 @@ cat("Sai số trung bình: ", mean_difference, "\n")
 cat("Độ lệch chuẩn của sai số: ", sd_difference, "\n")
 
 # ANOVA bắt đầu
+#đọc file, đưa ra bảng dữ liệu:
+sxtk <- read.csv("dirty_data.csv", header=T)
+attach(sxtk)
+loi = data.frame(coupon_discount)
+library(data.table)
+df <- data.frame(loi)
+dt <- data.table(df)
+freq_table <- dt[,.N, by= coupon_discount]
+colnames(freq_table) <- c("coupon_discount","count")
+freq_table
+#anova:
+thongke=data.frame(coupon_discount, orther_price)
+anova1nhanto <- aov(order_price ~ coupon_discount, data=thongke)
+summary(anova1nhanto)
