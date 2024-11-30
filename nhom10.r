@@ -378,3 +378,4 @@ sd_difference <- sd(comparison$Difference)
 cat("Sai số trung bình: ", mean_difference, "\n")
 cat("Độ lệch chuẩn của sai số: ", sd_difference, "\n")
 
+# ANOVA bắt đầu
