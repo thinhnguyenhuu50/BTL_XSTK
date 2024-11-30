@@ -1,25 +1,24 @@
 \subsection{Phân tích phương sai một nhân tố (Single-factor ANOVA)}
 
-Nhóm gọi:
+Dữ liệu:
 \begin{itemize}
     \item Y: là một biến phụ thuộc (có tính liên tục).
     \item X: là một biến nhân tố hay biến giải thích (có tính phân loại).
 \end{itemize}
 
-Yêu cầu:
+Mục tiêu:
 \begin{itemize}
     \item Đánh giá xem biến nhân tố X có ảnh hưởng đến biến phụ thuộc Y hay không?
+    \item Nói cách khác:
+    \[
+        H_{0}: \mu_{1} = \mu_{2} = \mu_{3} = \dots = \mu_{n}
+        \]
+        \[
+        H_{1}: \exists i, j \text{ sao cho } \mu_{i} \neq \mu_{j}
+        \]
+      
 \end{itemize}
-Giả thuyết:
-  \[
-  H_{0}: \mu_{1} = \mu_{2} = \mu_{3} = \dots = \mu_{n}
-  \]
-  \[
-  H_{1}: \exists i, j \text{ sao cho } \mu_{i} \neq \mu_{j}
-  \]
-
 Đọc dữ liệu từ file và đưa ra bảng dữ liệu:
-
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\linewidth]{graphics/5.3.1.png}
@@ -35,7 +34,7 @@ Như đã thấy trên Hình, chỉ có 5 giá trị của coupon\_discount là 
 \end{figure}
 
 Theo kết quả như hình trên, giá trị p-value (tức Pr(>F)) là 0.445 lớn hơn ngưỡng ý nghĩa phổ biến (0.05). Do đó, nhóm không đủ bằng chứng thống kê để kết luận rằng, chiết khấu (coupon\_discount) có ảnh hưởng đến giá trị đơn hàng (order\_price). Nói cách khác, sự khác biệt về giá trị đơn hàng giữa các nhóm chiết khấu có thể do yếu tố ngẫu nhiên.
-Cũng trên bảng phân tích gọn (Hình 1),  số lượng mặt hàng (count) theo từng loại chiết khấu (coupon\_discount) cũng  không sai lệch quá lớn ( khoảng lệch giữa giá trị nhỏ nhất và lớn nhất theo giá trị nhỏ nhất chỉ là 8.654\%), điều này càng cũng cố tính chính xác của phương pháp.
+Cũng trên bảng phân tích gọn (Hình 5.1),  số lượng mặt hàng (count) theo từng loại chiết khấu (coupon\_discount) cũng  không sai lệch quá lớn ( khoảng lệch giữa giá trị nhỏ nhất và lớn nhất theo giá trị nhỏ nhất chỉ là 8.654\%), điều này càng cũng cố tính chính xác của phương pháp.
 nhóm có thể tính toán kích thước hiệu ứng (effect size) để đánh giá mức độ ảnh hưởng của một yếu tố (biến độc lập). Sử dụng Enhóm-squared (ɳ2) đo lường mức độ ảnh hưởng của coupon\_discount. Diễn dãy mở rộng (Field, 2013):
 
 \begin{table}[ht]
