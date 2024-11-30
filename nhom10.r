@@ -4,6 +4,8 @@ library(dplyr)
 library(questionr)
 library(stringr)
 library(xtable)
+library(effectsize)
+library(data.table)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
@@ -390,20 +392,23 @@ freq_table <- dt[,.N, by= coupon_discount]
 colnames(freq_table) <- c("coupon_discount","count")
 freq_table
 # ANOVA bắt đầu
+
+#anova ảnh hưởng của chiếc khấu đến giá
 #đọc file, đưa ra bảng dữ liệu:
-sxtk <- read.csv("dirty_data.csv", header=T)
-attach(sxtk)
-loi = data.frame(coupon_discount)
-library(data.table)
-df <- data.frame(loi)
+loi1 = data.frame(coupon_discount)
+df <- data.frame(loi1)
 dt <- data.table(df)
 freq_table <- dt[,.N, by= coupon_discount]
 colnames(freq_table) <- c("coupon_discount","count")
 freq_table
+
 #anova:
 thongke=data.frame(coupon_discount, order_price)
 anova1nhanto <- aov(order_price ~ coupon_discount, data=thongke)
 summary(anova1nhanto)
+
 #thực hiện
-library(effectsize)
 eta_squared(anova1nhanto)
+
+#ANOVA1 ket thuc
+#ANOVA2 bat dau

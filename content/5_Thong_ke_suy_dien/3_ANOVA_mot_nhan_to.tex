@@ -1,6 +1,5 @@
 \subsection{Phân tích phương sai một nhân tố (Single-factor ANOVA)}
 
-
 Nhóm gọi:
 \begin{itemize}
     \item Y: là một biến phụ thuộc (có tính liên tục).
@@ -19,13 +18,7 @@ Giả thuyết:
   H_{1}: \exists i, j \text{ sao cho } \mu_{i} \neq \mu_{j}
   \]
 
-- Đọc dữ liệu từ file và đưa ra bảng dữ liệu:
-%   sxtk = read.csv("/Users/Windows10/Documents/Zalo Received Files/dirty_data.csv", header=T)
-%   attach(sxtk)
-
-%- Bảng dữ liệu:
-% freq_table <- dt[,.N, by=coupon_discount]
-% colnames(freq_table) <- c("coupon_discount", "count")
+Đọc dữ liệu từ file và đưa ra bảng dữ liệu:
 
 \begin{figure}[!htbp]
     \centering
@@ -33,7 +26,7 @@ Giả thuyết:
     \caption{Số lượng mặt hàng (count) theo từng loại chiết khấu (coupon\_discount)}
 \end{figure}
 
-Như trên Hình 1, chỉ có 5 giá trị của coupon\_discount là : 0, 5, 10, 15, 25. Nhóm sẽ kiểm định xem, việc các mốc chiết khấu này sẽ ảnh hưởng như thế nào đến giá của các mặt hàng (order\_price) bằng phương pháp phân tích phương sai ANOVA mà nhóm đã thảo luận và đề xuất sử dụng. Dưới đây là phân tích phương sai ANOVA cho mẫu thống kê ( hàm phân tích đã được tích hợp sẵn trong R) :
+Như đã thấy trên Hình, chỉ có 5 giá trị của coupon\_discount là : 0, 5, 10, 15, 25. Nhóm sẽ kiểm định xem, việc các mốc chiết khấu này sẽ ảnh hưởng như thế nào đến giá của các mặt hàng (order\_price) bằng phương pháp phân tích phương sai ANOVA mà nhóm đã thảo luận và đề xuất sử dụng. Dưới đây là phân tích phương sai ANOVA cho mẫu thống kê ( hàm phân tích đã được tích hợp sẵn trong R) :
 
 \begin{figure}[!htbp]
     \centering
@@ -70,3 +63,5 @@ Thực hiện trên R (hàm tích hợp sẵn) :
     \includegraphics[width=0.6\linewidth]{graphics/5.3.3.png}
     \caption{Phân tích phương sai ANOVA xét sự ảnh hưởng của chiếc khấu (coupon\_discount) đến giá mặt hàng (order\_price)}
 \end{figure}
+
+Có thể thấy, giá trị ɳ2  của  coupon\_discount  tính trong thống kê rất nhỏ (0.001170329 <0.01), điều này nói lên được mức độ ảnh hưởng của chiết khấu (coupon\_discount) đến giá trị đơn hàng (order\_price) là không đáng kể.
