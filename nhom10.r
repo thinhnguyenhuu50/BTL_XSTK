@@ -42,8 +42,7 @@ df <- df %>%
   mutate(calculated_order_total = order_price*(100 - df$coupon_discount)/100 + delivery_charges)
 
 print(subset(df, calculated_order_total != order_total))
-
-dirty_data$order_total <- df$calculated_order_total
+print(sum(df$calculated_order_total != df$order_total))
 
 # + Tinh lai khoang cach toi warehouse
 haversine_distance <- function(lat1, lon1, lat2, lon2) {
@@ -100,10 +99,7 @@ df <- df %>%
     )
   )
 
-# Gan ket qua vao dirty_data
-dirty_data$nearest_warehouse <- df$nearest_warehouse_fixed
-dirty_data$distance_to_nearest_warehouse <- df$distance_to_nearest_warehouse_fixed
-
+print(sum(df$nearest_warehouse == df$nearest_warehouse_fixed))
 # *Ket thuc* TIEN XU LY SO LIEU  ###############################################
 
 #lam sach du lieu
