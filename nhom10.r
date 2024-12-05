@@ -101,7 +101,7 @@ df <- df %>%
 
 print(sum(df$nearest_warehouse == df$nearest_warehouse_fixed))
 # *Ket thuc* TIEN XU LY SO LIEU  ###############################################
-
+# THống kê mô tả
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
 data_1<-dirty_data[,c("nearest_warehouse","order_price","delivery_charges",
