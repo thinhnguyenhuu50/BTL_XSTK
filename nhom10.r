@@ -276,8 +276,29 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   ## xu li ngoai lai
   ggplot(data_4, aes(x=is_happy_customer, y=order_total)) + geom_boxplot()+
     labs(title="Plot of Order total per is happy customer")
-
-
+ # Tải thư viện
+  library(corrplot)
+  
+  # Tạo dữ liệu mẫu (hoặc thay bằng dữ liệu của bạn)
+  set.seed(123)
+  data_2 <- data.frame(
+    order_price = runif(100, 50, 500),
+    delivery_charges = runif(100, 5, 50),
+    customer_lat = runif(100, -90, 90),
+    customer_long = runif(100, -180, 180),
+    coupon_discount = runif(100, 0, 30),
+    order_total = runif(100, 100, 600),
+    distance_to_nearest_warehouse = runif(100, 1, 50)
+  )
+  
+  # Tính ma trận tương quan
+  cor_matrix <- cor(data_2)
+  
+  # Vẽ biểu đồ tương quan
+  corrplot(cor_matrix, method = "circle", type = "full", 
+           col = colorRampPalette(c("blue", "white", "red"))(200),
+           tl.col = "red", tl.srt = 45,addCoef.col = "black")
+##KET THUC MO TA
 
 # mo hinh hoi qui da bien tuyen tinh 
 dirty_data <- read.csv("E:/dirty_data.csv")
