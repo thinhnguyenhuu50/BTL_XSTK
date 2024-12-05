@@ -3,3 +3,49 @@
 Phương pháp thống kê mô tả (descriptive statistics) là một phương pháp trong khoa học thống kê được sử dụng để mô tả và tóm tắt các dữ liệu một cách đơn giản và dễ hiểu. Phương pháp này giúp chúng ta hiểu thông tin cơ bản về các biến trong dữ liệu mà không cần đưa ra các phán đoán hay suy luận về mối quan hệ giữa các biến. Các phương pháp thống kê mô tả thường bao gồm các đại lượng thống kê như \textbf{giá trị trung bình, phương sai, độ lệch chuẩn, phân vị, tỉ lệ phần trăm, đồ thị và biểu đồ}. Các đại lượng này giúp chúng ta hiểu về trung tâm, phân tán và hình dạng của dữ liệu.
 \subsection{Thống kê suy diễn}
 \subsubsection{}
+\subsection{Phân tích phương sai 2 nhân tố}
+Phân tích phương sai 2 nhân tố (Two-Way ANOVA) là một phương pháp thống kê được sử dụng để kiểm tra sự ảnh hưởng của hai yếu tố (hay còn gọi là biến độc lập) đến một biến phụ thuộc (biến kết quả), cũng như mối quan hệ tương tác giữa chúng. \\
+\indent  Giả sử có hai yếu tố \textit{A} và \textit{B}, với các mức độ tương ứng là a và b. Mô hình phân tích phương sai 2 nhân tố được xây dựng như sau:\\
+\[
+Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij} + \epsilon_{ijk}
+\]
+Trong đó:\\
+- \( Y_{ijk} \): giá trị quan sát thứ \( k \) của tổ hợp mức độ \( i \) của yếu tố \( A \) và mức độ \( j \) của yếu tố \( B \).\\
+- \( \mu \): giá trị trung bình tổng thể.\\
+- \( \alpha_i \): hiệu ứng của mức độ \( i \) của yếu tố \( A \).\\
+- \( \beta_j \): hiệu ứng của mức độ \( j \) của yếu tố \( B \).\\
+- \( (\alpha\beta)_{ij} \): hiệu ứng tương tác giữa yếu tố \( A \) và \( B \).\\
+- \( \epsilon_{ijk} \): sai số ngẫu nhiên (residual).\\
+\subsection{Hồi quy tuyến tính đa bội}
+Hồi quy tuyến tính đa biến là một phương pháp thống kê được sử dụng để mô hình hóa mối quan hệ giữa một biến phụ thuộc (hay còn gọi là biến mục tiêu) và một hoặc nhiều biến độc lập (biến giải thích). Mục tiêu của hồi quy tuyến tính đa biến là dự đoán giá trị của biến phụ thuộc dựa trên các giá trị của các biến độc lập.\\
+Mô hình hồi quy tuyến tính đa biến có dạng:
+
+\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \epsilon
+\]\\
+
+Trong đó:\\
+- \(Y\) là biến phụ thuộc (biến mục tiêu).\\
+- \(X_1, X_2, \dots, X_p\) là các biến độc lập (biến giải thích).\\
+- \(\beta_0\) là hệ số chặn (intercept), đại diện cho giá trị của \(Y\) khi tất cả các biến độc lập đều bằng 0.\\
+- \(\beta_1, \beta_2, \dots, \beta_p\) là các hệ số hồi quy (coefficient) đại diện cho mức độ tác động của mỗi biến độc lập đến biến phụ thuộc.\\
+- \(\epsilon\) là sai số ngẫu nhiên (error term), thể hiện phần sai khác giữa giá trị thực tế của \(Y\) và giá trị dự đoán.\\
+- ** \textbf{Phương pháp bình phương tối thiểu (Ordinary Least Squares - OLS)}**: Là phương pháp phổ biến nhất để ước lượng các hệ số \(\beta\) trong hồi quy tuyến tính. Mục tiêu là tìm giá trị của \(\beta\) sao cho tổng bình phương sai số (\(\epsilon\)) là nhỏ nhất.\\
+  
+\[
+\text{Minimize } \sum_{i=1}^{n} (Y_i - (\beta_0 + \beta_1 X_{i1} + \dots + \beta_p X_{ip}))^2
+\]\\
+Sau khi ước lượng các hệ số \(\beta\), chúng ta cần kiểm tra chất lượng mô hình bằng các chỉ số và kiểm định thống kê:\\
+
+- ** \textbf{R-squared (R²)}**: Là một chỉ số đo lường mức độ phù hợp của mô hình với dữ liệu. R² có giá trị từ 0 đến 1, với 1 nghĩa là mô hình giải thích hoàn toàn biến thiên của dữ liệu.\\
+  
+  \[
+  R^2 = 1 - \frac{\sum (Y_i - \hat{Y}_i)^2}{\sum (Y_i - \bar{Y})^2}
+  \]\\
+  
+  Trong đó:\\
+  - \(\hat{Y}_i\) là giá trị dự đoán từ mô hình.\\
+  - \(\bar{Y}\) là giá trị trung bình của \(Y\).\\
+
+- **Kiểm định F**: Kiểm tra xem mô hình hồi quy có giải thích đáng kể biến thiên của dữ liệu hay không.\\
+- **Kiểm định t**: Kiểm tra sự có mặt của mỗi hệ số hồi quy \(\beta_i\), tức là xem mỗi biến độc lập có ảnh hưởng đáng kể đến biến phụ thuộc hay không.\\
