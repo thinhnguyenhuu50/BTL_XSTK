@@ -98,3 +98,28 @@ Ta phân tích biến order\_total theo các biến nearest\_warehouse, season, 
 •	Phân bố giá trị order\_total khá đồng đều qua các mùa, tuy nhiên mùa Đông có một vài đơn hàng nổi bật với giá trị rất lớn.\\
 •	Hình thức giao hàng nhanh dường như không có ảnh hưởng rõ rệt đến tổng giá trị đơn hàng trong phần lớn các trường hợp.\\
 •	Trạng thái hài lòng của khách hàng không tạo ra sự khác biệt lớn trong tổng giá trị đơn hàng, nhưng nhóm khách hàng hài lòng có xu hướng chi tiêu nhiều hơn một chút và có thể thực hiện các đơn hàng có giá trị rất lớn (outliers).
+\subsection{Bảng tương quan giữa các biến}
+Bảng đánh giá tương quan trong đồ thị trên được sử dụng để hiểu rõ mối quan hệ giữa các biến số trong tập dữ liệu.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{graphics/tq.jpg}
+    \caption{Biểu đồ tương quan của các biến}
+    
+\end{figure}
+
+*Nhận Xét:
+
+- order\_price và order\_total (tương quan: +0.90):
+Đây là mối tương quan dương mạnh. Khi giá trị của order\_price tăng, order\_total cũng tăng mạnh theo và ngược lại. Điều này dễ hiểu vì order\_price là một thành phần chính của order\_total.
+
+- distance\_to\_nearest\_warehouse và customer\_lat (+0.30):
+Có mối tương quan dương trung bình giữa khoảng cách đến kho hàng và vĩ độ của khách hàng. Điều này có thể ngụ ý rằng vị trí kho hàng có xu hướng gần các khu vực cụ thể về mặt địa lý.
+
+- distance\_to\_nearest\_warehouse và delivery\_charges (+0.24):
+Mối tương quan dương nhẹ cho thấy khoảng cách đến kho hàng có tác động nhỏ đến chi phí giao hàng. Khoảng cách lớn hơn thường đi kèm với phí giao hàng cao hơn.
+
+- order\_price và delivery\_charges (+0.02):
+Hầu như không có mối liên hệ giữa giá trị đơn hàng và phí giao hàng. Điều này có thể chỉ ra rằng phí giao hàng không phụ thuộc vào giá trị đơn hàng mà dựa trên các yếu tố khác như khoảng cách hoặc chính sách giao hàng.
+
+- coupon\_discount với hầu hết các biến khác (gần 0):
+Mức giảm giá từ phiếu coupon không có mối liên hệ đáng kể với bất kỳ biến nào trong tập dữ liệu, kể cả order\_total. Điều này có thể ngụ ý rằng chiến lược giảm giá không ảnh hưởng rõ ràng đến hành vi mua sắm của khách hàng.
