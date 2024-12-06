@@ -8,7 +8,7 @@ Mục đích của mô hình hồi quy tuyến tính này là dự đoán giá t
 Ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật phận phối chuẩn hay không bằng cách cho mức ý nghĩa là 5\%, ta dùng lệnh \textbf{shapiro.test()} để kiểm tra p-value. Nếu giá trị p-value > 0.05, thì cột dữ liệu đó tuân theo phân phối chuẩn và ngược lại.Thực hiện trên Rstudio ta thu được kết quả:
 
 
-\begin{figure}[ht]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.0.png}
   \caption{kết quả kiểm  tra phân phối chuẩn của các biến }
@@ -23,7 +23,7 @@ Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong t
 Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào hai biến độc lập is\_expedited\_delivery và distance\_to\_nearest\_warehouse. Ta sử dụng lệnh lm().
 
 Kết quả phân tích trên Rstudio:
-\begin{figure}[ht]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.1.png}
   \caption{Kết quả hồi quy tuyến tính giữa 2 biến delivery\_charges và is\_expedited\_delivery  }
@@ -49,7 +49,7 @@ Ta có phương trình hồi quy tuyến tính đơn giản: $y= 68.12859 + 17.4
 Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_warehouse}.
 
 Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên ta có được:
-\begin{figure}[ht]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.2.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 1 }
@@ -75,7 +75,7 @@ Mô hình hồi quy model\_1 không phù hợp tốt với dữ liệu của b�
 Tiếp theo ta xét tiếp khi bỏ các giá trị ngoại lai
 
 Hồi quy trên Rstudio ta có được:
-\begin{figure}[ht]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.3.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 2 }
@@ -116,7 +116,7 @@ Loại bỏ hai biến \textbf{delivery\_charges} và \textbf{distance\_to\_near
 Từ đó ta có mô hình 3 : $y= \beta_0 + \beta_1x_1 + \beta_2x_2$ với y: order\_total, $x_1$: order\_price, $x_2$: coupon\_discount.
 
 Ta tiếp sử dụng Rstudio để phân tích mô hình 3
-\begin{figure}[ht]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.4.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 3 }
@@ -142,7 +142,7 @@ Mô hình 3 có hiệu quả rất cao trong việc giải thích sự biến th
 
 \subsubsection{Kiểm định lại mô hình hồi quy tuyến tính}
 Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\%\ bằng lệnh \textbf{confint(model\_3)}:
-\begin{figure}[ht]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.5.png}
   \caption{Kiểm định khoảng tin cậy hệ số mô hình 3 }
@@ -154,7 +154,7 @@ Ta thấy các hệ số $\beta_0= 1640\in(1395.91904; 1884.5482), \beta_1= 0.88
 Kiểm tra giả định mô hình hồi quy tuyến tính bằng đồ thị:
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.6.png}
   \caption{Đồ thị kiểm định mô hình hồi quy  tuyến tính }
@@ -184,7 +184,7 @@ Kiểm định bằng phương pháp so sánh với giá trị thực tế:
 
 Ta tiến hành thay các giá trị $x_1$, $x_2$ vào phương trình(ở mô hình 3): $y= 1640 + 0.8886x_1 - 133.7 x_2$ sau đó so sánh với giá trị order\_total trong bảng. Ta sử dụng Rstudio để thực hiện thao tác trên:
 
-\begin{figure}[h]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.5\linewidth]{graphics/5.5.7.png}
   \caption{So sánh giá trị hồi quy với giá trị thực tế }
