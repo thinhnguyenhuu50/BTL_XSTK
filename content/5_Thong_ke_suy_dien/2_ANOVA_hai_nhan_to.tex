@@ -1,1 +1,43 @@
 \subsection{Phân tích phương sai hai nhân tố (Two-factor ANOVA)}
+\subsubsection{Bài toán}
+Trong phần nghiên cứu này, chúng tôi sẽ sử dụng ANOVA 2 yếu tố không lặp để phân tích xem liệu \textbf{Kinh độ vị trí khánh hàng (Customer\_long)} và \textbf{Vĩ độ vị trí khánh hàng (Customer\_lat)} có ảnh hưởng đến \textbf{Phí giao hàng (Delivery\_charge)} hay không?
+
+Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha = 0.05$.
+
+\begin{itemize}
+    \item \( H\_0 \): 
+    \begin{enumerate}
+        \item \( H\_{0A}: \) Không có sự khác biệt giữa các giá trị trung bình của \textbf{Delivery\_charge} giữa các nhóm \textbf{Customer\_long}, tức là:
+        \[
+        \mu\_{A1} = \mu\_{A2} = \ldots = \mu\_{Ak}
+        \]
+        \item \( H\_{0B}: \) Không có sự khác biệt giữa các giá trị trung bình của \textbf{Delivery\_charge} giữa các nhóm \textbf{Customer\_lat}, tức là:
+        \[
+        \mu\_{B1} = \mu\_{B2} = \ldots = \mu\_{Bl}
+        \]
+        \item \( H\_{0AB}: \) Không có sự tương tác giữa \textbf{Customer\_long} và \textbf{Customer\_lat} đối với \textbf{Delivery\_charge}, tức là:
+        \[
+        \text{Không có tác động tương tác giữa Manufacturer và Core\_Speed\_Value}
+        \]
+    \end{enumerate}
+    
+    \item \( H\_1 \): 
+    \begin{enumerate}
+        \item \( H\_{1A}: \) Có ít nhất một cặp giá trị trung bình của \textbf{Delivery\_charge} khác nhau giữa các nhóm \textbf{Customer\_long}, tức là:
+        \[
+        \exists \, i \neq j \, : \, \mu\_{Ai} \neq \mu\_{Aj}
+        \]
+        \item \( H\_{1B}: \) Có ít nhất một cặp giá trị trung bình của \textbf{Delivery\_charge} khác nhau giữa các nhóm \textbf{Customer\_lat}, tức là:
+        \[
+        \exists \, i \neq j \, : \, \mu\_{Bi} \neq \mu\_{Bj}
+        \]
+        \item \( H\_{1AB}: \) Có sự tương tác giữa \textbf{Customer\_long} và \textbf{Customer\_lat} đối với \textbf{Delivery\_charge}, tức là:
+        \[
+        \exists \, (i, j) \, : \, \text{Tác động tương tác giữa Customer\_long và Customer\_lat tồn tại}
+        \]
+    \end{enumerate}
+\end{itemize}
+\subsubsection{Kiểm tra điều kiện cho dữ liệu}
+Trước khi tiến hành phân tích ANOVA 2 chiều, chúng tôi cần kiểm tra các điều kiện cần thiết cho dữ liệu thì \textbf{Biến phụ thuộc:} \textbf{Delivery\_charge} là một biến không có phân phối chuẩn, tồn tại nhiều khiếm khuyết dữ liệu và có các điểm dị biệt.
+
+$ \Rightarrow $ Như vậy các điều kiện giả thiết về dữ liệu không được thỏa mãn, do đó kết quả phân tích ANOVA có thể không chính xác và chỉ mang tính chất tham khảo.
