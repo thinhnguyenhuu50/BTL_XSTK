@@ -10,6 +10,9 @@ library(data.table)
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
 
+#Kiem tra du lieu khuyet
+anyNA(dirty_data)
+
 # Tiền xử lý dữ liệu
 dim(dirty_data)
 names(dirty_data)
@@ -100,7 +103,14 @@ df <- df %>%
   )
 
 print(sum(df$nearest_warehouse == df$nearest_warehouse_fixed))
+
+# Dinh dang factor
+dirty_data$nearest_warehouse <- as.factor(dirty_data$nearest_warehouse)
+dirty_data$season <- as.factor(dirty_data$season)
+dirty_data$is_expedited_delivery <- as.factor(dirty_data$is_expedited_delivery)
+dirty_data$is_happy_customer <- as.factor(dirty_data$is_happy_customer)
 # *Ket thuc* TIEN XU LY SO LIEU  ###############################################
+
 # THống kê mô tả
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
@@ -276,6 +286,30 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   ## xu li ngoai lai
   ggplot(data_4, aes(x=is_happy_customer, y=order_total)) + geom_boxplot()+
     labs(title="Plot of Order total per is happy customer")
+     # Tải thư viện
+  library(corrplot)
+  
+  # Tạo dữ liệu mẫu (hoặc thay bằng dữ liệu của bạn)
+  set.seed(123)
+  data.frame <- data.frame(
+    order_price = runif(100, 50, 500),
+    delivery_charges = runif(100, 5, 50),
+    customer_lat = runif(100, -90, 90),
+    customer_long = runif(100, -180, 180),
+    coupon_discount = runif(100, 0, 30),
+    order_total = runif(100, 100, 600),
+    distance_to_nearest_warehouse = runif(100, 1, 50)
+  )
+  
+  # Tính ma trận tương quan
+  cor_matrix <- cor(data_4)
+  
+  # Vẽ biểu đồ tương quan
+  
+  corrplot(cor_matrix, method = "circle", type = "full", 
+           col = colorRampPalette(c("blue", "white", "red"))(200),
+           tl.col = "red", tl.srt = 45,addCoef.col = "black")
+  
  
 ##KET THUC MO TA
 
