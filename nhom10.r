@@ -101,7 +101,7 @@ df <- df %>%
 
 print(sum(df$nearest_warehouse == df$nearest_warehouse_fixed))
 # *Ket thuc* TIEN XU LY SO LIEU  ###############################################
-
+# THống kê mô tả
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
 data_1<-dirty_data[,c("nearest_warehouse","order_price","delivery_charges",
@@ -276,8 +276,8 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   ## xu li ngoai lai
   ggplot(data_4, aes(x=is_happy_customer, y=order_total)) + geom_boxplot()+
     labs(title="Plot of Order total per is happy customer")
-
-
+ 
+##KET THUC MO TA
 
 # mo hinh hoi qui da bien tuyen tinh 
 dirty_data <- read.csv("E:/dirty_data.csv")
