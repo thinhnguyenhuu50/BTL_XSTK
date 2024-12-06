@@ -20,7 +20,7 @@ Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu �
 
 Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong thống kê vì nó cho phép chúng ta làm việc với các mẫu ngẫu nhiên mà không cần phải lo lắng về phân phối gốc của dữ liệu. Nó đảm bảo rằng, khi kích thước mẫu đủ lớn, các phân tích thống kê có thể sử dụng phân phối chuẩn để thực hiện các ước lượng và kiểm định giả thuyết, ngay cả khi dữ liệu gốc không tuân theo phân phối chuẩn.
 \subsubsection{Xây dựng mô hình hồi quy tuyến tính}
-Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào biến độc lập is\_expedited\_delivery. Ta sử dụng lệnh lm().
+Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào hai biến độc lập is\_expedited\_delivery và distance\_to\_nearest\_warehouse. Ta sử dụng lệnh lm().
 
 Kết quả phân tích trên Rstudio:
 \begin{figure}[ht]
@@ -32,21 +32,21 @@ Kết quả phân tích trên Rstudio:
 
 Với mức ý nghĩa 5\%, ta phân tích phần Coefficients (hệ số) như sau:
 
-Định nghĩa biến x: is\_expedited\_delivery
-, y:delivery\_charges
+Định nghĩa biến $x_1$: is\_expedited\_delivery,$x_2$:distance\_to\_nearest\_warehouse, y:delivery\_charges
 
-Cho biết hệ số của biến độc lập trong phương trình: $\beta_0= 67.9610, \beta_1= 17.4642 $
- Ta có phương trình hồi quy tuyến tính đơn giản: $y= 67.9610 + 17.4642x$
+Cho biết hệ số của biến độc lập trong phương trình: $\beta_0= 68.12859, \beta_1= 17.44535,\\ \beta_2= -0.07176 $
+ 
+Ta có phương trình hồi quy tuyến tính đơn giản: $y= 68.12859 + 17.44535x_1 - 0.07176x_2$
 
  Dựa vào bảng số liệu trên ta có:\\
  \begin{itemize}
- \item\textbf{Pr(>|t|)}: Các giá trị p-value đều nhỏ hơn 0.05, cho thấy cả hai hệ số đều có ý nghĩa thống kê trong mô hình.
-\item\textbf{Multiple R-squared}: 0.3643, cho thấy mô hình giải thích được 36.43\% biến động của delivery\_charges.
+ \item\textbf{Pr(>|t|)}: Chỉ có giá trị p-value của biến distance\_to\_nearest\_warehouse lớn hơn 0.05(0.222>0.05), cho thấy biến distance\_to\_nearest\_warehouse không có ý nghĩa thống kê trong mô hình này. Có thể xem như hai biến delivery\_charges và distance\_to\_nearest\_warehouse độc lập với nhau.
+\item\textbf{Multiple R-squared}: 0.3662, cho thấy mô hình giải thích được 36.62\% biến động của delivery\_charges.
  \end{itemize}
 
- Mô hình hồi quy này chỉ ra rằng việc giao hàng nhanh \textbf{(is\_expedited\_delivery)} có ảnh hưởng đáng kể và có ý nghĩa thống kê đến chi phí giao hàng \textbf{(delivery\_charges)}. Mặc dù mô hình giải thích được \textbf{36.43\%} biến động của chi phí giao hàng, điều này cho thấy vẫn còn nhiều yếu tố khác cần được xem xét để giải thích toàn bộ biến động của chi phí giao hàng.
+ Mô hình hồi quy này chỉ ra rằng việc giao hàng nhanh \textbf{(is\_expedited\_delivery)} có ảnh hưởng đáng kể và có ý nghĩa thống kê đến chi phí giao hàng \textbf{(delivery\_charges)}. Mặc dù mô hình giải thích được \textbf{36.62\%} biến động của chi phí giao hàng, điều này cho thấy vẫn còn nhiều yếu tố khác cần được xem xét để giải thích toàn bộ biến động của chi phí giao hàng.
 
-Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất.Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_warehouse}.
+Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_warehouse}.
 
 Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên ta có được:
 \begin{figure}[ht]
