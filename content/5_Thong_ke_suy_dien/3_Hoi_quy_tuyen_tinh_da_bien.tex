@@ -8,9 +8,9 @@ Mục đích của mô hình hồi quy tuyến tính này là dự đoán giá t
 Ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật phận phối chuẩn hay không bằng cách cho mức ý nghĩa là 5\%, ta dùng lệnh \textbf{shapiro.test()} để kiểm tra p-value. Nếu giá trị p-value > 0.05, thì cột dữ liệu đó tuân theo phân phối chuẩn và ngược lại.Thực hiện trên Rstudio ta thu được kết quả:
 
 
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{graphics/5.5.0.png}
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.0.png}
   \caption{kết quả kiểm  tra phân phối chuẩn của các biến }
 \end{figure}
 
@@ -23,7 +23,7 @@ Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong t
 Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào hai biến độc lập is\_expedited\_delivery và distance\_to\_nearest\_warehouse. Ta sử dụng lệnh lm().
 
 Kết quả phân tích trên Rstudio:
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.1.png}
   \caption{Kết quả hồi quy tuyến tính giữa 2 biến delivery\_charges và is\_expedited\_delivery  }
@@ -49,7 +49,7 @@ Ta có phương trình hồi quy tuyến tính đơn giản: $y= 68.12859 + 17.4
 Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_warehouse}.
 
 Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên ta có được:
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.2.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 1 }
@@ -65,6 +65,7 @@ Dựa trên kết qủa từ hàm \textbf{summary(model\_1)} ta rút ra nhận x
 \item\textbf{Multiple R-squared}: 0.004768, chỉ ra rằng mô hình chỉ giải thích được 0.4768\% biến động của order\_total.
 \item\textbf{F-statistic}: 0.5929, với p-value là 0.668, cho thấy mô hình tổng thể không có ý nghĩa thống kê
 \end{itemize}
+
 Mô hình hồi quy model\_1 không phù hợp tốt với dữ liệu của bạn bởi vì:
 \begin{itemize}
 \item Các biến độc lập đều không có ý nghĩa thống kê ($p-value > 0.05$).
@@ -75,7 +76,7 @@ Mô hình hồi quy model\_1 không phù hợp tốt với dữ liệu của b�
 Tiếp theo ta xét tiếp khi bỏ các giá trị ngoại lai
 
 Hồi quy trên Rstudio ta có được:
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.3.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 2 }
@@ -116,7 +117,7 @@ Loại bỏ hai biến \textbf{delivery\_charges} và \textbf{distance\_to\_near
 Từ đó ta có mô hình 3 : $y= \beta_0 + \beta_1x_1 + \beta_2x_2$ với y: order\_total, $x_1$: order\_price, $x_2$: coupon\_discount.
 
 Ta tiếp sử dụng Rstudio để phân tích mô hình 3
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.4.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 3 }
@@ -142,49 +143,19 @@ Mô hình 3 có hiệu quả rất cao trong việc giải thích sự biến th
 
 \subsubsection{Kiểm định lại mô hình hồi quy tuyến tính}
 Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\%\ bằng lệnh \textbf{confint(model\_3)}:
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.5.png}
   \caption{Kiểm định khoảng tin cậy hệ số mô hình 3 }
 \end{figure}
 
 Ta thấy các hệ số $\beta_0= 1640\in(1395.91904; 1884.5482), \beta_1= 0.8886\in(.8755;0.9017),\\ \beta_2= -133.7\in(-145.9358 -121.4825)$
-\paragraph{Kiểm định bằng đồ thị}
-
-Kiểm tra giả định mô hình hồi quy tuyến tính bằng đồ thị:
-\newpage
-
-\begin{figure}[!htp]
-  \centering
-  \includegraphics[width=0.7\linewidth]{graphics/5.5.6.png}
-  \caption{Đồ thị kiểm định mô hình hồi quy  tuyến tính }
-\end{figure}
-
-Nhận xét dựa trên đồ thị chuẩn đoán:
-
-\textbf{Residual vs Fitted:}
-\begin{itemize}
- \item Các điểm dữ liệu không hoàn toàn phân bố ngẫu nhiên quanh đường ngang tại 0, gợi ý rằng có thể có vấn đề với tuyến tính hoặc phương sai không đồng nhất. 
-\end{itemize}
- \textbf{Q-Q Residuals:}
- \begin{itemize}
-\item Các điểm dữ liệu phần lớn nằm dọc theo đường chéo, nhưng có một số điểm lệch ở hai đầu Điều này gợi ý rằng phần dư có thể không hoàn toàn tuân theo phối chuẩn, nhưng sự sai lệch không quá nghiêm trọng.
- \end{itemize}
-\textbf{Scale-Location:}
-\begin{itemize}
-\item Các điểm dữ liệu không hoàn toàn phân bố ngẫu nhiên và có xu hướng tăng lên, điều này gợi ý rằng phương sai có thể không đồng nhất.
-\end{itemize}
-\textbf{Residuals và Leverage:}
-\begin{itemize}
-\item Một số điểm có leverage cao và phần dư lớn, cho thấy một số điểm dữ liệu  có thể có ảnh hưởng mạnh đến mô hình. Những điểm này cần được kiểm tra kỹ lưỡng.
-\end{itemize}
-\paragraph{Kiểm định bằng thống kê}
 
 Kiểm định bằng phương pháp so sánh với giá trị thực tế:
 
 Ta tiến hành thay các giá trị $x_1$, $x_2$ vào phương trình(ở mô hình 3): $y= 1640 + 0.8886x_1 - 133.7 x_2$ sau đó so sánh với giá trị order\_total trong bảng. Ta sử dụng Rstudio để thực hiện thao tác trên:
 
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{graphics/5.5.7.png}
   \caption{So sánh giá trị hồi quy với giá trị thực tế }
@@ -194,6 +165,113 @@ Ta sử dụng lệnh predict để tiến hành thay các giá trị vào phư�
 \begin{itemize}
   \item Sai số trung bình : 7.509367e-13. Kết quả rất gần 0 (7.509367e-13 \approx 0), cho thấy mô hình không bị lệch. Sai số trung bình nhỏ này phản ánh rằng giá trị dự đoán trung bình khá khớp với giá trị thực tế.
   \item Độ lệch chuẩn của sai số: 1114.074. Độ lệch chuẩn là 1114.074, khá nhỏ so với một số giá trị order\_total thực tế (ví dụ: hàng chục ngàn). Điều này chỉ ra rằng các dự đoán của mô hình có mức độ ổn định tương đối.
+\end{itemize}
+
+Kiểm định phân phối chuẩn của phần dư bằng Shapiro-Wilk:
+
+Giả thuyết đặt ra:
+\begin{itemize}
+  \item\textbf{Giả thuyết H0}: Phần dư của mô hình hồi quy tuân theo phân phối chuẩn.
+  \item\textbf{Giả thuyết H1}: Phần dư của mô hình hồi quy không tuân theo phân phối chuẩn.
+  \item Nếu p-value ≥ a (thường chọn a = 0.05): Không đủ bằng chứng bác bỏ H₀ \rightarrow Phần dư có thể coi là tuân theo phân phối chuẩn.
+  \item Nếu p-value < a: Bác bỏ H0 \leftarrow Phần dư không tuân theo phân phối chuẩn.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{graphics/5.5.6.png}
+  \caption{Kiểm định Shapiro-Wilk mô hình 3 }
+\end{figure}
+
+Kết quả kiểm định Shapiro-Wilk cho mô hình 3:
+\begin{itemize}
+  \item\textbf{p-value < 0.05 }: Có bằng chứng bác bỏ H0.
+  \item\textbf{Kết luận}: Phần dư không tuân theo phân phối chuẩn, giả định phân phối chuẩn bị vi phạm.
+\end{itemize}
+
+Dựa trên biểu đồ phân phồi phần dư:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.9.png}
+  \caption{Đồ thị phần dư ở mô hình 3}
+\end{figure}
+
+\begin{itemize}
+  \item\textbf{Histogram of Residuals}: Biểu đồ histogram cho thấy phần dư không có dạng phân phối chuẩn. Phân phối phần dư bị lệch mạnh sang một phía (lệch phải), và không tuân theo dạng chuông đối xứng của phân phối chuẩn.
+  \item\textbf{Q-Q Plot of Residuals}: Trong biểu đồ Q-Q plot, các điểm không nằm trên đường thẳng đỏ (đường kỳ vọng cho phân phối chuẩn), đặc biệt ở hai đầu (tail). Điều này chỉ ra rằng phần dư không tuân theo phân phối chuẩn.
+  \item\textbf{Kết luận}: Cả hai biểu đồ đều hỗ trợ kết quả của kiểm định Shapiro-Wilk (p-value < 0.05), khẳng định rằng phần dư không tuân theo phân phối chuẩn.
+\end{itemize}
+
+Kiểm tra phương sai đồng nhất: Sử dụng biểu đồ Scale-Location và kiểm định Breusch-Pagan
+
+Kiểm định Breusch-Pagan
+
+Giả thuyết đặt ra:
+\begin{itemize}
+  \item\textbf{Giả thuyết H0}: Phương sai của sai số là đồng nhất (phương sai đồng nhất).
+  \item\textbf{Giả thuyết H1}: Phương sai của sai số thay đổi (phương sai không đồng nhất).
+  \item\textbf{Nếu p-value > 0.05}: Không có bằng chứng bác bỏ giả thuyết H0, phương sai đồng nhất.
+  \item\textbf{Nếu p-value ≤ 0.05}: Bác bỏ H0, phương sai không đồng nhất.
+\end{itemize}
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.10.png}
+  \caption{Kết quả kiểm định Breusch-Pagan mô hình 3 }
+\end{figure}
+
+Dựa vào kết quả kiểm định Breusch-Pagan mô hình 3:
+\begin{itemize}
+\item\textbf{Với p-value = 0.4286 > 0.05}: chúng ta không có đủ bằng chứng để bác bỏ giả thuyết H₀. Điều này nghĩa là phương sai của sai số được xem là đồng nhất.
+\item\textbf{Kết luận}: Dựa trên kiểm định Breusch-Pagan, mô hình không vi phạm giả định phương sai đồng nhất. Phương sai của phần dư ổn định và thích hợp với hồi quy tuyến tính.
+\end{itemize}
+
+Dựa vào biểu đồ Scale-Location:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.11.png}
+  \caption{Biểu đồ Scale-Location }
+\end{figure}
+
+\begin{itemize}
+  \item\textbf{Nhận xét}: Các điểm không phân bố ngẫu nhiên xung quanh đường ngang (red line) mà có dạng hình phễu, tức là phương sai của phần dư không đồng nhất. Hiện tượng này cho thấy có thể vi phạm giả định đồng nhất phương sai, nghĩa là sai số của mô hình có sự thay đổi tùy thuộc vào giá trị dự đoán.
+  \item\textbf{Kết luận}: Dựa trên kết quả kiểm định Breusch-Pagan, phương sai của phần dư trong mô hình 3 là đồng nhất.
+  Tuy nhiên, biểu đồ Scale-Location vẫn gợi ý cần xem xét thêm.
+\end{itemize}
+
+Kiểm tra tính tuyến tính: sử dụng biểu đồ Residuals vs Fitted để kiểm tra:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.12.png}
+  \caption{Biểu đồ Residuals vs Fitted của mô hình 3 }
+\end{figure}
+\begin{itemize}
+\item\textbf{Nhận xét }: Phần dư không phân bố ngẫu nhiên quanh đường ngang tại Residual = 0: Có một dạng hình quạt, nghĩa là ở các giá trị dự đoán thấp và cao, phần dư có xu hướng biến động mạnh hơn.
+\item\textbf{Kết luận}: Không đảm bảo tuyến tính, dạng hình quạt của phần dư gợi ý rằng mối quan hệ giữa biến phụ thuộc và biến độc lập không hoàn toàn tuyến tính.
+\end{itemize}
+
+
+Kiểm định độc lập sai số : để kiểm tra độc lập của sai số trong mô hình hồi quy, sử dụng kiểm định Durbin-Watson trong R. Kiểm định này kiểm tra xem có tự tương quan bậc nhất trong phần dư hay không. Nếu giá trị Durbin-Watson gần 2, giả định độc lập của sai số được thỏa mãn.
+
+Giả thuyết kiểm định Durbin-Watson
+\begin{itemize}
+  \item\textbf{Giả thuyết H0}: Sai số không có tự tương quan.
+  \item\textbf{Giả thuyết H1}: Sai số có tự tương qua bậc nhất.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\linewidth]{graphics/5.5.8.png}
+  \caption{Kiểm định Durbin-Watson của mô hình 3 }
+\end{figure}
+
+Kết quả kiểm định Durbin-Watson cho mô hình 3:
+\begin{itemize}
+  \item\textbf{Giá trị Durbin-Watson (DW)}: 2.0737(gần 2) cho thấy rằng không có tự tương quan bậc nhất đáng kể giữa các phần dư (residuals). Điều này thỏa mãn giả định độc lập của sai số.
+  \item \textbf{p-value}: 0.7814(lớn hơn mức ý nghĩa 0.05) chỉ ra rằng không có bằng chứng thống kê để bác bỏ giả thuyết H0, tức là không có hiện tượng tự tương quan dương trong phần dư.
+  \item\textbf{Kết luận}:  Mô hình 3 đảm bảo giả định độc lập của sai số, và kết quả hồi quy có thể được sử dụng một cách tin cậy liên quan đến giả định này.
 \end{itemize}
 
 \subsubsection{Kết luận}
