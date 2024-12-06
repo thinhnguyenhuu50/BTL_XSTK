@@ -408,3 +408,4 @@ eta_squared(anova1nhanto)
 
 #ANOVA1 ket thuc
 #ANOVA2 bat dau
+#blabla
