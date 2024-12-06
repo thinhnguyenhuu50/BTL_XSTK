@@ -410,12 +410,18 @@ eta_squared(anova1nhanto)
 #ANOVA2 bat dau
 #doc va chon 3 cot tu file du lieu 
 df<-dirty_data[,c("delivery_charges","coupon_discount","order_total")]
+#chuyen doi 2 bien coupon_discount va delivery_charges la  thanh cac yeu to factor
 coupon_discount<-as.factor(df$coupon_discount)
 delivery_charges<-as.factor(df$delivery_charges)
+
 order_total<-df$order_total
 library(nortest)
+#kiem dinh phan phoi chuan hoac gan chuan 
 av_residual<-rstandard (aov(order_total~coupon_discount*delivery_charges))
 shapiro.test(av_residual)
+#sai so ko tuan theo phan phoi chuan nhung vi co mau lon nen ta van co thesu dung mo hinh anova theo dinh ly gioi han trung tam 
+#phan tich anova 2 yeu to 
 anova_model <- aov(order_total ~ coupon_discount * delivery_charges)
+#hien thi ket qua phan tich
 summary(anova_model)
-
+#ANOVA2 KET THUC
