@@ -10,6 +10,9 @@ library(data.table)
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
 
+#Kiem tra du lieu khuyet
+anyNA(dirty_data)
+
 # Tiền xử lý dữ liệu
 dim(dirty_data)
 names(dirty_data)
@@ -100,7 +103,14 @@ df <- df %>%
   )
 
 print(sum(df$nearest_warehouse == df$nearest_warehouse_fixed))
+
+# Dinh dang factor
+dirty_data$nearest_warehouse <- as.factor(dirty_data$nearest_warehouse)
+dirty_data$season <- as.factor(dirty_data$season)
+dirty_data$is_expedited_delivery <- as.factor(dirty_data$is_expedited_delivery)
+dirty_data$is_happy_customer <- as.factor(dirty_data$is_happy_customer)
 # *Ket thuc* TIEN XU LY SO LIEU  ###############################################
+
 # THống kê mô tả
 #lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
