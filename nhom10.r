@@ -408,4 +408,14 @@ eta_squared(anova1nhanto)
 
 #ANOVA1 ket thuc
 #ANOVA2 bat dau
-#blabla
+#doc va chon 3 cot tu file du lieu 
+df<-dirty_data[,c("delivery_charges","coupon_discount","order_total")]
+coupon_discount<-as.factor(df$coupon_discount)
+delivery_charges<-as.factor(df$delivery_charges)
+order_total<-df$order_total
+library(nortest)
+av_residual<-rstandard (aov(order_total~coupon_discount*delivery_charges))
+shapiro.test(av_residual)
+anova_model <- aov(order_total ~ coupon_discount * delivery_charges)
+summary(anova_model)
+
