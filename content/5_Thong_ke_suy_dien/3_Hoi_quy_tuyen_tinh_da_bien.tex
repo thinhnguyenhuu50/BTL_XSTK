@@ -167,14 +167,14 @@ Ta sử dụng lệnh predict để tiến hành thay các giá trị vào phư�
   \item Độ lệch chuẩn của sai số: 1114.074. Độ lệch chuẩn là 1114.074, khá nhỏ so với một số giá trị order\_total thực tế (ví dụ: hàng chục ngàn). Điều này chỉ ra rằng các dự đoán của mô hình có mức độ ổn định tương đối.
 \end{itemize}
 
-Kiểm định phân phối chuẩn của phần dư bằng Shapiro-Wilk:
+\textbf{Kiểm định phân phối chuẩn của phần dư} bằng Shapiro-Wilk:
 
 Giả thuyết đặt ra:
 \begin{itemize}
   \item\textbf{Giả thuyết H0}: Phần dư của mô hình hồi quy tuân theo phân phối chuẩn.
   \item\textbf{Giả thuyết H1}: Phần dư của mô hình hồi quy không tuân theo phân phối chuẩn.
   \item Nếu p-value ≥ a (thường chọn a = 0.05): Không đủ bằng chứng bác bỏ H₀ \rightarrow Phần dư có thể coi là tuân theo phân phối chuẩn.
-  \item Nếu p-value < a: Bác bỏ H0 \leftarrow Phần dư không tuân theo phân phối chuẩn.
+  \item Nếu p-value < a: Bác bỏ H0 \rightarrow Phần dư không tuân theo phân phối chuẩn.
 \end{itemize}
 
 \begin{figure}[H]
@@ -202,7 +202,7 @@ Dựa trên biểu đồ phân phồi phần dư:
   \item\textbf{Kết luận}: Cả hai biểu đồ đều hỗ trợ kết quả của kiểm định Shapiro-Wilk (p-value < 0.05), khẳng định rằng phần dư không tuân theo phân phối chuẩn.
 \end{itemize}
 
-Kiểm tra phương sai đồng nhất: Sử dụng biểu đồ Scale-Location và kiểm định Breusch-Pagan
+\textbf{Kiểm tra phương sai đồng nhất}: Sử dụng biểu đồ Scale-Location và kiểm định Breusch-Pagan
 
 Kiểm định Breusch-Pagan
 
@@ -240,7 +240,7 @@ Dựa vào biểu đồ Scale-Location:
   Tuy nhiên, biểu đồ Scale-Location vẫn gợi ý cần xem xét thêm.
 \end{itemize}
 
-Kiểm tra tính tuyến tính: sử dụng biểu đồ Residuals vs Fitted để kiểm tra:
+\textbf{Kiểm tra tính tuyến tính}: sử dụng biểu đồ Residuals vs Fitted để kiểm tra:
 
 \begin{figure}[H]
   \centering
@@ -253,7 +253,7 @@ Kiểm tra tính tuyến tính: sử dụng biểu đồ Residuals vs Fitted đ�
 \end{itemize}
 
 
-Kiểm định độc lập sai số : để kiểm tra độc lập của sai số trong mô hình hồi quy, sử dụng kiểm định Durbin-Watson trong R. Kiểm định này kiểm tra xem có tự tương quan bậc nhất trong phần dư hay không. Nếu giá trị Durbin-Watson gần 2, giả định độc lập của sai số được thỏa mãn.
+\textbf{Kiểm định độc lập sai số} : để kiểm tra độc lập của sai số trong mô hình hồi quy, sử dụng kiểm định Durbin-Watson trong R. Kiểm định này kiểm tra xem có tự tương quan bậc nhất trong phần dư hay không. Nếu giá trị Durbin-Watson gần 2, giả định độc lập của sai số được thỏa mãn.
 
 Giả thuyết kiểm định Durbin-Watson
 \begin{itemize}
@@ -280,7 +280,7 @@ Mô hình 3 có độ phù hợp tương đối tốt với dữ liệu, với \
 
 Đồ thị chẩn đoán cho thấy một số vấn đề tiềm ẩn về tuyến tính, phương sai đồng nhất và phân phối chuẩn của phần dư. Mặc dù có một số điểm cần lưu ý, nhưng chúng không quá nghiêm trọng.
 
-Có thể kết luận rằng mô hình 3 tương đối đúng và phù hợp để dự đoán \textbf{order\_total}. Tuy nhiên, cần kiểm tra thêm và có thể thực hiện một số điều chỉnh nhỏ để cải thiện thêm độ chính xác của mô hình.
+Có thể kết luận rằng mô hình 3 tương đối đúng và phù hợp để dự đoán \textbf{order\_total}. Tuy nhiên, cần kiểm tra thêm và có thể thực hiện một số điều chỉnh để cải thiện thêm độ chính xác của mô hình.
 
 
 
