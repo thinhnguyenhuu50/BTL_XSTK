@@ -66,7 +66,7 @@ Dựa trên kết qủa từ hàm \textbf{summary(model\_1)} ta rút ra nhận x
 \item\textbf{F-statistic}: 0.5929, với p-value là 0.668, cho thấy mô hình tổng thể không có ý nghĩa thống kê
 \end{itemize}
 
-Mô hình hồi quy model\_1 không phù hợp tốt với dữ liệu của bạn bởi vì:
+Mô hình hồi quy thứ nhất không phù hợp tốt với dữ liệu bởi vì:
 \begin{itemize}
 \item Các biến độc lập đều không có ý nghĩa thống kê ($p-value > 0.05$).
 \item Chỉ số \textbf{R-squared} rất thấp, cho thấy mô hình không giải thích được biến động của order\_total.
@@ -198,7 +198,7 @@ Dựa trên biểu đồ phân phồi phần dư:
 
 \begin{itemize}
   \item\textbf{Histogram of Residuals}: Biểu đồ histogram cho thấy phần dư không có dạng phân phối chuẩn. Phân phối phần dư bị lệch mạnh sang một phía (lệch phải), và không tuân theo dạng chuông đối xứng của phân phối chuẩn.
-  \item\textbf{Q-Q Plot of Residuals}: Trong biểu đồ Q-Q plot, các điểm không nằm trên đường thẳng đỏ (đường kỳ vọng cho phân phối chuẩn), đặc biệt ở hai đầu (tail). Điều này chỉ ra rằng phần dư không tuân theo phân phối chuẩn.
+  \item\textbf{Q-Q Plot of Residuals}: Trong biểu đồ Q-Q plot, các điểm không nằm trên đường thẳng đỏ (đường kỳ vọng cho phân phối chuẩn), đặc biệt ở hai đầu. Điều này chỉ ra rằng phần dư không tuân theo phân phối chuẩn.
   \item\textbf{Kết luận}: Cả hai biểu đồ đều hỗ trợ kết quả của kiểm định Shapiro-Wilk (p-value < 0.05), khẳng định rằng phần dư không tuân theo phân phối chuẩn.
 \end{itemize}
 
@@ -259,6 +259,8 @@ Giả thuyết kiểm định Durbin-Watson
 \begin{itemize}
   \item\textbf{Giả thuyết H0}: Sai số không có tự tương quan.
   \item\textbf{Giả thuyết H1}: Sai số có tự tương qua bậc nhất.
+  \item\textbf{Nếu p-value ≤ 0.05}:Bác bỏ H0 \rightarrow có tự tương quan
+  \item\textbf{Nếu p-value > 0.05}: Chưa đủ thông tin để bác bỏ H0 \rightarrow có thể không có tự tương quan.
 \end{itemize}
 
 \begin{figure}[H]
