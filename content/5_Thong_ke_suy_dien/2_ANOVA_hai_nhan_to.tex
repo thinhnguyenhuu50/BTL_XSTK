@@ -5,38 +5,43 @@ Trong phần nghiên cứu này, chúng tôi sẽ sử dụng ANOVA 2 yếu tố
 
 Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha = 0.05$.
 
+
 \begin{itemize}
-    \item \( H\_0 \): 
-    \begin{enumerate}
-        \item \( H\_{0A}: \) Không có sự khác biệt giữa các giá trị trung bình của \textbf{order\_total} giữa các nhóm \textbf{delivery\_charges}, tức là:
-        \[
-        \mu\_{A1} = \mu\_{A2} = \ldots = \mu\_{Ak}
-        \]
-        \item \( H\_{0B}: \) Không có sự khác biệt giữa các giá trị trung bình của \textbf{order\_total} giữa các nhóm \textbf{coupon\_discount}, tức là:
-        \[
-        \mu\_{B1} = \mu\_{B2} = \ldots = \mu\_{Bl}
-        \]
-        \item \( H\_{0AB}: \) Không có sự tương tác giữa \textbf{delivery\_charges} và \textbf{coupon\_discount} đối với \textbf{order\_total}, tức là:
-        \[
-        \text{Không có tác động tương tác giữa Manufacturer và Core\_Speed\_Value}
-        \]
-    \end{enumerate}
     
-    \item \( H\_1 \): 
-    \begin{enumerate}
-        \item \( H\_{1A}: \) Có ít nhất một cặp giá trị trung bình của \textbf{order\_total} khác nhau giữa các nhóm \textbf{delivery\_charges}, tức là:
+    \item Kiểm định yếu tố A (delivery\_charges)
+    \begin{itemize}
+        \item Đánh giá xem biến nhân tố A có ảnh hưởng đến biến phụ thuộc hay không?
+        
         \[
-        \exists \, i \neq j \, : \, \mu\_{Ai} \neq \mu\_{Aj}
-        \]
-        \item \( H\_{1B}: \) Có ít nhất một cặp giá trị trung bình của \textbf{order\_total} khác nhau giữa các nhóm \textbf{coupon\_discount}, tức là:
+            H_{0A}: \tau_{1} = \tau_{2} = \tau_{3} = \dots = \tau_{n} = 0
+            \]
+            \[
+            H_{1A}: \tau_{i} \neq  0 \text{ với ít nhất một i }
+            \]
+    \end{itemize}
+    
+    \item Kiểm định yếu tố B (coupon\_discount)
+    \begin{itemize}
+        \item Đánh giá xem biến nhân tố B có ảnh hưởng đến biến phụ thuộc hay không?
+        
         \[
-        \exists \, i \neq j \, : \, \mu\_{Bi} \neq \mu\_{Bj}
-        \]
-        \item \( H\_{1AB}: \) Có sự tương tác giữa \textbf{delivery\_charges} và \textbf{coupon\_discount} đối với \textbf{order\_total}, tức là:
+            H_{0B}: \beta_{1} = \beta_{2} = \beta_{3} = \dots = \beta_{n} = 0
+            \]
+            \[
+            H_{1B}: \beta_{j} \neq  0 \text{ với ít nhất một j }
+            \]
+    \end{itemize}
+    \item Đối với tương tác giữa A và B  
+    \begin{itemize}
+        \item Đánh giá xem các biến nhân tố A và B có ảnh hưởng đến biến phụ thuộc hay không?
+        
         \[
-        \exists \, (i, j) \, : \, \text{Tác động tương tác giữa delivery\_charges và coupon\_discount tồn tại}
-        \]
-    \end{enumerate}
+            H_{0AB}: \tau\beta_{11} = \tau\beta_{12}  = \dots = \tau\beta_{AB} = 0 
+            \]
+            \[
+            H_{1AB}: \tau\beta_{ij} \neq  0 \text{ với ít nhất một cặp (i,j) }
+            \]
+    \end{itemize}
 \end{itemize}
 \subsubsection{Kiểm tra điều kiện cho dữ liệu}
 Trước khi tiến hành phân tích ANOVA 2 chiều, chúng tôi cần kiểm tra các điều kiện cần thiết cho dữ liệu thì \textbf{Biến phụ thuộc:} \textbf{order\_total} là một biến không có phân phối chuẩn, tồn tại nhiều khiếm khuyết dữ liệu và có các điểm dị biệt.
