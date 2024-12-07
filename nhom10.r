@@ -9,6 +9,7 @@ library(data.table)
 library(psych)
 library(ggplot2)
 library(corrplot)
+library(nortest)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
@@ -386,23 +387,28 @@ summary(anova1)
 #thực hiện
 eta_squared(anova1)
 
+# TODO: is_expedited_delivery & delivery_charges
+# TODO: is_expedited_delivery & season
 #KẾT THÚC ANOVA1
 
-#ANOVA2 bat dau
+#BAT DAU ANOVA2 
 #doc va chon 3 cot tu file du lieu 
-df<-dirty_data[,c("delivery_charges","coupon_discount","order_total")]
+df <- data_4 %>%
+  select(delivery_charges,
+         is_expedited_delivery,
+         season)
 #chuyen doi 2 bien coupon_discount va delivery_charges la  thanh cac yeu to factor
-coupon_discount<-as.factor(df$coupon_discount)
-delivery_charges<-as.factor(df$delivery_charges)
+df$is_expedited_delivery<-as.factor(df$is_expedited_delivery)
+df$season<-as.factor(df$season)
 
-order_total<-df$order_total
-library(nortest)
 #kiem dinh phan phoi chuan hoac gan chuan 
-av_residual<-rstandard (aov(order_total~coupon_discount*delivery_charges))
+av_residual<-rstandard (aov(df$delivery_charges~df$is_expedited_delivery*df$season))
 shapiro.test(av_residual)
 #sai so ko tuan theo phan phoi chuan nhung vi co mau lon nen ta van co thesu dung mo hinh anova theo dinh ly gioi han trung tam 
 #phan tich anova 2 yeu to 
-anova_model <- aov(order_total ~ coupon_discount * delivery_charges)
+anova_model <- aov(delivery_charges ~ is_expedited_delivery * season, data=df)
 #hien thi ket qua phan tich
 summary(anova_model)
-#ANOVA2 KET THUC
+#KET THUC ANOVA2
+# bang mau
+xtabs(~is_expedited_delivery + season, data=df)
