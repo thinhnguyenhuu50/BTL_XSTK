@@ -70,48 +70,38 @@ Có thể thấy giá trị p > 0.05 nên các nhóm có phương sai đồng nh
 Sau khi đã thỏa mãn các điểu kiện kiểm tra dữ liệu ta tiến hành phân tích ANOVA 2 chiều.
 
 \subsubsection{Tiến hành phân tích}
-Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r. 
 
-         Kết quả nhận được: 
-        
+
+        Dựa vào bảng dữ liệu ta có thể thấy sự tương tác giữa 2 nhân tố is\_expedited\_delivery và season
+
         \begin{figure}[!htbp]
             \centering
             \includegraphics[width=1\linewidth]{graphics/5.4.3.png}
+            \caption{bảng dữ liệu}
+        \end{figure}
+        Kết quả nhận được: 
+
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[width=1\linewidth]{graphics/5.4.4.png}
             \caption{Phân tích anova 2 yếu tố}
         \end{figure}
-        
-        
+
+        Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r. 
         Kết quả và nhận xét: 
         Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.4. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
-        
-            \begin{itemize}
-    \item \textbf{season}:
-    \begin{itemize}
-        \item Với \textbf{Df = 4}, có 4 mức độ khác nhau trong yếu tố \textbf{season}.
-        \item Giá trị \textbf{F = 973.68} và \textbf{Pr(>F) < 2e-07***} cho thấy rằng sự khác biệt giữa các mức độ của \textbf{season} có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho yếu tố này.
-    \end{itemize}
 
-    \item \textbf{is\_expedited\_delivery}:
-    \begin{itemize}
-        \item Với \textbf{Df = 467}, có 467 mức độ khác nhau trong yếu tố \textbf{is\_expedited\_delivery}.
-        \item Giá trị \textbf{F = 945.37} và \textbf{Pr(>F) < 1.09e-07***} cho thấy rằng sự khác biệt giữa các mức độ của \textbf{is\_expedited\_delivery} có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho yếu tố này.
-    \end{itemize}
-
+        \begin{itemize}
     \item \textbf{Tương tác giữa season và is\_expedited\_delivery}:
     \begin{itemize}
-        \item Với \textbf{Df = 23}, có 23 mức độ tương tác giữa hai yếu tố \textbf{season} và \textbf{is\_expedited\_delivery}.
-        \item Giá trị \textbf{F = 37.84} và \textbf{Pr(>F) = 0.000372***} cho thấy rằng có sự tương tác có ý nghĩa thống kê giữa hai yếu tố này và ảnh hưởng đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho sự tương tác này.
+        \item Với \textbf{Df = 3}, có 3 mức độ tương tác giữa hai yếu tố \textbf{season} và \textbf{is\_expedited\_delivery}.
+        \item Giá trị \textbf{F = 29.24} và \textbf{Pr(>F) = 2e-16***} cho thấy rằng có sự tương tác có ý nghĩa thống kê giữa hai yếu tố này và ảnh hưởng đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho sự tương tác này.
     \end{itemize}
 
-    \item \textbf{Residuals}:
-    \begin{itemize}
-        \item Số dư tự do còn lại là \textbf{Df = 5}.
-        \item Tổng bình phương của sai số là \textbf{Sum Sq = 4.203e+08}.
-    \end{itemize}
     \end{itemize}
 
  Từ những kết quả trên, chúng tôi kết luận rằng cả yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng quan trọng và có ý nghĩa thống kê đối với \textbf{delivery\_charges}. Điều này cho thấy rằng các yếu tố này cần được cân nhắc kỹ lưỡng khi định giá sản phẩm.
                
         
 \subsubsection{Kết luận}
-Phân tích ANOVA 2 chiều cho thấy \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Mặc dù có một số hạn chế về phân phối chuẩn và phương sai không đồng nhất, kết quả này vẫn cung cấp cơ sở tin cậy để đánh giá và điều chỉnh chiến lược giá sản phẩm.
+Phân tích ANOVA 2 chiều cho thấy \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Mặc dù có một số hạn chế về phân phối chuẩn , kết quả này vẫn cung cấp cơ sở tin cậy để đánh giá và điều chỉnh chiến lược giá sản phẩm.

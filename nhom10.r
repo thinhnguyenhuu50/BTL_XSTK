@@ -12,6 +12,7 @@ library(corrplot)
 library(nortest)
 library(lmtest)
 library(car)
+
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
 
@@ -406,9 +407,11 @@ shapiro.test(av_residual)
 #kiem tra phuong sai dong nhat hay ko 
 leveneTest(delivery_charges ~ is_expedited_delivery * season, data = df)
 #phan tich anova 2 yeu to 
+# bang dulieu
+xtabs(~is_expedited_delivery + season, data=df)
 anova_model <- aov(delivery_charges ~ is_expedited_delivery * season, data=df)
 #hien thi ket qua phan tich
 summary(anova_model)
 #KET THUC ANOVA2
-# bang mau
-xtabs(~is_expedited_delivery + season, data=df)
+
+
