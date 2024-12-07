@@ -8,6 +8,7 @@ library(effectsize)
 library(data.table)
 library(psych)
 library(ggplot2)
+library(corrplot)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
@@ -257,20 +258,6 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   ## xu li ngoai lai
   ggplot(data_4, aes(x=is_happy_customer, y=order_total)) + geom_boxplot()+
     labs(title="Plot of Order total per is happy customer")
-     # Tải thư viện
-  library(corrplot)
-  
-  # Tạo dữ liệu mẫu (hoặc thay bằng dữ liệu của bạn)
-  set.seed(123)
-  data.frame <- data.frame(
-    order_price = runif(100, 50, 500),
-    delivery_charges = runif(100, 5, 50),
-    customer_lat = runif(100, -90, 90),
-    customer_long = runif(100, -180, 180),
-    coupon_discount = runif(100, 0, 30),
-    order_total = runif(100, 100, 600),
-    distance_to_nearest_warehouse = runif(100, 1, 50)
-  )
   
   # Tính ma trận tương quan
   cor_matrix <- cor(data_4)
@@ -282,7 +269,7 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
            tl.col = "red", tl.srt = 45,addCoef.col = "black")
   
  
-##KET THUC MO TA
+##KET THUC THONG KE MO TA
 
 # mo hinh hoi qui da bien tuyen tinh 
 dirty_data <- read.csv("E:/dirty_data.csv")
