@@ -375,12 +375,12 @@ cat("Độ lệch chuẩn của sai số: ", sd_difference, "\n")
 #đọc file, đưa ra bảng dữ liệu:
 loi1 = data_4 %>%
   select(
-    order_price,
+    order_total,
     coupon_discount
   )
 
 #anova:
-anova1 <- aov(order_price ~ coupon_discount, data=loi1)
+anova1 <- aov(order_total ~ coupon_discount, data=loi1)
 summary(anova1)
 
 #thực hiện
