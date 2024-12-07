@@ -228,7 +228,6 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   
   ### khong anh huong toi order total
   
-  
   ###boxplot graph
   # nearest warehouse
  ##chua xu li ngoai lai 

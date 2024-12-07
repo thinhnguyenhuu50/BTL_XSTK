@@ -40,7 +40,7 @@ Từ nội dung của bảng dữ liệu trên, ta tách ra thành:\\
     \caption{Đồ thị Histogram của các biến liên tục}
   
 \end{figure}
-* Nhận xét: Ta nhận thấy rằng, từ kết quả đồ thị histogram cho thấy biến order\_total, order\_price, distance\_to\_nearest\_warehouse có phân phối lệch phải, với một cột cao ở phía bên trái. Điều này cho thấy hầu hết khách hàng chỉ chi tiêu ở mức thấp hơn, trong khi một số ít có tổng giá trị đơn hàng cao, tạo ra các điểm ngoại lệ. Phân phối lệch phải thường cho thấy  rằng có một số khách hang chi tiêu rất cao, điều này có thể ảnh hưởng đến quy mô hình hồi quy. Sau khi kiểm tra tỉ lệ khuyết nhỏ của các ngoại lai .Để xử lí tình trạng phân phối lệch phải này.\\
+\textbf{Nhận xét}: Ta nhận thấy rằng, từ kết quả đồ thị histogram cho thấy biến order\_total, order\_price, distance\_to\_nearest\_warehouse có phân phối lệch phải, với một cột cao ở phía bên trái. Điều này cho thấy hầu hết khách hàng chỉ chi tiêu ở mức thấp hơn, trong khi một số ít có tổng giá trị đơn hàng cao, tạo ra các điểm ngoại lệ. Phân phối lệch phải thường cho thấy  rằng có một số khách hang chi tiêu rất cao, điều này có thể ảnh hưởng đến quy mô hình hồi quy. Sau khi kiểm tra tỉ lệ khuyết nhỏ của các ngoại lai .Để xử lí tình trạng phân phối lệch phải này.\\
  -->Ta áp dụng xóa bỏ các ngoại lai  của order\_total, order\_price, distance\_to\_nearest\_warehouse.\\
  Dưới đây là hình ảnh sau khi xóa ngoại lai.
  \begin{figure}[H]
@@ -75,10 +75,13 @@ Ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_disco
     \caption{Hình chưa xóa ngoại lai và đã xóa của distance\_to\_nearest\_warehouse}
  
 \end{figure}
-Với những hình ảnh có những chấm màu xanh là chưa xóa ngoại lai, còn những hình có chấm màu đỏ là đã xóa ngoại lai. \\
-*Nhận xét: \\
-•	Hai biến order\_price và coupon\_discount là 2 biến có ảnh hưởng tới order\_total hay còn gọi là có quan hệ tuyến tính.\\
-•	Hai biến delivery\_charges và distance\_to\_nearest\_warehouse không có ảnh hưởng tới order\_total hay không có quan hệ tuyến tính.
+Với những hình ảnh có những chấm màu xanh là chưa xóa ngoại lai, còn những hình có chấm màu đỏ là đã xóa ngoại lai.
+
+\textbf{Nhận xét:}
+\begin{itemize}
+    \item Hai biến order\_price và coupon\_discount là 2 biến có ảnh hưởng tới order\_total hay còn gọi là có quan hệ tuyến tính.\\
+    \item Hai biến delivery\_charges và distance\_to\_nearest\_warehouse không có ảnh hưởng tới order\_total hay không có quan hệ tuyến tính.
+\end{itemize}
 \subsubsection{Phân tích biến định tính bằng biểu đồ boxplot}
 Ta phân tích biến order\_total theo các biến nearest\_warehouse, season, is\_expedited\_delivery, is\_happy\_customer.
 \begin{figure}[H]
