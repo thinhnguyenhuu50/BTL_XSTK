@@ -10,6 +10,7 @@ library(psych)
 library(ggplot2)
 library(corrplot)
 library(nortest)
+library(lmtest)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
@@ -329,7 +330,6 @@ new_data_2$order_total = rm.out (new_data_2$order_total)
 new_data_2$coupon_discount = rm.out (new_data_2$coupon_discount) 
 new_data_2$distance_to_nearest_warehouse = rm.out (new_data_2$distance_to_nearest_warehouse) 
 
-library (questionr) 
 freq.na(new_data_2)
 
 new_data_2<-na.omit(new_data_2)
