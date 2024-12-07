@@ -372,7 +372,7 @@ abline(h = 0, col = "red", lwd = 2)  # Đường ngang tại Residual = 0
 
 # BẮT ĐẦU ANOVA1
 
-#anova ảnh hưởng của chiếc khấu đến giá
+#anova ảnh hưởng của mùa đến phí giao hàng
 #đọc file, đưa ra bảng dữ liệu:
 loi1 = data_4 %>%
   select(
@@ -384,8 +384,16 @@ loi1 = data_4 %>%
 anova1 <- aov(delivery_charges ~ season, data=loi1)
 summary(anova1)
 
-#thực hiện
-eta_squared(anova1)
+#anova ảnh hưởng của mùa đến phí giao hàng
+#đọc file, đưa ra bảng dữ liệu:
+loi2 = data_4 %>%
+  select(
+    delivery_charges,
+    is_expedited_delivery
+  )
+#anova:
+anova11 <- aov(delivery_charges ~ is_expedited_delivery, data=loi2)
+summary(anova11)
 
 # TODO: is_expedited_delivery & delivery_charges
 # TODO: is_expedited_delivery & season
