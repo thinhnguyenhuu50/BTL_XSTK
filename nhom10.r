@@ -223,6 +223,8 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   ggplot(data_1, aes(x=distance_to_nearest_warehouse, y=order_total)) + geom_point(shape=23, color="lightblue")+
   labs(title="Order Total $ Distance to nearest warehouse scatter plot")
   ## xoa ngoai lai
+  ggplot(data_4, aes(x=distance_to_nearest_warehouse, y=order_total)) + geom_point(shape=23, color="darkred")+
+    labs(title="Order Total $ Distance to nearest warehouse scatter plot")
   
   ### khong anh huong toi order total
   
