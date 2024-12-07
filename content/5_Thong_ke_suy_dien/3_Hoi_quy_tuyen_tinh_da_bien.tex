@@ -8,7 +8,7 @@ Mục đích của mô hình hồi quy tuyến tính này là dự đoán giá t
 Ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật phận phối chuẩn hay không bằng cách cho mức ý nghĩa là 5\%, ta dùng lệnh \textbf{shapiro.test()} để kiểm tra p-value. Nếu giá trị p-value > 0.05, thì cột dữ liệu đó tuân theo phân phối chuẩn và ngược lại.Thực hiện trên Rstudio ta thu được kết quả:
 
 
-\begin{figure}[H]
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=0.5\linewidth]{graphics/5.5.0.png}
   \caption{kết quả kiểm  tra phân phối chuẩn của các biến }
@@ -20,7 +20,7 @@ Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu �
 
 Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong thống kê vì nó cho phép chúng ta làm việc với các mẫu ngẫu nhiên mà không cần phải lo lắng về phân phối gốc của dữ liệu. Nó đảm bảo rằng, khi kích thước mẫu đủ lớn, các phân tích thống kê có thể sử dụng phân phối chuẩn để thực hiện các ước lượng và kiểm định giả thuyết, ngay cả khi dữ liệu gốc không tuân theo phân phối chuẩn.
 \subsubsection{Xây dựng mô hình hồi quy tuyến tính}
-Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào hai biến độc lập is\_expedited\_delivery và distance\_to\_nearest\_warehouse. Ta sử dụng lệnh lm().
+Trước tiên ta kiểm tra sự phụ thuộc của biến delivery\_charges vào hai biến độc lập is\_expedited\_de-livery và distance\_to\_nearest\_warehouse. Ta sử dụng lệnh lm().
 
 Kết quả phân tích trên Rstudio:
 \begin{figure}[H]
