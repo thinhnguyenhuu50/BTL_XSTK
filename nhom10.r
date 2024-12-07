@@ -274,65 +274,26 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
   
 # Data_4 đã được xử lý ngoại lai
   
-# mo hinh hoi qui da bien tuyen tinh 
-dirty_data <- read.csv("E:/dirty_data.csv")
-head (dirty_data,10)
-
-new_data<-dirty_data [,c("nearest_warehouse" , "order_price" , "delivery_charges" , "order_total" , "season" , "coupon_discount" ,"is_expedited_delivery" , "distance_to_nearest_warehouse"  )]
-head (new_data,10) 
-
-
-unique(new_data$season)
-new_data$season[new_data$season =='spring'] <-'Spring' 
-new_data$season [new_data$season == 'summer'] <- 'Summer'
-new_data$season [new_data$season == 'autumn'] <- 'Autumn'
-new_data$season [new_data$season == 'winter'] <- 'Winter'
-unique (new_data$season )
-
-unique(new_data$nearest_warehouse)
-new_data$nearest_warehouse [new_data$nearest_warehouse == 'thompson'] <- 'Thompson'
-new_data$nearest_warehouse [new_data$nearest_warehouse == 'nickolson'] <- 'Nickolson'
-unique(new_data$nearest_warehouse)
-
-new_data$is_expedited_delivery[new_data$is_expedited_delivery =='False'] <-'0' 
-new_data$is_expedited_delivery[new_data$is_expedited_delivery =='True'] <-'1' 
-new_data$is_expedited_delivery <- as.numeric(new_data$is_expedited_delivery)
+# BAT DAU MO HINH HOI QUY TUYEN TINH
 ######kiem dinh phan phoi chuan#######
+new_data <- dirty_data
 {print(shapiro.test(new_data$order_price))
   print(shapiro.test(new_data$order_total))
   print(shapiro.test(new_data$delivery_charges))
   print(shapiro.test(new_data$coupon_discount))
   print(shapiro.test(new_data$distance_to_nearest_warehouse))}
 #Kiem tra moi quan he tuyen tinh giua delivery voi is_expedited
-model_0<- lm(delivery_charges~is_expedited_delivery, data=new_data)
+model_0<- lm(delivery_charges~is_expedited_delivery+distance_to_nearest_warehouse, data=new_data)
 summary(model_0)
-# chu xu li ngoai lai :
+# chua xu li ngoai lai :
 
 ##model_1
 model_1 <-lm(order_total~order_price+delivery_charges+coupon_discount+distance_to_nearest_warehouse ,data= new_data )
 summary (model_1)
 
 # xu li ngoai lai : 
-new_data_2 <- new_data
+new_data_2 <- data_4
 
-rm.out <- function (x , na.rm = TRUE , ...) {
-  qnt <- quantile (x , probs =c(.25 , .75) , na.rm = na.rm , ...)
-  H <- 1.5 * IQR(x , na.rm = na.rm)
-  y <- x
-  y [ x < ( qnt [1] - H ) ] <- NA
-  y [ x > ( qnt [2] + H ) ] <- NA
-  y
-}
-# ap vao cac bien lien tuc : 
-new_data_2$order_price = rm.out (new_data_2$order_price) 
-new_data_2$delivery_charges = rm.out (new_data_2$delivery_charges) 
-new_data_2$order_total = rm.out (new_data_2$order_total) 
-new_data_2$coupon_discount = rm.out (new_data_2$coupon_discount) 
-new_data_2$distance_to_nearest_warehouse = rm.out (new_data_2$distance_to_nearest_warehouse) 
-
-freq.na(new_data_2)
-
-new_data_2<-na.omit(new_data_2)
 # mo hinh 2 : sau khi loai bo ngoai lai 
 
 
@@ -345,11 +306,6 @@ summary (model_2)
 model_3 <-lm(order_total~order_price+coupon_discount ,data= new_data_2 )
 summary (model_3)
 
-# ve hinh de kiem dinh mo hinh 33 la mo hinh hoi qui da bo tuyen tinh 
-
-par(mfrow=c(2,2))
-plot(model_3)
-confint(model_3)
 # Tính giá trị dự đoán từ mô hình hồi quy
 predicted_order_total <- predict(model_3, newdata = new_data_2)
 
@@ -369,6 +325,48 @@ sd_difference <- sd(comparison$Difference)
 # In kết quả
 cat("Sai số trung bình: ", mean_difference, "\n")
 cat("Độ lệch chuẩn của sai số: ", sd_difference, "\n")
+
+# Thực hiện kiểm định Durbin-Watson
+dw_test_model_3 <- dwtest(model_3)
+
+# In kết quả kiểm định
+print(dw_test_model_3)
+##Phân phối chuẩn của phần dư
+# Trích xuất phần dư
+residuals_model_3 <- residuals(model_3)
+
+# Kiểm tra phân phối chuẩn bằng Shapiro-Wilk test
+shapiro_test <- shapiro.test(residuals_model_3)
+print(shapiro_test)
+
+# Vẽ biểu đồ Histogram và Q-Q plot
+par(mfrow = c(1, 2))  # Hiển thị 2 biểu đồ cạnh nhau
+hist(residuals_model_3, main = "Histogram of Residuals", xlab = "Residuals", col = "lightblue", breaks = 20)
+qqnorm(residuals_model_3, main = "Q-Q Plot of Residuals")
+qqline(residuals_model_3, col = "red")
+##Phương sai dồng nhất
+
+bp_test <- bptest(model_3)  # Kiểm định Breusch-Pagan
+print(bp_test)
+# Vẽ Scale-Location Plot
+plot(model_3$fitted.values, sqrt(abs(resid(model_3))),
+     main = "Scale-Location Plot",
+     xlab = "Fitted values",
+     ylab = "√|Residuals|",
+     pch = 20,
+     col = "blue")
+abline(h = 0, col = "red", lwd = 2)
+
+##  Tính tuyến tính 
+# Vẽ Residuals vs Fitted Plot
+plot(model_3$fitted.values, residuals(model_3),
+     main = "Residuals vs Fitted",
+     xlab = "Fitted values",
+     ylab = "Residuals",
+     pch = 20,
+     col = "blue")
+abline(h = 0, col = "red", lwd = 2)  # Đường ngang tại Residual = 0
+# KET THUC HOI QUY TUYEN TINH
 
 # BẮT ĐẦU ANOVA1
 
