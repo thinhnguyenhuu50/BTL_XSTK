@@ -268,9 +268,10 @@ ggplot(data_4, aes(x=distance_to_nearest_warehouse)) + geom_histogram(bins = 15,
            col = colorRampPalette(c("blue", "white", "red"))(200),
            tl.col = "red", tl.srt = 45,addCoef.col = "black")
   
- 
 ##KET THUC THONG KE MO TA
-
+  
+# Data_4 đã được xử lý ngoại lai
+  
 # mo hinh hoi qui da bien tuyen tinh 
 dirty_data <- read.csv("E:/dirty_data.csv")
 head (dirty_data,10)
@@ -368,37 +369,25 @@ sd_difference <- sd(comparison$Difference)
 cat("Sai số trung bình: ", mean_difference, "\n")
 cat("Độ lệch chuẩn của sai số: ", sd_difference, "\n")
 
-# ANOVA bắt đầu
-#đọc file, đưa ra bảng dữ liệu:
-sxtk <- read.csv("dirty_data.csv", header=T)
-attach(sxtk)
-loi = data.frame(coupon_discount)
-library(data.table)
-df <- data.frame(loi)
-dt <- data.table(df)
-freq_table <- dt[,.N, by= coupon_discount]
-colnames(freq_table) <- c("coupon_discount","count")
-freq_table
-# ANOVA bắt đầu
+# BẮT ĐẦU ANOVA1
 
 #anova ảnh hưởng của chiếc khấu đến giá
 #đọc file, đưa ra bảng dữ liệu:
-loi1 = data.frame(coupon_discount)
-df <- data.frame(loi1)
-dt <- data.table(df)
-freq_table <- dt[,.N, by= coupon_discount]
-colnames(freq_table) <- c("coupon_discount","count")
-freq_table
+loi1 = data_4 %>%
+  select(
+    order_price,
+    coupon_discount
+  )
 
 #anova:
-thongke=data.frame(coupon_discount, order_price)
-anova1nhanto <- aov(order_price ~ coupon_discount, data=thongke)
-summary(anova1nhanto)
+anova1 <- aov(order_price ~ coupon_discount, data=loi1)
+summary(anova1)
 
 #thực hiện
-eta_squared(anova1nhanto)
+eta_squared(anova1)
 
-#ANOVA1 ket thuc
+#KẾT THÚC ANOVA1
+
 #ANOVA2 bat dau
 #doc va chon 3 cot tu file du lieu 
 df<-dirty_data[,c("delivery_charges","coupon_discount","order_total")]
