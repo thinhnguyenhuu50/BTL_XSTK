@@ -6,6 +6,8 @@ library(stringr)
 library(xtable)
 library(effectsize)
 library(data.table)
+library(psych)
+library(ggplot2)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
@@ -13,7 +15,7 @@ head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
 #Kiem tra du lieu khuyet
 anyNA(dirty_data)
 
-# Tiền xử lý dữ liệu
+# Bắt đầu Tiền xử lý dữ liệu
 dim(dirty_data)
 names(dirty_data)
 
@@ -112,7 +114,6 @@ dirty_data$is_happy_customer <- as.factor(dirty_data$is_happy_customer)
 # *Ket thuc* TIEN XU LY SO LIEU  ###############################################
 
 # THống kê mô tả
-#lam sach du lieu
 #chon loc cac bien can su dung va them no vao data_1
 data_1<-dirty_data[,c("nearest_warehouse","order_price","delivery_charges",
               "customer_lat","customer_long","coupon_discount","order_total"
@@ -120,29 +121,6 @@ data_1<-dirty_data[,c("nearest_warehouse","order_price","delivery_charges",
               "is_happy_customer")]
 head(data_1,10)
 summary(dirty_data,10)
-    #kiem tra du lieu khuyet
-library(questionr)
-freq.na(data_1)
-unique(data_1$nearest_warehouse)
-unique(data_1$season)
-unique(data_1$is_expedited_delivery)
-unique(data_1$is_happy_customer)
-#Sua du lieu bi sai
-data_1$nearest_warehouse[data_1$nearest_warehouse == "nickolson"] <- "Nickolson"
-data_1$nearest_warehouse[data_1$nearest_warehouse == "thompson"] <- "Thompson"
-
-data_1$season[data_1$season == "winter"] <- "Winter"
-data_1$season[data_1$season == "autumn"] <- "Autumn"
-data_1$season[data_1$season == "summer"] <- "Summer"
-data_1$season[data_1$season == "spring"] <- "Spring"
-#kiem tra lai du lieu sau khi sua
-unique(data_1$season)
-unique(data_1$nearest_warehouse)
-
-
-
-
-
 
 #Main 
 # tach ra cac bien lien tuc
@@ -150,18 +128,12 @@ data_2<-data_1[,c("order_price","delivery_charges",
                       "customer_lat","customer_long","coupon_discount","order_total"
                       ,"distance_to_nearest_warehouse")]
 
-library(psych)
 describe(data_2, fast=TRUE)# ham describle chi cho cac bien lien tuc, khong danh cho bien phan loai
 
 #tach ra cac bien dinh luong
 data_3<-data_1[,c("nearest_warehouse"
                     ,"season","is_expedited_delivery",
                       "is_happy_customer")]
-# chuyen sang dang factor
-data_3$nearest_warehouse<-as.factor(data_3$nearest_warehouse)
-data_3$season<-as.factor(data_3$season)
-data_3$is_expedited_delivery<-as.factor(data_3$is_expedited_delivery)
-data_3$is_happy_customer<-as.factor(data_3$is_happy_customer)
 
 #thong ke so luong cho cac bien phan loai
 summary(data_3)
@@ -171,8 +143,6 @@ summary(data_3)
 
 
            ##Histogram graph
-
-library(ggplot2)
 ggplot(data_2, aes(x=order_total)) + geom_histogram(bins = 15, fill="lightgreen") + 
   labs(title="Order Total histogram plot",x="Order Total (USD)")
 
