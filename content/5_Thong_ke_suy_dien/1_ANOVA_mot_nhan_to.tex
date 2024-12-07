@@ -17,22 +17,15 @@ Mục tiêu:
         H_{1}: \exists i, j \text{ sao cho } \mu_{i} \neq \mu_{j}
         \]
 \end{itemize}
-Đọc dữ liệu từ file và đưa ra bảng dữ liệu:
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.4\linewidth]{graphics/5.3.1.png}
-    \caption{Số lượng mặt hàng (count) theo từng loại chiết khấu (coupon\_discount)}
-\end{figure}
-
-Như đã thấy trên Hình, chỉ có 5 giá trị của coupon\_discount là : 0, 5, 10, 15, 25. Nhóm sẽ kiểm định xem, việc các mốc chiết khấu này sẽ ảnh hưởng như thế nào đến giá của các mặt hàng (order\_price) bằng phương pháp phân tích phương sai ANOVA mà nhóm đã thảo luận và đề xuất sử dụng. Dưới đây là phân tích phương sai ANOVA cho mẫu thống kê ( hàm phân tích đã được tích hợp sẵn trong R) :
+Chúng em quyết định sẽ kiểm định xem, việc các mùa (season) sẽ ảnh hưởng như thế nào đến phí giao hàng (order\_total) bằng phương pháp phân tích phương sai ANOVA một nhân tố. Dưới đây là phân tích phương sai ANOVA một nhân tố cho mẫu thống kê ( hàm phân tích đã được tích hợp sẵn trong R) :
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.4\linewidth]{graphics/5.3.2.png}
-    \caption{Phân tích phương sai ANOVA xét sự ảnh hưởng của chiếc khấu (coupon\_discount) đến giá mặt hàng (order\_price)}
+    \caption{Phân tích phương sai ANOVA xét sự ảnh hưởng của mùa (season) đến phí giao hàng(order\_total)}
 \end{figure}
 
-Theo kết quả như hình trên, giá trị p-value (tức Pr(>F)) là 0.445 lớn hơn ngưỡng ý nghĩa phổ biến (0.05). Do đó, nhóm không đủ bằng chứng thống kê để kết luận rằng, chiết khấu (coupon\_discount) có ảnh hưởng đến giá trị đơn hàng (order\_price). Nói cách khác, sự khác biệt về giá trị đơn hàng giữa các nhóm chiết khấu có thể do yếu tố ngẫu nhiên.
+Xem hình trên ta thấy kết quả, giá trị p-value (tức Pr(>F)) là  lớn hơn ngưỡng ý nghĩa phổ biến (0.05). Do đó, nhóm không đủ bằng chứng thống kê để kết luận rằng, chiết khấu (coupon\_discount) có ảnh hưởng đến giá trị đơn hàng (order\_price). Nói cách khác, sự khác biệt về giá trị đơn hàng giữa các nhóm chiết khấu có thể do yếu tố ngẫu nhiên.
 Cũng trên bảng phân tích gọn (Hình 5.1),  số lượng mặt hàng (count) theo từng loại chiết khấu (coupon\_discount) cũng  không sai lệch quá lớn ( khoảng lệch giữa giá trị nhỏ nhất và lớn nhất theo giá trị lớn nhất chỉ là 8.654\%), điều này càng cũng cố tính chính xác của phương pháp.
 nhóm có thể tính toán kích thước hiệu ứng (effect size) để đánh giá mức độ ảnh hưởng của một yếu tố (biến độc lập). Sử dụng Enhóm-squared (ɳ2) đo lường mức độ ảnh hưởng của coupon\_discount. Diễn dãy mở rộng (Field, 2013):
 
