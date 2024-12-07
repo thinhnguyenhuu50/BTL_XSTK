@@ -11,7 +11,7 @@ library(ggplot2)
 library(corrplot)
 library(nortest)
 library(lmtest)
-
+library(car)
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
 
@@ -403,7 +403,8 @@ df$season<-as.factor(df$season)
 #kiem dinh phan phoi chuan hoac gan chuan 
 av_residual<-rstandard (aov(df$delivery_charges~df$is_expedited_delivery*df$season))
 shapiro.test(av_residual)
-#sai so ko tuan theo phan phoi chuan nhung vi co mau lon nen ta van co thesu dung mo hinh anova theo dinh ly gioi han trung tam 
+#kiem tra phuong sai dong nhat hay ko 
+leveneTest(delivery_charges ~ is_expedited_delivery * season, data = df)
 #phan tich anova 2 yeu to 
 anova_model <- aov(delivery_charges ~ is_expedited_delivery * season, data=df)
 #hien thi ket qua phan tich

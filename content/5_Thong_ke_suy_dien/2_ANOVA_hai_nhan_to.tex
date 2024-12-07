@@ -1,14 +1,14 @@
 
 \subsection{Phân tích phương sai hai nhân tố (Two-factor ANOVA)}
 \subsubsection{Mục đích}
-Trong phần nghiên cứu này, chúng tôi sẽ sử dụng ANOVA 2 yếu tố không lặp để phân tích xem liệu \textbf{Phí giao hàng (delivery\_charges)} và \textbf{Mã giảm giá  (coupon\_discount)} có ảnh hưởng đến \textbf{Chi phí tổng thể (order\_total)} hay không?
+Trong phần nghiên cứu này, chúng tôi sẽ sử dụng ANOVA 2 yếu tố không lặp để phân tích xem liệu \textbf{Được giao hàng nhanh (is\_expedited\_delivery)} và \textbf{Mùa (season)} có ảnh hưởng đến \textbf{Phí giao hàng (delivery\_charges)} hay không?
 
 Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha = 0.05$.
 
 
 \begin{itemize}
     
-    \item Kiểm định yếu tố A (delivery\_charges)
+    \item Kiểm định yếu tố A (is\_expedited\_delivery)
     \begin{itemize}
         \item Đánh giá xem biến nhân tố A có ảnh hưởng đến biến phụ thuộc hay không?
         
@@ -20,7 +20,7 @@ Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha =
             \]
     \end{itemize}
     
-    \item Kiểm định yếu tố B (coupon\_discount)
+    \item Kiểm định yếu tố B (season)
     \begin{itemize}
         \item Đánh giá xem biến nhân tố B có ảnh hưởng đến biến phụ thuộc hay không?
         
@@ -44,9 +44,31 @@ Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha =
     \end{itemize}
 \end{itemize}
 \subsubsection{Kiểm tra điều kiện cho dữ liệu}
-Trước khi tiến hành phân tích ANOVA 2 chiều, chúng tôi cần kiểm tra các điều kiện cần thiết cho dữ liệu thì \textbf{Biến phụ thuộc:} \textbf{order\_total} là một biến không có phân phối chuẩn, tồn tại nhiều khiếm khuyết dữ liệu và có các điểm dị biệt.
+Trước khi tiến hành phân tích ANOVA 2 chiều, ta cần kiểm tra các điều kiện cần thiết cho dữ liệu:
 
-$ \Rightarrow $ Như vậy các điều kiện giả thiết về dữ liệu không được thỏa mãn, do đó kết quả phân tích ANOVA có thể không chính xác và chỉ mang tính chất tham khảo.
+
+ Đầu tiên ta kiểm tra xem dữ liệu của \textbf{Biến phụ thuộc:} \textbf{delivery\_charges} ở mỗi nhóm do tổ hợp các mức của hai nhân tố tạo ra có tuân theo phân phối chuẩn ko.
+ \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{graphics/5.4.1 (2).png}
+    \caption{Kết quả kiểm tra phân phối chuẩn}
+\end{figure}
+
+Có thể thấy p\_value < 0. 05 dữ liệu không tuân theo phân phối chuẩn.
+Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu đủ lớn, ta vẫn có thể sử dụng mô hình anova mà không cần lo ngại quá nhiều về vấn đề phân phối chuẩn của dữ liệu. Điều này dựa trên lý thuyết \textbf{Lý thuyết Giới hạn Trung tâm (Central Limit Theorem - CLT)}. 
+
+
+   Tiếp theo, ta kiểm tra xem các nhóm được phân tích ở trên có phương sai đồng nhất hay ko 
+
+   \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{graphics/5.4.2.png}
+    \caption{Kết quả kiểm tra phương sai đồng nhất}
+\end{figure}
+
+Có thể thấy giá trị p > 0.05 nên các nhóm có phương sai đồng nhất . 
+Sau khi đã thỏa mãn các điểu kiện kiểm tra dữ liệu ta tiến hành phân tích ANOVA 2 chiều.
+
 \subsubsection{Tiến hành phân tích}
 Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r. 
 
@@ -60,25 +82,25 @@ Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r
         
         
         Kết quả và nhận xét: 
-        Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.4. Kết quả cho thấy rằng cả ba yếu tố \textbf{coupon\_discount}, \textbf{delivery\_charges}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{order\_total} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
+        Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.4. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
         
             \begin{itemize}
-    \item \textbf{coupon\_discount}:
+    \item \textbf{season}:
     \begin{itemize}
-        \item Với \textbf{Df = 4}, có 4 mức độ khác nhau trong yếu tố \textbf{coupon\_discount}.
-        \item Giá trị \textbf{F = 973.68} và \textbf{Pr(>F) < 2e-07***} cho thấy rằng sự khác biệt giữa các mức độ của \textbf{coupon\_discount} có ảnh hưởng đáng kể đến \textbf{order\_total}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho yếu tố này.
+        \item Với \textbf{Df = 4}, có 4 mức độ khác nhau trong yếu tố \textbf{season}.
+        \item Giá trị \textbf{F = 973.68} và \textbf{Pr(>F) < 2e-07***} cho thấy rằng sự khác biệt giữa các mức độ của \textbf{season} có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho yếu tố này.
     \end{itemize}
 
-    \item \textbf{delivery\_charges}:
+    \item \textbf{is\_expedited\_delivery}:
     \begin{itemize}
-        \item Với \textbf{Df = 467}, có 467 mức độ khác nhau trong yếu tố \textbf{delivery\_charges}.
-        \item Giá trị \textbf{F = 945.37} và \textbf{Pr(>F) < 1.09e-07***} cho thấy rằng sự khác biệt giữa các mức độ của \textbf{delivery\_charges} có ảnh hưởng đáng kể đến \textbf{order\_total}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho yếu tố này.
+        \item Với \textbf{Df = 467}, có 467 mức độ khác nhau trong yếu tố \textbf{is\_expedited\_delivery}.
+        \item Giá trị \textbf{F = 945.37} và \textbf{Pr(>F) < 1.09e-07***} cho thấy rằng sự khác biệt giữa các mức độ của \textbf{is\_expedited\_delivery} có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho yếu tố này.
     \end{itemize}
 
-    \item \textbf{Tương tác giữa coupon\_discount và delivery\_charges}:
+    \item \textbf{Tương tác giữa season và is\_expedited\_delivery}:
     \begin{itemize}
-        \item Với \textbf{Df = 23}, có 23 mức độ tương tác giữa hai yếu tố \textbf{coupon\_discount} và \textbf{delivery\_charges}.
-        \item Giá trị \textbf{F = 37.84} và \textbf{Pr(>F) = 0.000372***} cho thấy rằng có sự tương tác có ý nghĩa thống kê giữa hai yếu tố này và ảnh hưởng đến \textbf{order\_total}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho sự tương tác này.
+        \item Với \textbf{Df = 23}, có 23 mức độ tương tác giữa hai yếu tố \textbf{season} và \textbf{is\_expedited\_delivery}.
+        \item Giá trị \textbf{F = 37.84} và \textbf{Pr(>F) = 0.000372***} cho thấy rằng có sự tương tác có ý nghĩa thống kê giữa hai yếu tố này và ảnh hưởng đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho sự tương tác này.
     \end{itemize}
 
     \item \textbf{Residuals}:
@@ -88,8 +110,8 @@ Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r
     \end{itemize}
     \end{itemize}
 
- Từ những kết quả trên, chúng tôi kết luận rằng cả yếu tố \textbf{coupon\_discount}, \textbf{delivery\_charges}, và sự tương tác giữa chúng đều có ảnh hưởng quan trọng và có ý nghĩa thống kê đối với \textbf{order\_total}. Điều này cho thấy rằng các yếu tố này cần được cân nhắc kỹ lưỡng khi định giá sản phẩm.
+ Từ những kết quả trên, chúng tôi kết luận rằng cả yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng quan trọng và có ý nghĩa thống kê đối với \textbf{delivery\_charges}. Điều này cho thấy rằng các yếu tố này cần được cân nhắc kỹ lưỡng khi định giá sản phẩm.
                
         
 \subsubsection{Kết luận}
-Phân tích ANOVA 2 chiều cho thấy \textbf{coupon\_discount}, \textbf{delivery\_charges}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{order\_total}. Mặc dù có một số hạn chế về phân phối chuẩn và phương sai không đồng nhất, kết quả này vẫn cung cấp cơ sở tin cậy để đánh giá và điều chỉnh chiến lược giá sản phẩm.
+Phân tích ANOVA 2 chiều cho thấy \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Mặc dù có một số hạn chế về phân phối chuẩn và phương sai không đồng nhất, kết quả này vẫn cung cấp cơ sở tin cậy để đánh giá và điều chỉnh chiến lược giá sản phẩm.
