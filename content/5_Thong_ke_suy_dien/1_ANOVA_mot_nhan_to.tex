@@ -1,22 +1,12 @@
 \subsection{Phân tích phương sai một nhân tố (Single-factor ANOVA)}
-Mục tiêu:
-\begin{itemize}
-    \item Đánh giá xem biến nhân tố X có ảnh hưởng đến biến phụ thuộc Y hay không?
-    \item Nói cách khác:
-    \[
-        H_{0A}: \tau_{1} = \tau_{2} = \tau_{3} = \dots = \tau_{a} = 0
-            \]
-            \[
-            H_{1A}: \tau_{i} \neq  0 \text{ với ít nhất một i }
-            \]
-\end{itemize}
+Mục tiêu: Đánh giá xem biến nhân tố X có ảnh hưởng đến biến phụ thuộc Y hay không?
 %mùa ảnh hưởng tới phí giao hàng
     Chúng em quyết định sẽ kiểm định xem, việc các mùa (season) sẽ ảnh hưởng như thế nào đến phí giao hàng (delivery\_charges) bằng
 phương pháp phân tích phương sai ANOVA một nhân tố. Dưới đây là phân tích phương sai ANOVA một nhân tố cho mẫu thống kê ( hàm phân tích đã được tích hợp sẵn trong R) :
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{graphics/5.3.1.png}
+    \includegraphics[width=0.7\linewidth]{graphics/5.3.1.png}
     \caption{Phân tích phương sai ANOVA xét sự ảnh hưởng của mùa (season) đến phí giao hàng(delivery\_charges)}
 \end{figure}
 
@@ -29,7 +19,7 @@ khác biệt rất có ý nghĩa thống kê, có đủ bằng chứng thống k
 phí giao hàng (delivery\_charges) bằng phương pháp phân tích phương sai ANOVA một nhân tố. Dưới đây là phân tích phương sai ANOVA một nhân tố cho mẫu thống kê ( hàm phân tích đã được tích hợp sẵn trong R) :
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{graphics/5.3.2.png}
+    \includegraphics[width=0.7\linewidth]{graphics/5.3.2.png}
     \caption{Phân tích phương sai ANOVA xét sự ảnh hưởng của việc khách hàng yêu cầu giao hàng nhanh (is\_expedited\_delivery) đến phí giao hàng(delivery\_charges)}
 \end{figure}
 
