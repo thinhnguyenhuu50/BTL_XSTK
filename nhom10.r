@@ -305,7 +305,8 @@ summary (model_2)
 
 model_3 <-lm(order_total~order_price+coupon_discount ,data= new_data_2 )
 summary (model_3)
-
+#tìm khoảng tin cậy cho các hệ số 
+confint(model_3)
 # Tính giá trị dự đoán từ mô hình hồi quy
 predicted_order_total <- predict(model_3, newdata = new_data_2)
 
