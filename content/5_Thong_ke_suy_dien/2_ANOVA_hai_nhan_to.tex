@@ -19,6 +19,7 @@ Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha =
             H_{1A}: \tau_{i} \neq  0 \text{ với ít nhất một i }
             \]
     \end{itemize}
+    Các mùa (season) có ảnh hưởng rất mạnh đến phí giao hàng (delivery\_charges).
     
     \item Kiểm định yếu tố B (season)
     \begin{itemize}
@@ -31,6 +32,7 @@ Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha =
             H_{1B}: \beta_{j} \neq  0 \text{ với ít nhất một j }
             \]
     \end{itemize}
+    Việc khách hàng yêu cầu giao hàng nhanh (is\_expedited\_delivery) có ảnh hưởng rất mạnh đến phí giao hàng (delivery\_charges).
     \item Đối với tương tác giữa A và B  
     \begin{itemize}
         \item Đánh giá xem các biến nhân tố A và B có tương tác với nhau hay không?
@@ -90,7 +92,7 @@ Sau khi đã thỏa mãn các điểu kiện kiểm tra dữ liệu ta tiến h�
 
         Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm R. 
         Kết quả và nhận xét: 
-        Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.4. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
+        Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.7. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
 
         \begin{itemize}
     \item \textbf{Tương tác giữa season và is\_expedited\_delivery}:
