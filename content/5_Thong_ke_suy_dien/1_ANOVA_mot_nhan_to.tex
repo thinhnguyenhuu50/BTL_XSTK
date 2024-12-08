@@ -1,8 +1,8 @@
 \subsection{Phân tích phương sai một nhân tố (Single-factor ANOVA)} \label{anova1}
-Mục tiêu: Đánh giá xem biến nhân tố X có ảnh hưởng đến biến phụ thuộc Y hay không?
-%mùa ảnh hưởng tới phí giao hàng
-Chúng em quyết định sẽ kiểm định xem, việc các mùa (season) sẽ ảnh hưởng như thế nào đến phí giao hàng (delivery\_charges) bằng
-phương pháp phân tích phương sai ANOVA một nhân tố. Hình \ref{fig:5.1} thể hiện kết quả phân tích phương sai ANOVA một nhân tố cho mẫu thống kê (hàm phân tích đã được tích hợp sẵn trong R)
+\subsubsection{Mục đích}
+Đánh giá xem biến nhân tố X có ảnh hưởng đến biến phụ thuộc Y hay không? Chúng em quyết định sẽ kiểm định xem, việc các mùa (season) cũng như hình thức giao hàng nhanh (is\_expedited\_delivery) sẽ ảnh hưởng như thế nào đến phí giao hàng (delivery\_charges) bằng phương pháp phân tích phương sai ANOVA một nhân tố.
+\subsubsection{Tiến hành phân tích}
+Hình \ref{fig:5.1} thể hiện kết quả phân tích phương sai ANOVA một nhân tố cho mẫu thống kê (hàm phân tích đã được tích hợp sẵn trong R)
 
 Quan sát kết quả trên hình \ref{fig:5.1}, giá trị p-value (tức Pr(>F)) là rất rất nhỏ hơn ngưỡng ý nghĩa phổ biến (0.05). Do đó, cho thấy sự
 khác biệt rất có ý nghĩa thống kê, có đủ bằng chứng thống kê rất mạnh để kết luận rằng, các mùa (season) có ảnh hưởng rất mạnh đến phí giao hàng (delivery\_charges).
@@ -25,3 +25,5 @@ Tiếp theo chúng em quyết định sẽ tiếp tục kiểm định thêm m�
 
     Quan sát kết quả trên hình \ref{fig:5.2}, giá trị p-value (tức Pr(>F)) là rất rất nhỏ hơn ngưỡng ý nghĩa phổ biến (0.05). Do đó, cho thấy sự
 khác biệt rất có ý nghĩa thống kê, có đủ bằng chứng thống kê rất mạnh để kết luận rằng, việc khách hàng yêu cầu giao hàng nhanh (is\_expedited\_delivery) có ảnh hưởng rất mạnh đến phí giao hàng (delivery\_charges).
+\subsubsection{Kết luận}
+Phân tích ANOVA 1 nhân tố cho thấy season, is\_expedited\_delivery, một cách riêng biệt, có ảnh hưởng đáng kể đến delivery\_charges.
