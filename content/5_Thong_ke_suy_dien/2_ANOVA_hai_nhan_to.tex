@@ -47,18 +47,19 @@ Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha =
 Trước khi tiến hành phân tích ANOVA 2 chiều, ta cần kiểm tra các điều kiện cần thiết cho dữ liệu:
 
 
- Đầu tiên ta kiểm tra xem dữ liệu của \textbf{Biến phụ thuộc:} \textbf{delivery\_charges} ở mỗi nhóm do tổ hợp các mức của hai nhân tố tạo ra có tuân theo phân phối chuẩn ko.
+ Đầu tiên ta kiểm tra xem dữ liệu của \textbf{Biến phụ thuộc:} \textbf{delivery\_charges} ở mỗi nhóm do tổ hợp các mức của hai nhân tố tạo ra có tuân theo phân phối chuẩn không.
  \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{graphics/5.4.1 (2).png}
     \caption{Kết quả kiểm tra phân phối chuẩn}
 \end{figure}
+\FloatBarrier
 
 Có thể thấy p\_value < 0. 05 dữ liệu không tuân theo phân phối chuẩn.
 Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu đủ lớn, ta vẫn có thể sử dụng mô hình anova mà không cần lo ngại quá nhiều về vấn đề phân phối chuẩn của dữ liệu. Điều này dựa trên lý thuyết \textbf{Lý thuyết Giới hạn Trung tâm (Central Limit Theorem - CLT)}. 
 
 
-   Tiếp theo, ta kiểm tra xem các nhóm được phân tích ở trên có phương sai đồng nhất hay ko 
+   Tiếp theo, ta kiểm tra xem các nhóm được phân tích ở trên có phương sai đồng nhất hay không 
 
    \begin{figure}[!htbp]
     \centering
@@ -87,7 +88,7 @@ Sau khi đã thỏa mãn các điểu kiện kiểm tra dữ liệu ta tiến h�
             \caption{Phân tích anova 2 yếu tố}
         \end{figure}
 
-        Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r. 
+        Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm R. 
         Kết quả và nhận xét: 
         Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.4. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
 

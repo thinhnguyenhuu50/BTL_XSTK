@@ -37,6 +37,7 @@
 \RequirePackage{adjustbox}
 \RequirePackage{array}
 \RequirePackage{tcolorbox}
+\RequirePackage{placeins}
 
 % Some packages that seem pretty redundant
 \RequirePackage{geometry,graphicx,indentfirst,setspace}

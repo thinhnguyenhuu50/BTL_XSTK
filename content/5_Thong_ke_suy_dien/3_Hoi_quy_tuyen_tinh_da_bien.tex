@@ -20,7 +20,7 @@ Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu �
 
 Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong thống kê vì nó cho phép chúng ta làm việc với các mẫu ngẫu nhiên mà không cần phải lo lắng về phân phối gốc của dữ liệu. Nó đảm bảo rằng, khi kích thước mẫu đủ lớn, các phân tích thống kê có thể sử dụng phân phối chuẩn để thực hiện các ước lượng và kiểm định giả thuyết, ngay cả khi dữ liệu gốc không tuân theo phân phối chuẩn.
 \subsubsection{Xây dựng mô hình hồi quy tuyến tính}
-Trước tiên ta kiểm tra sự phụ thuộc của biến \textbf{delivery\_charges} vào hai biến độc lập \textbf{is\_expedited\_delivery} và \textbf{distance\_to\_nearest\_warehouse}. Ta sử dụng lệnh lm().
+Trước tiên ta kiểm tra sự phụ thuộc của biến \textbf{delivery\_charges} vào hai biến độc lập \textbf{is\_expedited-\_delivery} và \textbf{distance\_to\_nearest\_warehouse}. Ta sử dụng lệnh lm().
 
 Kết quả phân tích trên Rstudio:
 \begin{figure}[H]
@@ -32,21 +32,26 @@ Kết quả phân tích trên Rstudio:
 
 Với mức ý nghĩa 5\%, ta phân tích phần Coefficients (hệ số) như sau:
 
-Định nghĩa biến $x_1$: is\_expedited\_delivery,$x_2$:distance\_to\_nearest\_warehouse, y:delivery\_charges
-
+Định nghĩa biến:
+\begin{itemize}
+  \item $x_1$: is\_expedited\_delivery
+  \item $x_2$: distance\_to\_nearest\_warehouse
+  \item $y$: delivery\_charges
+\end{itemize}
 Cho biết hệ số của biến độc lập trong phương trình: $\beta_0= 68.12859, \beta_1= 17.44535,\\ \beta_2= -0.07176 $
  
 Ta có phương trình hồi quy tuyến tính đơn giản: $y= 68.12859 + 17.44535x_1 - 0.07176x_2$
 
- Dựa vào bảng số liệu trên ta có:\\
+ Dựa vào bảng số liệu trên ta có:
+
  \begin{itemize}
- \item\textbf{Pr(>|t|)}: Chỉ có giá trị p-value của biến \textbf{distance\_to\_nearest\_warehouse} lớn hơn 0.05(0.222>0.05), cho thấy biến \textbf{distance\_to\_nearest\_warehouse} không có ý nghĩa thống kê trong mô hình này. Có thể xem như hai biến delivery\_charges và distance\_to\_nearest\_warehouse độc lập với nhau.
-\item\textbf{Multiple R-squared}: 0.3662, cho thấy mô hình giải thích được 36.62\% biến động của \textbf{delivery\_charges}.
+ \item\textbf{Pr(>|t|)}: Chỉ có giá trị p-value của biến \textbf{distance\_to\_nearest\_warehouse} lớn hơn $0.05(0.222>0.05)$, cho thấy biến \textbf{distance\_to\_nearest\_warehouse} không có ý nghĩa thống kê trong mô hình này. Có thể xem như hai biến delivery\_charges và distance\_to\_nearest\_warehouse độc lập với nhau.
+\item\textbf{Multiple R-squared}: 0.3662, cho thấy mô hình giải thích được 36.62\% biến động của \textbf{delivery-\_charges}.
  \end{itemize}
 
  Mô hình hồi quy này chỉ ra rằng việc giao hàng nhanh \textbf{(is\_expedited\_delivery)} có ảnh hưởng đáng kể và có ý nghĩa thống kê đến chi phí giao hàng \textbf{(delivery\_charges)}. Mặc dù mô hình giải thích được \textbf{36.62\%} biến động của chi phí giao hàng, điều này cho thấy vẫn còn nhiều yếu tố khác cần được xem xét để giải thích toàn bộ biến động của chi phí giao hàng.
 
-Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_warehouse}.
+Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_ware-house}.
 
 Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên ta có được:
 \begin{figure}[H]
@@ -95,7 +100,7 @@ Cho các hệ số của từng biến độc lập trong phương trình : $\be
 Ý nghĩa của hệ số hồi quy:
 \begin{itemize}
 \item\textbf{(Intercept)}: Khi tất cả các biến độc lập bằng 0, giá trị trung bình của \textbf{order\_total} là 1521. Giá trị p-value rất nhỏ (7.64e-07), có ý nghĩa thống kê.
-\item\textbf{order\_price}: Hệ số ước lượng là 0.8889, và p-value rất nhỏ (< 2e-16), có ý nghĩa thống kê mạnh mẽ. Mỗi đơn vị tăng của\textbf{order\_price} dẫn đến \textbf{order\_total} tăng trung bình 0.8887 đơn vị, giữ nguyên các yếu tố khác.\\
+\item\textbf{order\_price}: Hệ số ước lượng là 0.8889, và p-value rất nhỏ (< 2e-16), có ý nghĩa thống kê mạnh mẽ. Mỗi đơn vị tăng của \textbf{order\_price} dẫn đến \textbf{order\_total} tăng trung bình 0.8887 đơn vị, giữ nguyên các yếu tố khác.
 \item\textbf{delivery\_charges}: Hệ số ước lượng là 0.3198, và p-value là 0.930, không có ý nghĩa thống kê.
 \item\textbf{coupon\_discount}: Hệ số ước lượng là -133.3, và p-value rất nhỏ (< 2e-16), có ý nghĩa thống kê mạnh mẽ. Mỗi đơn vị tăng của \textbf{coupon\_discount} dẫn đến \textbf{order\_total} giảm trung bình 133.9 đơn vị, giữ nguyên các yếu tố khác.
 \item\textbf{distance\_to\_nearest\_warehouse}: Hệ số ước lượng là 80.21, và p-value là 0.494, không có ý nghĩa thống kê.
@@ -104,17 +109,17 @@ Cho các hệ số của từng biến độc lập trong phương trình : $\be
 Chỉ số đo lường của mô hình:
 
 \begin{itemize}
-\item\textbf{Multiple R-squared}: 0.9769, cho thấy mô hình giải thích được 97.69\% biến động của order\_total.
-\item\textbf{F-statistic}: 4754, với p-value < 2.2e-16, cho thấy mô hình tổng thể có ý nghĩa thống kê mạnh mẽ.
+\item\textbf{Multiple R-squared}: 0.9769, mô hình giải thích được 97.69\% biến động của order\_total.
+\item\textbf{F-statistic}: 4754, với p-value < 2.2e-16, mô hình tổng thể có ý nghĩa thống kê mạnh mẽ.
 \end{itemize}
 
 Từ 2 mô hình trên ta có thể thấy được rằng giá trị ngoại lai ảnh hưởng đến hồi quy tuyến tính như thế nào. Các giá trị ngoại lai có thể làm suy yếu mô hình hồi quy tuyến tính, làm giảm khả năng giải thích của mô hình và làm sai lệch các hệ số ước lượng. Sau khi xử lý ngoại lai, mô hình có sự cải thiện rõ rệt, với giá trị R-squared cao hơn và các biến có ý nghĩa thống kê tốt hơn. Việc loại bỏ các ngoại lai giúp làm sạch dữ liệu và cải thiện độ chính xác của mô hình.
 
-Qua mô hình 2 ta thấy có hai biến là biến \textbf{order\_price} và \textbf{coupon\_discout} là phù hợp (p-value<0.05), vì thế nên ta loại bỏ hai biến còn lại ra khỏi mô hình.
+Qua mô hình 2 ta thấy có hai biến là biến \textbf{order\_price} và \textbf{coupon\_discout} là phù hợp (p-value$<0.05$), vì thế nên ta loại bỏ hai biến còn lại ra khỏi mô hình.
 
 Loại bỏ hai biến \textbf{delivery\_charges} và \textbf{distance\_to\_nearest\_warehouse}, giữ lại biến có ý nghĩa là \textbf{order\_price} và \textbf{coupon\_discount}.
 
-Từ đó ta có mô hình 3 : $y= \beta_0 + \beta_1x_1 + \beta_2x_2$ với y: order\_total, $x_1$: order\_price, $x_2$: coupon\_discount.
+Từ đó ta có mô hình 3 : $y= \beta_0 + \beta_1x_1 + \beta_2x_2$ với y: order\_total, $x_1$: order\_price, $x_2$: coupon\_dis-count.
 
 Ta tiếp sử dụng Rstudio để phân tích mô hình 3
 \begin{figure}[H]
@@ -135,14 +140,14 @@ Với mức ý nghĩa 5\% ta có phương trình: $y= 1629 + 0.8887x_1 - 133.1 x
 Chỉ số đo lường mô hình:
 
 \begin{itemize}
-\item\textbf{Multiple R-squared}: 0.9769, cho thấy mô hình giải thích được 97.69\% biến động của \textbf{order\_total}.
+\item\textbf{Multiple R-squared}: 0.9769, mô hình giải thích được 97.69\% biến động của \textbf{order\_total}.
 \item\textbf{F-statistic}: 9538, với p-value < 2.2e-16, cho thấy mô hình tổng thể có ý nghĩa thống kê mạnh mẽ.
 \end{itemize}
 
 Mô hình 3 có hiệu quả rất cao trong việc giải thích sự biến thiên của \textbf{order\_total}, với \textbf{R-squared} lên đến \textbf{97.69\%}. Các biến \textbf{order\_price} và \textbf{coupon\_discount} là những yếu tố quan trọng và có ảnh hưởng rõ rệt đến tổng giá trị đơn hàng. Việc loại bỏ các biến không quan trọng như \textbf{delivery\_charges} và \textbf{distance\_to\_nearest\_warehouse} giúp đơn giản hóa mô hình mà vẫn giữ được khả năng dự đoán chính xác.
 
 \subsubsection{Kiểm định lại mô hình hồi quy tuyến tính}
-Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\%\ bằng lệnh \textbf{confint(model\_3)}:
+Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\%\ bằng lệnh \textbf{confint-(model\_3)}:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.5.png}
