@@ -47,7 +47,7 @@ Giả thiết thống kê được thực hiện với mức ý nghĩa $\alpha =
 Trước khi tiến hành phân tích ANOVA 2 chiều, ta cần kiểm tra các điều kiện cần thiết cho dữ liệu:
 
 
- Đầu tiên ta kiểm tra xem dữ liệu của \textbf{Biến phụ thuộc:} \textbf{delivery\_charges} ở mỗi nhóm do tổ hợp các mức của hai nhân tố tạo ra có tuân theo phân phối chuẩn ko.
+ Đầu tiên ta kiểm tra xem dữ liệu của \textbf{Biến phụ thuộc:} \textbf{delivery\_charges} ở mỗi nhóm do tổ hợp các mức của hai nhân tố tạo ra có tuân theo phân phối chuẩn không.
  \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{graphics/5.4.1 (2).png}
@@ -89,7 +89,7 @@ Sau khi đã thỏa mãn các điểu kiện kiểm tra dữ liệu ta tiến h�
 
         Chúng tôi tiến hành phân tích ANOVA 2 chiều trong phần phần mềm r. 
         Kết quả và nhận xét: 
-        Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.4. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
+        Kết quả phân tích ANOVA hai yếu tố được trình bày trong hình 5.7. Kết quả cho thấy rằng cả ba yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges} với mức ý nghĩa $\alpha = 0.05$. Dưới đây là các nhận xét chi tiết:
 
         \begin{itemize}
     \item \textbf{Tương tác giữa season và is\_expedited\_delivery}:
