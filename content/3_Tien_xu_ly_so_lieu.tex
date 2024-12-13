@@ -7,7 +7,7 @@ Trước hết, ta sẽ đọc dữ liệu từ tệp tin ``dirty\_data.csv'' b�
     \caption{Bảng dữ liệu thể hiện 5 dòng đầu tiên của mỗi biến}
     \label{fig:3.1}
 \end{figure}
-
+\clearpage
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1\textwidth]{graphics/Pre_processing_data/f9.PNG}
@@ -19,7 +19,7 @@ Sau khi quan sát hình \ref{fig:3.2}, ta nhận thấy biến \textbf{date} đa
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1\textwidth]{graphics/Pre_processing_data/f10.PNG}
-    \caption{Một vài giá trị của biến \textbf{date} (được gạch chân) có định dạng lỗi}
+    \caption{Một số giá trị của biến \textbf{date} (được gạch chân) có định dạng lỗi}
     \label{fig:3.3}
 \end{figure}
 
@@ -43,7 +43,7 @@ Chúng ta sẽ thực hiện việc chuẩn hóa và chuyển đổi biến \tex
 Ta sẽ tiến hành chỉnh sửa lại biến \textbf{season} dựa trên biến \textbf{date}. Biến \textbf{sum} được khởi tạo và được gán giá trị của <ngày trong tháng> + <tháng>\times100. Như vậy, tùy vào giá trị của \textbf{sum} mà ta sẽ xác định mùa tương ứng: Nếu \textbf{sum} nằm trong khoảng từ 301 (1 tháng 3) đến 530 (30 tháng 5), mùa được gán là Autumn (mùa thu); nếu \textbf{sum} nằm trong khoảng từ 601 (1 tháng 6) đến 831 (31 tháng 8), mùa là Winter (mùa đông); nếu \textbf{sum} nằm trong khoảng từ 901 (1 tháng 9) đến 1130 (30 tháng 11), mùa là Spring (mùa xuân); các giá trị còn lại (như từ 1 tháng 1 đến 28/29 tháng 2, hoặc tháng 12) được gán là Summer (mùa hè). (Ví dụ: Nếu ngày là 15/03, thì sum = 15 + 3 \times 100 = 315 và \textbf{season} được gán giá trị Autumn). Hình \ref{f3} thể hiện 10 giá trị của \textbf{season} trước và sau khi được sửa.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.3\textwidth]{graphics/Pre_processing_data/f3.PNG}
+    \includegraphics[width=0.4\textwidth]{graphics/Pre_processing_data/f3.PNG}
     \caption{Biến \textbf{season} trước và sau khi được tinh chỉnh}
     \label{f3}
 \end{figure}
@@ -53,7 +53,7 @@ Ta sẽ tiến hành chỉnh sửa lại biến \textbf{season} dựa trên bi�
 Ta tiến hành việc chuẩn hóa dữ liệu trong biến nearest\_warehouse của tập dữ liệu dirty\_data bằng cách chuyển đổi tất cả các tên (``Thompson'', ``Nickolson'',  ``Bakers'') thành dạng Title Case (chữ cái đầu viết hoa). Thư viện \textbf{stringr} cung cấp hàm \textbf{str\_to\_title} dùng để chuyển đổi chuỗi ký tự sang dạng Title Case. Mục đích của việc chuẩn hóa định dạng văn bản này là để tăng tính nhất quán trong dữ liệu và cải thiện tính dễ đọc khi hiển thị hoặc sử dụng trong các báo cáo, phân tích. Hình \ref{f4} cho thấy hàm \textbf{unique()} được dùng để kiểm chứng việc định dạng lại dữ liệu.
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.3\textwidth]{graphics/Pre_processing_data/f4.PNG}
+    \includegraphics[width=0.4\textwidth]{graphics/Pre_processing_data/f4.PNG}
     \caption{Sử dụng hàm \textbf{unique()} để kiểm chứng kết quả}
     \label{f4}
 \end{figure}
