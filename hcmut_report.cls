@@ -208,7 +208,7 @@
         % {}                                                 \\
         \Large\@reporttype                               \\
         {}                                                 \\
-        \Huge\parbox[c]{0.8\linewidth}{\centering \@title} \\
+        \LARGE\parbox[c]{0.8\linewidth}{\centering \@title} \\
         % {}                                                 \\
         \bottomrule
         \end{tabular}
