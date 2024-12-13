@@ -14,14 +14,16 @@ library(lmtest)
 library(car)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
-head(dirty_data, 10) # In 10 giá trị quan trắc cho mỗi biến
+head(dirty_data, 5) # In 5 giá trị quan trắc cho mỗi biến
+str(dirty_data)
 
 #Kiem tra du lieu khuyet
 anyNA(dirty_data)
 
 # Bắt đầu Tiền xử lý dữ liệu
-dim(dirty_data)
-names(dirty_data)
+unique(dirty_data$date)
+unique(dirty_data$season)
+unique(dirty_data$nearest_warehouse)
 
 # + Sua dinh dang ngay/thang/nam
 df <- data.frame(date_parsed = parse_date_time(dirty_data$date, orders = c("ymd", "dmy", "mdy")))
