@@ -9,7 +9,7 @@
 
 \subsection{Phân tích biến liên tục bằng biểu đồ.}
 \subsubsection{Đồ thị Histogram}
-	Vì chúng ta làm phân tích các ảnh hướng đến chi phí đơn hàng và vì chúng ta đã sử dụng biến distance\_to\_nearest\_warehouse nên chúng ta sẽ không cần dùng tới biến customer\_lat và customer\_long. Dưới đây là một số hình ảnh của các biến order\_price, delivery\_charges, coupon\_dis-count, order\_total, distance\_to\_nearest\_warehouse. Khi biểu diễn bằng đồ thị Histogram
+	Vì chúng ta làm phân tích các ảnh hướng đến chi phí đơn hàng và vì chúng ta đã sử dụng biến distance\_to\_nearest\_warehouse nên chúng ta sẽ không cần dùng tới biến customer\_lat và customer-\\\_long. Dưới đây là một số hình ảnh của các biến order\_price, delivery\_charges, coupon\_dis-count, order\_total, distance\_to\_nearest\_warehouse. Khi biểu diễn bằng đồ thị Histogram
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{graphics/bang7.jpg}
@@ -18,7 +18,7 @@
 \end{figure}
 \FloatBarrier
 
-\textbf{Nhận xét}: Từ đồ thị hình \ref{asb} cho thấy biến order\_total, order\_price, distance\_to\_nearest\_warehouse có phân phối lệch phải, với một cột cao ở phía bên trái. Điều này cho thấy hầu hết khách hàng chỉ chi tiêu ở mức thấp hơn, trong khi một số ít có tổng giá trị đơn hàng cao, tạo ra các điểm ngoại lệ. Phân phối lệch phải thường cho thấy  rằng có một số khách hàng chi tiêu rất cao, điều này có thể ảnh hưởng đến quy mô hình hồi quy. Sau khi kiểm tra tỉ lệ khuyết nhỏ của các ngoại lai .Để xử lí tình trạng phân phối lệch phải này, chúng ta áp dụng xóa bỏ các ngoại lai  của order\_total, order\_price, distance\_to\_nearest\_warehouse.
+\textbf{Nhận xét}: Từ đồ thị hình \ref{asb} cho thấy biến order\_total, order\_price, distance\_to\_nearest\_ware-house có phân phối lệch phải, với một cột cao ở phía bên trái. Điều này cho thấy hầu hết khách hàng chỉ chi tiêu ở mức thấp hơn, trong khi một số ít có tổng giá trị đơn hàng cao, tạo ra các điểm ngoại lệ. Phân phối lệch phải thường cho thấy  rằng có một số khách hàng chi tiêu rất cao, điều này có thể ảnh hưởng đến quy mô hình hồi quy. Sau khi kiểm tra tỉ lệ khuyết nhỏ của các ngoại lai .Để xử lí tình trạng phân phối lệch phải này, chúng ta áp dụng xóa bỏ các ngoại lai  của order\_total, order\_price, distance\_to\_nearest\_warehouse.
 
 
  Đồ thị hình \ref{abs} là đồ thị các biến liên tục sau khi xóa ngoại lai.
@@ -29,7 +29,7 @@
     \label{abs}
 \end{figure}
 \subsubsection{Đồ thị phân tán}
-Chúng ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_discount, distance\_to\_nearest\_-warehouse với order\_total. Với những đồ thị có những chấm màu xanh là chưa xóa ngoại lai, còn những đồ thị có chấm màu đỏ là đã xóa ngoại lai.
+Chúng ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon\_discount, distance\_to\_near-est\_warehouse với order\_total. Với những đồ thị có những chấm màu xanh là chưa xóa ngoại lai, còn những đồ thị có chấm màu đỏ là đã xóa ngoại lai.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/bang9.jpg}
@@ -58,7 +58,7 @@ Chúng ta so sánh  lần lượt từng order\_price, delivery\_charges, coupon
 \textbf{Nhận xét:} Từ 4 đồ thị hình \ref{a}, hình \ref{b}, hình \ref{c}, hình \ref{d} chúng ta rút ra được hai biến order\_price và coupon\_discount là 2 biến có ảnh hưởng tới order\_total hay còn gọi là có quan hệ tuyến tính. Hai biến delivery\_charges và distance\_to\_nearest\_warehouse không có ảnh hưởng tới order\_total hay không có quan hệ tuyến tính.
 
 \subsubsection{Phân tích biến phân loại bằng biểu đồ boxplot}
-Chúng ta phân tích biến order\_total theo các biến nearest\_warehouse, season, is\_expedited\_delivery, is\_happy\_customer.
+Chúng ta phân tích biến order\_total theo các biến nearest\_warehouse, season, is\_expedited\_deli-very, is\_happy\_customer.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1\linewidth]{graphics/bang13.jpg}
