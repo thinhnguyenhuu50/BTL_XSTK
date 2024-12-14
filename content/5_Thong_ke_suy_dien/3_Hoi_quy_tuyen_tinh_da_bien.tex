@@ -1,66 +1,46 @@
 \subsection{Hồi quy tuyến tính đa bội}
-\subsubsection{Mục đích}
+\subsubsection{Mục tiêu}
 
-Mục đích của mô hình hồi quy tuyến tính này là dự đoán giá trị tổng đơn hàng dựa trên các yêu tố giải thích khác nhau như giá trị đơn hàng, phí vận chuyển,..
+Mục đích của mô hình hồi quy tuyến tính này là dự đoán giá trị tổng đơn hàng dựa trên các yếu  tố giải thích khác nhau như giá trị đơn hàng, phí vận chuyển,..
+\subsubsection{Định nghĩa mô hình}
 
-\subsubsection{Kiểm tra dữ liệu có tuân theo phân phối chuẩn hay không} 
+Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_ware-house}.
+Ta có phương trình hồi quy có dạng: $y=\beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \beta_4x_4 $ (mô hình 1)
 
-Ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật phận phối chuẩn hay không bằng cách cho mức ý nghĩa là 5\%, ta dùng lệnh \textbf{shapiro.test()} để kiểm tra p-value. Nếu giá trị p-value > 0.05, thì cột dữ liệu đó tuân theo phân phối chuẩn và ngược lại.Thực hiện trên Rstudio ta thu được kết quả:
+Trong đó:
+\begin{itemize}
+  \item y: \textbf{order\_total}
+  \item $x_1$:  \textbf{order\_price}
+  \item $x_2$:  \textbf{delivery\_charges}
+  \item $x_3$:  \textbf{coupon\_discount}
+  \item $x_4$:  \textbf{distance\_to\_nearest\_ware-house} 
+\end{itemize}  
 
+\subsubsection{Kết quả hồi quy}
+Trước hết chúng ta cần kiểm tra xem các dữ liệu của ta có tuân theo quy luật phân phối chuẩn hay không bằng cách cho mức ý nghĩa là 5\%, ta dùng lệnh \textbf{shapiro.test()} để kiểm tra p-value. Nếu giá trị p-value > 0.05, thì cột dữ liệu đó tuân theo phân phối chuẩn và ngược lại.Thực hiện trên Rstudio ta thu được kết quả:
 
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{graphics/5.5.0.png}
   \caption{kết quả kiểm  tra phân phối chuẩn của các biến }
+  \label{m1}
 \end{figure}
 
-5 cột dữ liệu đều có p-value < 0.05, điều đó cho ta thấy cả 5 cột không tuân theo quy luật phân phối chuẩn.
+Dựa vào dữ liệu ở hình \ref{m1}, ta nhận thấy 5 cột dữ liệu đều có p-value < 0.05, điều đó cho ta thấy cả 5 cột không tuân theo quy luật phân phối chuẩn.
 
 Tuy dữ liệu không tuân theo quy luật phân phối chuẩn nhưng mẫu đủ lớn, ta vẫn có thể sử dụng hồi quy tuyến tính mà không cần lo ngại quá nhiều về vấn đề phân phối chuẩn của dữ liệu. Điều này dựa trên lý thuyết \textbf{Lý thuyết Giới hạn Trung tâm (Central Limit Theorem - CLT)}. 
 
 Lý thuyết Giới hạn Trung tâm là một khái niệm quan trọng trong thống kê vì nó cho phép chúng ta làm việc với các mẫu ngẫu nhiên mà không cần phải lo lắng về phân phối gốc của dữ liệu. Nó đảm bảo rằng, khi kích thước mẫu đủ lớn, các phân tích thống kê có thể sử dụng phân phối chuẩn để thực hiện các ước lượng và kiểm định giả thuyết, ngay cả khi dữ liệu gốc không tuân theo phân phối chuẩn.
-\subsubsection{Xây dựng mô hình hồi quy tuyến tính}
-Trước tiên ta kiểm tra sự phụ thuộc của biến \textbf{delivery\_charges} vào hai biến độc lập \textbf{is\_expedited-\_delivery} và \textbf{distance\_to\_nearest\_warehouse}. Ta sử dụng lệnh lm().
 
-Kết quả phân tích trên Rstudio:
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\linewidth]{graphics/5.5.1.png}
-  \caption{Kết quả hồi quy tuyến tính giữa 2 biến \textbf{delivery\_charges} và \textbf{is\_expedited\_delivery}  }
-\end{figure}
-
-
-Với mức ý nghĩa 5\%, ta phân tích phần Coefficients (hệ số) như sau:
-
-Định nghĩa biến:
-\begin{itemize}
-  \item $x_1$: is\_expedited\_delivery
-  \item $x_2$: distance\_to\_nearest\_warehouse
-  \item $y$: delivery\_charges
-\end{itemize}
-Cho biết hệ số của biến độc lập trong phương trình: $\beta_0= 68.12859, \beta_1= 17.44535,\\ \beta_2= -0.07176 $
- 
-Ta có phương trình hồi quy tuyến tính đơn giản: $y= 68.12859 + 17.44535x_1 - 0.07176x_2$
-
- Dựa vào bảng số liệu trên ta có:
-
- \begin{itemize}
- \item\textbf{Pr(>|t|)}: Chỉ có giá trị p-value của biến \textbf{distance\_to\_nearest\_warehouse} lớn hơn $0.05(0.222>0.05)$, cho thấy biến \textbf{distance\_to\_nearest\_warehouse} không có ý nghĩa thống kê trong mô hình này. Có thể xem như hai biến delivery\_charges và distance\_to\_nearest\_warehouse độc lập với nhau.
-\item\textbf{Multiple R-squared}: 0.3662, cho thấy mô hình giải thích được 36.62\% biến động của \textbf{delivery-\_charges}.
- \end{itemize}
-
- Mô hình hồi quy này chỉ ra rằng việc giao hàng nhanh \textbf{(is\_expedited\_delivery)} có ảnh hưởng đáng kể và có ý nghĩa thống kê đến chi phí giao hàng \textbf{(delivery\_charges)}. Mặc dù mô hình giải thích được \textbf{36.62\%} biến động của chi phí giao hàng, điều này cho thấy vẫn còn nhiều yếu tố khác cần được xem xét để giải thích toàn bộ biến động của chi phí giao hàng.
-
-Trên thực tế tổng giá trị đơn hàng phụ thuộc vào tổng giá trị mặt hàng, chi phí vận chuyển, mã giảm giá, khoảng cách đến kho hàng gần nhất,....Vậy nên ta chọn biến \textbf{order\_total} làm biến phụ thuộc vào các biến độc lập \textbf{order\_price, delivery\_charges},\textbf{coupon\_discount} và \textbf{distance\_to\_nearest\_ware-house}.
-
-Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình trên ta có được:
+Ta xét khi có các biến ngoại lai. Hồi quy tuyến tính mô hình 1  ta có được:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.2.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 1 }
+  \label{m2}
 \end{figure}
 
-Dựa trên kết qủa từ hàm \textbf{summary(model\_1)} ta rút ra nhận xét sau:
+Dựa trên kết quả từ phân tích ở hình \ref{m2} ta rút ra nhận xét sau:
 \begin{itemize}
 \item \textbf{(Intercept)}: Khi tất cả các biến độc lập bằng 0, giá trị trung bình của \textbf{order\_total} là 90590. Tuy nhiên, giá trị p-value là 0.186, không có ý nghĩa thống kê.
 \item \textbf{order\_price}: Hệ số ước lượng là -0.02486, và p-value là 0.862, không có ý nghĩa thống kê.
@@ -78,20 +58,19 @@ Mô hình hồi quy thứ nhất không phù hợp tốt với dữ liệu bởi
 \item\textbf{F-statistic} không có ý nghĩa thống kê, gợi ý rằng mô hình tổng thể không phù hợp.
 \end{itemize}
 
-Tiếp theo ta xét tiếp khi bỏ các giá trị ngoại lai
+Tiếp theo ta xét mô hình khi bỏ các giá trị ngoại lai  (mô hình 2).
 
 Hồi quy trên Rstudio ta có được:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.3.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 2 }
+  \label{m3}
 \end{figure} 
 
-Dựa trên kết quả từ hàm \textbf{summary(model\_2)}, ta có thể rút ra các nhận xét:
+Dựa trên kết quả phân tích ở hình \ref{m3}, ta có thể rút ra các nhận xét:
 
 Với mức ý nghĩa 5\%, ta phân tích phần Coeficients(hệ số) như sau:
-
-Định nghĩa các biến:  y: order\_total, $x_1$: order\_price, $x_2$: delivery\_charges, $x_3$: coupon\_discount, $x_4$: distance\_to\_nearest\_warehouse.
 
 Cho các hệ số của từng biến độc lập trong phương trình : $\beta_0= 1521, \beta_1= 0.8889, \\\beta_2= 0.3198, \beta_3= -133.3, \beta_4= 80.21$ 
 
@@ -121,14 +100,24 @@ Qua mô hình 2 ta thấy có hai biến là biến \textbf{order\_price} và \t
 
 Loại bỏ hai biến \textbf{delivery\_charges} và \textbf{distance\_to\_nearest\_warehouse}, giữ lại biến có ý nghĩa là \textbf{order\_price} và \textbf{coupon\_discount}.
 
-Từ đó ta có mô hình 3 : $y= \beta_0 + \beta_1x_1 + \beta_2x_2$ với y: order\_total, $x_1$: order\_price, $x_2$: coupon\_dis-count.
+Từ đó ta có mô hình 3 : $y= \beta_0 + \beta_1x_1 + \beta_2x_2$ 
+
+Trong đó:
+\begin{itemize}
+  \item y: order\_total
+  \item $x_1$: order\_price
+  \item $x_2$: coupon\_discount
+\end{itemize}
 
 Ta tiếp sử dụng Rstudio để phân tích mô hình 3
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.4.png}
   \caption{Kết quả hồi quy tuyến tính mô hình 3 }
+  \label{m4}
 \end{figure}
+
+Dựa vào kết phân tích ở hình \ref{m4}, nhận xét:
 
 Với mức ý nghĩa 5\% ta có phương trình: $y= 1629 + 0.8887x_1 - 133.1 x_2$
 
@@ -148,16 +137,21 @@ Chỉ số đo lường mô hình:
 
 Mô hình 3 có hiệu quả rất cao trong việc giải thích sự biến thiên của \textbf{order\_total}, với \textbf{R-squared} lên đến \textbf{97.69\%}. Các biến \textbf{order\_price} và \textbf{coupon\_discount} là những yếu tố quan trọng và có ảnh hưởng rõ rệt đến tổng giá trị đơn hàng. Việc loại bỏ các biến không quan trọng như \textbf{delivery\_charges} và \textbf{distance\_to\_nearest\_warehouse} giúp đơn giản hóa mô hình mà vẫn giữ được khả năng dự đoán chính xác.
 
-\subsubsection{Kiểm định lại mô hình hồi quy tuyến tính}
-Tiếp tục kiểm định, ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\%\ bằng lệnh \textbf{confint-(model\_3)}:
+\subsubsection{Kiểm định mô hình hồi quy tuyến tính}
+Ta xác định khoảng tin cậy cho hệ số với mức ý nghĩa 5\% bằng lệnh \textbf{confint-(model\_3)}:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.5.png}
   \caption{Kiểm định khoảng tin cậy hệ số mô hình 3 }
+  \label{m5}
 \end{figure}
 
-Ta thấy các hệ số $\beta_0= 1629\in(1392.5102; 1866.4598), \beta_1= 0.8887\in(0.8760; 0.9015),\\ \beta_2= -133.1\in(-144.9358; -121.2661)$
-
+ Dựa vào kết quả ở hình \ref{m5} ta có các hệ số $\beta_0= 1629\in(1392.5102; 1866.4598), \beta_1= 0.8887\in(0.8760; 0.9015),\\ \beta_2= -133.1\in(-144.9358; -121.2661)$.
+ \begin{itemize}
+  \item $\beta_0= 1629\in(1392.5102; 1866.4598)$ : Không chứa 0 \rightarrow có ý nghĩa thống kê.
+  \item $\beta_1= 0.8887\in(0.8760; 0.9015)$ : Không chứa 0 \rightarrow  Biến này có ý nghĩa thống kê. Tác động của order\_price lên order\_total là tích cực và mạnh mẽ.
+  \item $\beta_2= -133.1\in(-144.9358; -121.2661)$: Không chứa 0 \rightarrow Biến này có ý nghĩa thống kê. Tác động của coupon\_discount lên order\_total là tiêu cực, càng tăng giảm giá thì tổng giá trị đơn hàng càng giảm.
+ \end{itemize}
 Kiểm định bằng phương pháp so sánh với giá trị thực tế:
 
 Ta tiến hành thay các giá trị $x_1$, $x_2$ vào phương trình(ở mô hình 3): $y= 1629 + 0.8887x_1 - 133.1 x_2$ sau đó so sánh với giá trị \textbf{order\_total} trong bảng. Ta sử dụng Rstudio để thực hiện thao tác trên:
@@ -166,9 +160,10 @@ Ta tiến hành thay các giá trị $x_1$, $x_2$ vào phương trình(ở mô h
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.7.png}
   \caption{So sánh giá trị hồi quy với giá trị thực tế }
+  \label{m7}
 \end{figure}
 
-Ta sử dụng lệnh predict để tiến hành thay các giá trị vào phương trình. Sau khi tiến hành so sánh ta thu được hai thống số là:
+ Sau khi tiến hành so sánh ta thu được hai thống số (hình \ref{m7}) là:
 \begin{itemize}
   \item Sai số trung bình : -1.548589e-11. Kết quả rất gần 0 (7.509367e-13 \approx 0), cho thấy mô hình không bị lệch. Sai số trung bình nhỏ này phản ánh rằng giá trị dự đoán trung bình khá khớp với giá trị thực tế.
   \item Độ lệch chuẩn của sai số: 1099.667. Độ lệch chuẩn là 1099.667, khá nhỏ so với một số giá trị \textbf{order\_total} thực tế (ví dụ: hàng chục ngàn). Điều này chỉ ra rằng các dự đoán của mô hình có mức độ ổn định tương đối.
@@ -188,9 +183,10 @@ Giả thuyết đặt ra:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.6.png}
   \caption{Kiểm định Shapiro-Wilk mô hình 3 }
+  \label{kd1}
 \end{figure}
 
-Kết quả kiểm định Shapiro-Wilk cho mô hình 3:
+Kết quả (hình \ref{kd1}) kiểm định Shapiro-Wilk cho mô hình 3:
 \begin{itemize}
   \item\textbf{p-value < 0.05 }: Có bằng chứng bác bỏ H0.
   \item\textbf{Kết luận}: Phần dư không tuân theo phân phối chuẩn, giả định phân phối chuẩn bị vi phạm.
@@ -201,7 +197,9 @@ Dựa trên biểu đồ phân phồi phần dư:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.9.png}
   \caption{Đồ thị phần dư ở mô hình 3}
+  \label{kd2}
 \end{figure}
+Dựa Vào đồ thị thu được ở hình \ref{kd2}, ta có: 
 
 \begin{itemize}
   \item\textbf{Histogram of Residuals}: Biểu đồ histogram cho thấy phần dư không có dạng phân phối chuẩn. Phân phối phần dư bị lệch mạnh sang một phía (lệch phải), và không tuân theo dạng chuông đối xứng của phân phối chuẩn.
@@ -221,13 +219,14 @@ Giả thuyết đặt ra:
   \item\textbf{Nếu p-value ≤ 0.05}: Bác bỏ H0, phương sai không đồng nhất.
 \end{itemize}
 
-\begin{figure}[!htp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.10.png}
   \caption{Kết quả kiểm định Breusch-Pagan mô hình 3 }
+  \label{kd3}
 \end{figure}
 
-Dựa vào kết quả kiểm định Breusch-Pagan mô hình 3:
+Dựa vào kết quả kiểm định Breusch-Pagan mô hình 3 (hình \ref{kd3}):
 \begin{itemize}
 \item\textbf{Với p-value = 0.4286 > 0.05}: chúng ta không có đủ bằng chứng để bác bỏ giả thuyết H0. Điều này nghĩa là phương sai của phần dư được xem là đồng nhất.
 \item\textbf{Kết luận}: Dựa trên kiểm định Breusch-Pagan, mô hình không vi phạm giả định phương sai đồng nhất. Phương sai của phần dư ổn định và thích hợp với hồi quy tuyến tính.
@@ -239,7 +238,9 @@ Dựa vào biểu đồ Scale-Location:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.11.png}
   \caption{Biểu đồ Scale-Location }
+  \label{kd4}
 \end{figure}
+Theo biểu đồ thu được ở hình \ref{kd4}
 
 \begin{itemize}
   \item\textbf{Nhận xét}: Các điểm không phân bố ngẫu nhiên xung quanh đường ngang (red line) mà có dạng hình phễu, tức là phương sai của phần dư không đồng nhất. Hiện tượng này cho thấy có thể vi phạm giả định đồng nhất phương sai, nghĩa là phần dư của mô hình có sự thay đổi tùy thuộc vào giá trị dự đoán.
@@ -253,7 +254,10 @@ Dựa vào biểu đồ Scale-Location:
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.12.png}
   \caption{Biểu đồ Residuals vs Fitted của mô hình 3 }
+  \label{kd5}
 \end{figure}
+Theo kết quả biểu đồ thu được ở hình \ref{kd5}, ta có:
+
 \begin{itemize}
 \item\textbf{Nhận xét }: Phần dư không phân bố ngẫu nhiên quanh đường ngang tại Residual = 0: Có một dạng hình quạt, nghĩa là ở các giá trị dự đoán thấp và cao, phần dư có xu hướng biến động mạnh hơn.
 \item\textbf{Kết luận}: Không đảm bảo tuyến tính, dạng hình quạt của phần dư gợi ý rằng mối quan hệ giữa biến phụ thuộc và biến độc lập không hoàn toàn tuyến tính.
@@ -274,9 +278,10 @@ Giả thuyết kiểm định Durbin-Watson
   \centering
   \includegraphics[width=0.7\linewidth]{graphics/5.5.8.png}
   \caption{Kiểm định Durbin-Watson của mô hình 3 }
+  \label{kd6}
 \end{figure}
 
-Kết quả kiểm định Durbin-Watson cho mô hình 3:
+Kết quả kiểm định Durbin-Watson cho mô hình 3 (hình \ref{kd6}):
 \begin{itemize}
   \item\textbf{Giá trị Durbin-Watson (DW)}: 2.0657(gần 2) cho thấy rằng không có tự tương quan bậc nhất đáng kể giữa các phần dư (residuals). Điều này thỏa mãn giả định độc lập của phần dư.
   \item \textbf{p-value}: 0.7595(lớn hơn mức ý nghĩa 0.05) chỉ ra rằng không có bằng chứng thống kê để bác bỏ giả thuyết H0, tức là không có hiện tượng tự tương quan dương trong phần dư.
