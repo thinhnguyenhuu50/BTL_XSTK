@@ -12,6 +12,8 @@ library(corrplot)
 library(nortest)
 library(lmtest)
 library(car)
+library(carData)
+library(phia)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 5) # In 5 giá trị quan trắc cho mỗi biến
@@ -410,7 +412,7 @@ df <- data_4 %>%
 #chuyen doi 2 bien coupon_discount va delivery_charges la  thanh cac yeu to factor
 df$is_expedited_delivery<-as.factor(df$is_expedited_delivery)
 df$season<-as.factor(df$season)
-
+df$delivery_charges<-as.numeric(df$delivery_charges)
 #kiem dinh phan phoi chuan hoac gan chuan 
 av_residual<-rstandard (aov(df$delivery_charges~df$is_expedited_delivery*df$season))
 shapiro.test(av_residual)
@@ -422,6 +424,23 @@ xtabs(~is_expedited_delivery + season, data=df)
 anova_model <- aov(delivery_charges ~ is_expedited_delivery * season, data=df)
 #hien thi ket qua phan tich
 summary(anova_model)
+#ve do thi tuong tac
+interaction.plot(
+  x.factor = df$season,  # Biến season (trục x)
+  trace.factor = df$is_expedited_delivery,  # Biến is_expedited_delivery (dạng "trace")
+  response = df$delivery_charges,  # Biến cần phân tích (delivery_charges)
+  fun = mean,  # Hàm tính giá trị trung bình
+  type = "b",  # Kiểu đồ (cả điểm và đường nối)
+  col = c("red", "blue"),  # Màu sắc cho từng nhóm is_expedited_delivery
+  lty = 1:4,  # Kiểu đường (đường liền cho các nhóm is_expedited_delivery)
+  pch = 19,  # Dấu chấm cho các điểm
+  xlab = "Season",  # Nhãn trục x (mùa)
+  ylab = "Mean Delivery Charges",  # Nhãn trục y
+  main = "Interaction Plot: Delivery Charges by Season and Expedited Delivery"  # Tiêu đề biểu đồ
+)
+#phan tich ky hon 
+testInteractions(anova_model)
+#warning khong anh huong den ket qua 
 #KET THUC ANOVA2
 
 # BAT DAU HOI QUY LOGISTIC 

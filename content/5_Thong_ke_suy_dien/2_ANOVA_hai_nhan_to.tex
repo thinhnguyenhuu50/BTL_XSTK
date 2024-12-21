@@ -91,8 +91,33 @@ Chúng ta tiến hành phân tích ANOVA 2 chiều trong phần phần mềm R. 
     \item Với \textbf{Df = 3}, có 3 mức độ tương tác giữa hai yếu tố \textbf{season} và \textbf{is\_expedited\_delivery}.
     \item Giá trị \textbf{F = 29.24} và \textbf{Pr(>F) = 2e-16***} cho thấy rằng có sự tương tác có ý nghĩa thống kê giữa hai yếu tố này và ảnh hưởng đến \textbf{delivery\_charges}. Do đó, ta bác bỏ giả thuyết không \(H_0\) cho sự tương tác này.
 \end{itemize}
+ Khi đã xác định được có sự tương tác giữa hai yếu tố \textbf{season} và \textbf{is\_expedited\_delivery} ta tiến hành phân tích sự tương tác đó. 
+
+Để phân tích tương tác trên ta tiến hành vẽ đồ thị tương tác giữa hai yếu tố đó.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{graphics/5.7.1.1.png}
+    \caption{Kết quả kiểm tra phân phối chuẩn}
+\end{figure}
+
+Từ hình 5.7, ta thấy hai đường true và false không song song và có xư hướng thay đổi khoảng cách giữa chúng tùy vào mùa.
+Ta tiếp tục phân tích sau hơn bằng cách sử dụng câu lệnh testInteraction().
+Kết quả nhận được:
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/5.7.1.2.png}
+    \caption{Kết quả phân tích tương tác}
+    \label{fig:5.7.1.2}
+\end{figure}
+Từ hình 5.8, ta thấy được có ảnh hưởng giữa mùa thu và mùa xuân với được giao hàng nhanh một cách có ý nghĩa thống kê,
+tương tự với các trường hợp còn lại. 
+Tuy nhiên ở mùa thu và mùa đông ta nhận thấy sự ảnh hưởng không có ý nghĩa thống kê. Điều này có nghĩa rằng, sự khác biệt này nhiều khả năng chỉ là ngẫu nhiên và không cho thấy một mối tương tác thực sự giữa các yếu tố mùa và tình trạng giao hàng nhanh trong hai mùa này.    
+
+Tóm lại, Sự tương tác giữa mùa và trạng thái giao hàng nhanh thay đổi rõ rệt, đặc biệt là giữa các mùa có sự khác biệt về chi phí giao hàng như Thu - Xuân hoặc Xuân - Đông. Tuy nhiên, với các mùa không có khác biệt đáng kể như Thu - Đông, trạng thái giao hàng nhanh không tạo ra sự khác biệt đáng chú ý.
 
 Từ những kết quả trên, chúng ta kết luận rằng cả yếu tố \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng quan trọng và có ý nghĩa thống kê đối với \textbf{delivery\_charges}. Điều này cho thấy rằng các yếu tố này cần được cân nhắc kỹ lưỡng khi định giá sản phẩm.
-               
+              
 \subsubsection{Kết luận}
 Phân tích ANOVA 2 chiều cho thấy \textbf{season}, \textbf{is\_expedited\_delivery}, và sự tương tác giữa chúng đều có ảnh hưởng đáng kể đến \textbf{delivery\_charges}. Mặc dù có một số hạn chế về phân phối chuẩn , kết quả này vẫn cung cấp cơ sở tin cậy để đánh giá và điều chỉnh chiến lược giá sản phẩm.
