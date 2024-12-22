@@ -97,21 +97,22 @@ Chúng ta tiến hành phân tích ANOVA 2 chiều trong phần phần mềm R. 
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{graphics/5.7.1.1.png}
-    \caption{Kết quả kiểm tra phân phối chuẩn}
+    \includegraphics[width=0.7\linewidth]{graphics/5.7.png}
+    \caption{Đồ thị tương tác}
+    \label{fig:5.7}
 \end{figure}
 
-Từ hình 5.7, ta thấy hai đường true và false không song song và có xư hướng thay đổi khoảng cách giữa chúng tùy vào mùa.
+Từ hình \ref{fig:5.7}, ta thấy hai đường true và false không song song và có xu hướng thay đổi khoảng cách giữa chúng tùy vào mùa.
 Ta tiếp tục phân tích sau hơn bằng cách sử dụng câu lệnh testInteraction().
 Kết quả nhận được:
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/5.7.1.2.png}
+    \includegraphics[width=1\linewidth]{graphics/5.8.png}
     \caption{Kết quả phân tích tương tác}
-    \label{fig:5.7.1.2}
+    \label{fig:5.8}
 \end{figure}
-Từ hình 5.8, ta thấy được có ảnh hưởng giữa mùa thu và mùa xuân với được giao hàng nhanh một cách có ý nghĩa thống kê,
+Từ hình \ref{fig:5.8}, ta thấy được có ảnh hưởng giữa mùa thu và mùa xuân với được giao hàng nhanh một cách có ý nghĩa thống kê,
 tương tự với các trường hợp còn lại. 
 Tuy nhiên ở mùa thu và mùa đông ta nhận thấy sự ảnh hưởng không có ý nghĩa thống kê. Điều này có nghĩa rằng, sự khác biệt này nhiều khả năng chỉ là ngẫu nhiên và không cho thấy một mối tương tác thực sự giữa các yếu tố mùa và tình trạng giao hàng nhanh trong hai mùa này.    
 
