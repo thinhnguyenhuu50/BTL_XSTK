@@ -1,23 +1,4 @@
 \section{Kiến thức nền}\label{Kien thuc nen}
-\subsection{Công thức Haversine}
-Haversine Formula là công thức tính khoảng cách địa lý giữa 2 điểm trên bề mặt một hình cầu, chẳng hạn như Trái Đất. Bằng cách gán hai giá trị kinh độ và vĩ độ của hai điểm khác nhau trên Trái Đất vào công thức Haversine, ta có thể tính khoảng cách vòng tròn lớn ( khoảng cách ngắn nhất giữa hai điểm trên về mặt hình cầu).
-\[
-a = \sin^2\left(\frac{\Delta \phi}{2}\right) + \cos(\phi_1) \cdot \cos(\phi_2) \cdot \sin^2\left(\frac{\Delta \lambda}{2}\right)
-\]
-\[
-c = 2 \cdot \text{atan2}\left(\sqrt{a}, \sqrt{1-a}\right)
-\]
-\[
-d = R \cdot c
-\]
-\begin{itemize}
-  \item \( \phi_1, \phi_2 \) là vĩ độ của 2 điểm (đơn vị radian)
-  \item \( \lambda_1, \lambda_2 \) là kinh độ của 2 điểm (đơn vị radian)
-  \item \( \Delta \phi = \phi_2 - \phi_1 \)
-  \item \( \lambda = \lambda_2 - \lambda_1 \)
-  \item \( R \) là bán kính Trái đất (\( R = 6371 km \))
-  \item \( d \) là khoảng cách của hai điểm
-\end{itemize}
 \subsection{Thống kê mô tả}
 Phương pháp thống kê mô tả (descriptive statistics) là một phương pháp trong khoa học thống kê được sử dụng để mô tả và tóm tắt các dữ liệu một cách đơn giản và dễ hiểu. Phương pháp này giúp chúng ta hiểu thông tin cơ bản về các biến trong dữ liệu mà không cần đưa ra các phán đoán hay suy luận về mối quan hệ giữa các biến. Các phương pháp thống kê mô tả thường bao gồm các đại lượng thống kê như \textbf{giá trị trung bình, phương sai, độ lệch chuẩn, phân vị, tỉ lệ phần trăm, đồ thị và biểu đồ}. Các đại lượng này giúp chúng ta hiểu về trung tâm, phân tán và hình dạng của dữ liệu.
 \subsection{Thống kê suy diễn}
