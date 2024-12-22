@@ -31,7 +31,7 @@ Tiếp theo chúng ta sẽ tiếp tục kiểm định thêm một yếu tố n�
 \end{figure}
 Quan sát kết quả trên hình \ref{fig:5.3}, giá trị p-value (tức Pr(>F)) là rất rất nhỏ hơn ngưỡng ý nghĩa phổ biến (0.05). Do đó, cho thấy sự khác biệt rất có ý nghĩa thống kê, có đủ bằng chứng thống kê rất mạnh để kết luận rằng, việc khách hàng yêu cầu giao hàng nhanh (is\_expedited\_delivery) có ảnh hưởng rất mạnh đến phí giao hàng (delivery\_charges).
 
-Để xác định trung bình của nhóm nào là khác biệt, ta sử dụng phương pháp so sánh bội (Multiple comparison method). Một phương pháp so sánh bội đơn giản và có ý nghĩa độ lệch nhỏ nhất (Least significant difference - LSD) của Fisher. Hình \ref{fig:5.4} thể hiện kết quả của phương pháp so sánh bội Least significant difference - LSD bằng câu lệnh chính là lsd2<- LSD.test(anova11, "is_expedited_delivery", console=TRUE)
+Để xác định trung bình của nhóm nào là khác biệt, ta sử dụng phương pháp so sánh bội (Multiple comparison method). Một phương pháp so sánh bội đơn giản và có ý nghĩa độ lệch nhỏ nhất (Least significant difference - LSD) của Fisher. Hình \ref{fig:5.4} thể hiện kết quả của phương pháp so sánh bội Least significant difference - LSD bằng câu lệnh chính là lsd2<- LSD.test(anova11, "is\_expedited\_delivery", console=TRUE)
 trong thư viện library(agricolae) Trong RStudio (xem code dòng 405 trong file: codeR\_nhom10\_lopTN01.r)
 \begin{figure}[!htbp]
     \centering
