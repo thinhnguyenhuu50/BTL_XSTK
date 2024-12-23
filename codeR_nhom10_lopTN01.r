@@ -447,17 +447,3 @@ interaction.plot(
 testInteractions(anova_model)
 #warning khong anh huong den ket qua 
 #KET THUC ANOVA2
-
-# BAT DAU HOI QUY LOGISTIC 
-# Create a data frame
-df <- data_4 %>%
-  select(nearest_warehouse,
-         is_happy_customer)
-
-# Verifying whether the data is balanced
-xtabs(~is_happy_customer + nearest_warehouse, data=df)
-
-# Build model 
-logistic <- glm(is_happy_customer ~ ., data = df, family = "binomial")
-summary(logisic)
-# KET THUC HOI QUY LOGISTIC
