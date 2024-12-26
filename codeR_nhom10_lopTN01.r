@@ -14,6 +14,7 @@ library(lmtest)
 library(car)
 library(carData)
 library(phia)
+library(agricolae)
 
 dirty_data <- read.csv("dirty_data.csv") # Đọc dữ liệu
 head(dirty_data, 5) # In 5 giá trị quan trắc cho mỗi biến
@@ -387,8 +388,10 @@ loi1 = data_4 %>%
 #anova:
 anova1 <- aov(delivery_charges ~ season, data=loi1)
 summary(anova1)
+#bội sau ANOVA
+lsd1<- LSD.test(anova1, "season", console=TRUE)
 
-#anova ảnh hưởng của mùa đến phí giao hàng
+#anova ảnh hưởng của yêu cầu giao hàng nhanh đến phí giao hàng
 #đọc file, đưa ra bảng dữ liệu:
 loi2 = data_4 %>%
   select(
@@ -398,6 +401,8 @@ loi2 = data_4 %>%
 #anova:
 anova11 <- aov(delivery_charges ~ is_expedited_delivery, data=loi2)
 summary(anova11)
+#bội sau ANOVA
+lsd2<- LSD.test(anova11, "is_expedited_delivery", console=TRUE)
 
 # TODO: is_expedited_delivery & delivery_charges
 # TODO: is_expedited_delivery & season
@@ -442,17 +447,3 @@ interaction.plot(
 testInteractions(anova_model)
 #warning khong anh huong den ket qua 
 #KET THUC ANOVA2
-
-# BAT DAU HOI QUY LOGISTIC 
-# Create a data frame
-df <- data_4 %>%
-  select(nearest_warehouse,
-         is_happy_customer)
-
-# Verifying whether the data is balanced
-xtabs(~is_happy_customer + nearest_warehouse, data=df)
-
-# Build model 
-logistic <- glm(is_happy_customer ~ ., data = df, family = "binomial")
-summary(logisic)
-# KET THUC HOI QUY LOGISTIC
